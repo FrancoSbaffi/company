@@ -24,6 +24,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export default function NewsPostPage({ post }: { post: Post }) {
+  // Mueve todos los hooks AQUÍ, antes de cualquier return condicional
+  const bg = useColorModeValue(
+    "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
+    "radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%)"
+  );
+  const colorDate = useColorModeValue("gray.600", "gray.400");
+  const colorText = useColorModeValue("gray.800", "gray.200");
+
   if (!post || !post.title) {
     // fallback visual por si falta post
     return (
@@ -37,22 +45,19 @@ export default function NewsPostPage({ post }: { post: Post }) {
       <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
       <Box
         minH="100vh"
-        bg={useColorModeValue(
-          "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
-          "radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%)"
-        )}
+        bg={bg}
         pt={20}
       >
         <Container maxW="2xl">
           <Heading as="h1" textAlign="center" mb={6} size="2xl">
             {post.title}
           </Heading>
-          <Text color={useColorModeValue("gray.600", "gray.400")} fontSize="md" mb={8} textAlign="center">
+          <Text color={colorDate} fontSize="md" mb={8} textAlign="center">
             {post.date}
           </Text>
           <Box
             className="prose"
-            color={useColorModeValue("gray.800", "gray.200")}
+            color={colorText}
             fontSize="lg"
             bg="transparent"
             borderRadius="xl"
