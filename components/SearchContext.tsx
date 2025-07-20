@@ -14,13 +14,12 @@ import {
 import { RiSearchLine } from "react-icons/ri";
 import { docsSections, siteConfig, topLevelSectionsRoutes } from "@/config";
 import { WithChildren } from "@/types";
-import GithubSlugger from "github-slugger";
+import { slug } from "github-slugger";
 
 interface SearchProviderProps extends WithChildren {}
 
 export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
   const router = useRouter();
-  const slugger = new GithubSlugger();
 
   const actions = useMemo(() => {
     const docs: Action[] = docsSections.reduce<Action[]>((acc, section) => {
@@ -100,6 +99,9 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
 
 const SearchInput = () => {
   const borderColor = useColorModeValue("gray.200", "gray.600");
+  const bgColor = useColorModeValue("white", "gray.800");
+  const textColor = useColorModeValue("gray.900", "white");
+  const focusBorderColor = useColorModeValue("blue.300", "blue.300");
 
   return (
     <Box pos="relative">
@@ -109,11 +111,17 @@ const SearchInput = () => {
           padding: "12px 12px 12px 48px",
           fontSize: "16px",
           width: "100%",
-          border: `1px solid var(--chakra-colors-gray-200)`,
+          border: `1px solid ${borderColor}`,
           borderRadius: "12px",
           outline: "none",
-          background: "var(--chakra-colors-white)",
-          color: "var(--chakra-colors-gray-900)"
+          background: bgColor,
+          color: textColor,
+        }}
+        onFocus={(e) => {
+          e.target.style.borderColor = focusBorderColor;
+        }}
+        onBlur={(e) => {
+          e.target.style.borderColor = borderColor;
         }}
       />
       <Flex
