@@ -14,7 +14,6 @@ import {
 import { RiSearchLine } from "react-icons/ri";
 import { docsSections, siteConfig, topLevelSectionsRoutes } from "@/config";
 import { WithChildren } from "@/types";
-import { slug } from "github-slugger";
 
 interface SearchProviderProps extends WithChildren {}
 
