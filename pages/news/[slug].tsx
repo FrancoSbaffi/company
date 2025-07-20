@@ -1,8 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import Navbar from "@/components/navbar/Navbar";
+import Link from "next/link";
 import { getAllPosts, getPostBySlug, NewsPost } from "@/lib/news";
-import ReactMarkdown from "react-markdown";
-import { Box, Container, Heading, Text } from "@chakra-ui/react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts();
@@ -20,28 +18,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export default function NewsPostPage({ post }: { post: NewsPost }) {
   return (
-    <>
-      <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
-      <Box minH="100vh" pt={20} bg="white" color="black">
-        <Container maxW="2xl">
-          <Heading as="h1" textAlign="center" mb={6} size="2xl">
-            {post.title}
-          </Heading>
-          <Text fontSize="md" mb={8} textAlign="center" color="gray.600">
-            {post.date}
-          </Text>
-          <Box
-            fontSize="lg"
-            bg="transparent"
-            borderRadius="xl"
-            p={0}
-          >
-            <ReactMarkdown>
-              {post.content}
-            </ReactMarkdown>
-          </Box>
-        </Container>
-      </Box>
-    </>
+    <div>
+      {/* Navegación simple sin componentes complejos */}
+      <nav style={{ padding: '20px', borderBottom: '1px solid #ccc' }}>
+        <Link href="/">Home</Link>
+        {" | "}
+        <Link href="/news">News</Link>
+      </nav>
+      
+      <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+        <h1>{post.title}</h1>
+        <p style={{ color: '#666', marginBottom: '20px' }}>{post.date}</p>
+        <div style={{ whiteSpace: 'pre-wrap' }}>
+          {post.content}
+        </div>
+      </div>
+    </div>
   );
 }
