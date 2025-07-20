@@ -23,6 +23,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export default function NewsPostPage({ post }: { post: Post | null }) {
+  // Los hooks van SIEMPRE arriba, nunca después de un return condicional
+  const bg = useColorModeValue(
+    "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
+    "radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%)"
+  );
+  const dateColor = useColorModeValue("gray.600", "gray.400");
+  const proseColor = useColorModeValue("gray.800", "gray.200");
+
   if (!post) {
     return (
       <Container>
@@ -32,16 +40,6 @@ export default function NewsPostPage({ post }: { post: Post | null }) {
       </Container>
     );
   }
-
-  const bg = useColorModeValue(
-    "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
-    "radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%)"
-  );
-  const dateColor = useColorModeValue("gray.600", "gray.400");
-  const proseColor = useColorModeValue("gray.800", "gray.200");
-
-  // LOG para debug
-  console.log("POST CONTENT:", post.content);
 
   return (
     <>
@@ -63,7 +61,6 @@ export default function NewsPostPage({ post }: { post: Post | null }) {
             p={0}
             sx={{ h1: { mt: 8 }, h2: { mt: 6 }, a: { color: "purple.500" } }}
           >
-            {/* Render markdown sin plugins */}
             <ReactMarkdown>
               {post.content}
             </ReactMarkdown>
