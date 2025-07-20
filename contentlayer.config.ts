@@ -3,11 +3,11 @@ import {
   makeSource,
 } from "contentlayer/source-files";
 import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
 import rehypePrism from "rehype-prism-plus";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { getTableOfContents } from "./utils/mdx";
+import { rehypeSlugCustom } from "./utils/rehype-slug-custom";
 import siteConfig from "./config/site-config";
 
 const computedFields = {
@@ -53,7 +53,7 @@ export default makeSource({
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
-      rehypeSlug,
+      rehypeSlugCustom,
       rehypeCodeTitles,
       rehypePrism,
       [
