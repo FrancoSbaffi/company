@@ -2,7 +2,7 @@ import { SiteConfig } from "@/types";
 
 export const websiteUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
 export const githubBaseUrl =
-  "https://github.com/bryanbarrios/lil-docs-template";
+  "https://github.com/FrancoSbaffi/company";
 
 const siteConfig: SiteConfig = {
   repo: {
@@ -11,14 +11,14 @@ const siteConfig: SiteConfig = {
     blobUrl: `${githubBaseUrl}/blob/main`,
   },
   author: {
-    name: "Bryan Barrios",
-    github: "bryanbarrios",
-    twitter: "@bryanbarrios__",
-    email: "bryansbarrios@outlook.com",
+    name: "Franco Sbaffi",
+    github: "FrancoSbaffi",
+    twitter: "@FrancoSbaffi",
+    email: "sbaffiengineer@gmail.com",
   },
   seo: {
-    title: "Lil Docs Template",
-    description: "A lil docs template for lil projects.",
+    title: "Moneypilot - Fintech Web",
+    description: "Moneypilot is a fintech platform for modern financial applications.",
     openGraph: {
       url: websiteUrl,
       type: "website",
@@ -26,7 +26,7 @@ const siteConfig: SiteConfig = {
         url: `${websiteUrl}/static/images/banner.png`,
         width: 1240,
         height: 480,
-        alt: "Lil Documentation Template: A lil docs template for lil projects.",
+        alt: "Moneypilot - Fintech Web",
         type: "image/png",
       },
       locale: "en_US",

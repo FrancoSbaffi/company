@@ -20,11 +20,17 @@ import { RiGithubFill } from "react-icons/ri";
 import { Route } from "@/types";
 import { siteConfig } from "@/config";
 
+// Default routes in case none are passed
+const defaultRoutes: Route[] = [
+  { path: "/", title: "Home" },
+  { path: "/news", title: "News" }
+];
+
 interface NavbarProps extends BoxProps {
-  routes: Route[];
+  routes?: Route[];
 }
 
-const Navbar: FC<NavbarProps> = ({ routes, ...props }) => {
+const Navbar: FC<NavbarProps> = ({ routes = defaultRoutes, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

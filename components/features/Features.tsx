@@ -65,8 +65,8 @@ const Features: FC<FeaturesProps> = ({ ...props }) => {
   return (
     <Box {...props}>
       <Section
-        title="For developers. For designers. For everyone."
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sed consequatur."
+        title="For traders. For builders. For fintech."
+        text="Everything you need to launch your next fintech idea—fast, secure, and built for scale."
       />
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="8">
         {features.map(({ title, description, icon }, index) => (

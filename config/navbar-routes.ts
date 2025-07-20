@@ -6,7 +6,7 @@ export const navbarRoutes: Route[] = [
     path: "/docs/mdx",
   },
   {
-    title: "Blog",
-    path: "/blog",
+    title: "News",
+    path: "/news",
   },
 ];

@@ -38,9 +38,9 @@ const Hero: FC<HeroProps> = () => {
         zIndex="1"
         blendMode="luminosity"
       >
-        A lil docs template{" "}
+        Build smarter{" "}
         <Box as="span" color={useColorModeValue("purple.600", "purple.300")}>
-          for your lil projects
+          fintech solutions
         </Box>
       </Heading>
       <Text
@@ -52,8 +52,8 @@ const Hero: FC<HeroProps> = () => {
         zIndex="1"
         blendMode="luminosity"
       >
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti quasi
-        error molestias, dolores doloribus ipsa nulla facere facilis.
+        Empower your fintech projects with real-time data, trading tools, and modern APIs. 
+        Build faster, smarter, and more secure financial products.
       </Text>
       <Flex
         direction="row"

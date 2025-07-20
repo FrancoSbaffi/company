@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { Logo } from "@/components/logo";
 import { Link } from "@/components/link";
-import { NicaraguaFlag } from "@/components/nicaragua-flag";
+import HongKongFlag from "@/components/hongkong-flag/hongkong-flag";
 import { siteConfig } from "@/config";
 
 const Footer: FC<BoxProps> = (props) => {
@@ -30,7 +30,7 @@ const Footer: FC<BoxProps> = (props) => {
       {siteConfig.author && (
         <HStack fontSize="sm" fontWeight="medium" color={textColor} mt="4">
           <span>Crafted in</span>
-          <NicaraguaFlag />
+          <HongKongFlag />
           <span>
             by{" "}
             <Link
