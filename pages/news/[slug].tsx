@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Navbar from "@/components/navbar/Navbar";
-import { getPostBySlug } from "@/lib/news";
+import { getAllPosts } from "@/lib/news";
 import ReactMarkdown from "react-markdown";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
