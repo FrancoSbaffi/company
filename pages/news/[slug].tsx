@@ -2,7 +2,7 @@ import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/rea
 import Navbar from "@/components/navbar/Navbar";
 import { getAllPosts, getPostBySlug } from "@/lib/news";
 import ReactMarkdown from "react-markdown";
-// import remarkGfm from "remark-gfm"; // Temporarily disabled for debugging
+import remarkGfm from "remark-gfm";
 
 export async function getStaticPaths() {
   const posts = getAllPosts();
@@ -76,25 +76,9 @@ export default function NewsPostPage({ post }: { post: any }) {
                 "code": { bg: "#f2eaff", color: "#7f48ff", px: "1.5", borderRadius: "md" }
               }}
             >
-              {(() => {
-                try {
-                  return (
-                    <ReactMarkdown>
-                      {post.content}
-                    </ReactMarkdown>
-                  );
-                } catch (error) {
-                  console.error('ReactMarkdown error:', error);
-                  return (
-                    <Box>
-                      <Text color="red.500">Error rendering markdown content</Text>
-                      <pre>{String(error)}</pre>
-                      <Text mt={4}>Raw content:</Text>
-                      <pre>{post.content}</pre>
-                    </Box>
-                  );
-                }
-              })()}
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {post.content}
+              </ReactMarkdown>
             </Box>
           </>
         )}
