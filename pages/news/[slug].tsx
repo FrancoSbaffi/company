@@ -1,20 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Navbar from "@/components/navbar/Navbar";
-import { getAllPosts, getPostBySlug } from "@/lib/news"; // <--- IMPORTANTE
+import { getPostBySlug, getAllPosts } from "@/lib/news";
 import ReactMarkdown from "react-markdown";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-
-// Trae todos los slugs para generar las rutas
-export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getAllPosts();
-  const paths = posts.map((post) => ({ params: { slug: post.slug } }));
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = getPostBySlug(params!.slug as string);
-  return { props: { post: post ?? null } };
-};
 
 type Post = {
   slug: string;
@@ -23,7 +11,25 @@ type Post = {
   content: string;
 };
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = getAllPosts();
+  const paths = posts.map((post: Post) => ({ params: { slug: post.slug } }));
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const post = getPostBySlug(params!.slug as string);
+  return { props: { post: post ?? null } };
+};
+
 export default function NewsPostPage({ post }: { post: Post | null }) {
+  const bg = useColorModeValue(
+    "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
+    "radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%)"
+  );
+  const dateColor = useColorModeValue("gray.600", "gray.400");
+  const proseColor = useColorModeValue("gray.800", "gray.200");
+
   if (!post) {
     return (
       <Container>
@@ -33,14 +39,6 @@ export default function NewsPostPage({ post }: { post: Post | null }) {
       </Container>
     );
   }
-
-  // Hooks después de validar que post existe
-  const bg = useColorModeValue(
-    "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
-    "radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%)"
-  );
-  const dateColor = useColorModeValue("gray.600", "gray.400");
-  const proseColor = useColorModeValue("gray.800", "gray.200");
 
   return (
     <>
