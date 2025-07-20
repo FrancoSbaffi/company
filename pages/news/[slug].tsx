@@ -4,6 +4,14 @@ import { getAllPosts, getPostBySlug } from "@/lib/news";
 import ReactMarkdown from "react-markdown";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
+type Post = {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  content: string;
+};
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts();
   const paths = posts.map((post) => ({ params: { slug: post.slug } }));
@@ -15,14 +23,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return { props: { post } };
 };
 
-type Post = {
-  slug: string;
-  title: string;
-  date: string;
-  content: string;
-};
-
 export default function NewsPostPage({ post }: { post: Post }) {
+  if (!post || !post.title) {
+    // fallback visual por si falta post
+    return (
+      <Box minH="100vh" display="flex" alignItems="center" justifyContent="center">
+        <Text fontSize="xl">News post not found.</Text>
+      </Box>
+    );
+  }
   return (
     <>
       <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
