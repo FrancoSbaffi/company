@@ -1,15 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Navbar from "@/components/navbar/Navbar";
-import { getAllPosts, getPostBySlug } from "@/lib/news";
+import { getAllPosts, getPostBySlug, NewsPost } from "@/lib/news";
 import ReactMarkdown from "react-markdown";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-
-type Post = {
-  slug: string;
-  title: string;
-  date: string;
-  content: string;
-};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts();
@@ -19,10 +12,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = getPostBySlug(params!.slug as string);
-  return { props: { post: post ?? null } };
+  if (!post) {
+    return { notFound: true };
+  }
+  return { props: { post } };
 };
 
-export default function NewsPostPage({ post }: { post: Post | null }) {
+export default function NewsPostPage({ post }: { post: NewsPost }) {
   // Los hooks van SIEMPRE arriba, nunca después de un return condicional
   const bg = useColorModeValue(
     "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
@@ -30,16 +26,6 @@ export default function NewsPostPage({ post }: { post: Post | null }) {
   );
   const dateColor = useColorModeValue("gray.600", "gray.400");
   const proseColor = useColorModeValue("gray.800", "gray.200");
-
-  if (!post) {
-    return (
-      <Container>
-        <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
-        <Heading>Error: Post not found</Heading>
-        <Text>Sorry, this news article does not exist.</Text>
-      </Container>
-    );
-  }
 
   return (
     <>
