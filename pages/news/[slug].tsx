@@ -1,14 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Navbar from "@/components/navbar/Navbar";
-import { getAllPosts } from "@/lib/news";
+import { getAllPosts, getPostBySlug } from "@/lib/news"; // <--- IMPORTANTE
 import ReactMarkdown from "react-markdown";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
+// Trae todos los slugs para generar las rutas
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Replace getAllPosts with a valid way to get posts, or import getAllPosts from the correct module.
-  // Example: If you have a posts array available, use it directly.
-  const posts: Post[] = []; // TODO: Replace with actual posts fetching logic
-  const paths = posts.map((post: Post) => ({ params: { slug: post.slug } }));
+  const posts = getAllPosts();
+  const paths = posts.map((post) => ({ params: { slug: post.slug } }));
   return { paths, fallback: false };
 };
 
@@ -26,7 +25,6 @@ type Post = {
 
 export default function NewsPostPage({ post }: { post: Post | null }) {
   if (!post) {
-    // Siempre renderizar algo seguro si no existe post
     return (
       <Container>
         <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
@@ -36,7 +34,7 @@ export default function NewsPostPage({ post }: { post: Post | null }) {
     );
   }
 
-  // Hooks SOLO después de comprobar que post existe
+  // Hooks después de validar que post existe
   const bg = useColorModeValue(
     "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
     "radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%)"
