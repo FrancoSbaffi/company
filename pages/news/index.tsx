@@ -4,8 +4,13 @@ import Navbar from "@/components/navbar/Navbar";
 import { getAllPosts } from "@/lib/news";
 
 export async function getStaticProps() {
-  const posts = getAllPosts();
-  return { props: { posts } };
+  try {
+    const posts = getAllPosts();
+    return { props: { posts } };
+  } catch (error) {
+    console.error('Error in getStaticProps for news index:', error);
+    return { props: { posts: [] } };
+  }
 }
 
 type Post = {

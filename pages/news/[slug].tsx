@@ -5,20 +5,42 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 export async function getStaticPaths() {
-  const posts = getAllPosts();
-  return {
-    paths: posts.map((p) => ({ params: { slug: p.slug } })),
-    fallback: false,
-  };
+  try {
+    const posts = getAllPosts();
+    return {
+      paths: posts.map((p) => ({ params: { slug: p.slug } })),
+      fallback: false,
+    };
+  } catch (error) {
+    console.error('Error in getStaticPaths for news:', error);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
 }
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
-  return {
-    props: {
-      post,
-    },
-  };
+  try {
+    const post = getPostBySlug(params.slug);
+    
+    if (!post) {
+      return {
+        notFound: true,
+      };
+    }
+    
+    return {
+      props: {
+        post,
+      },
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps for news post:', error);
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default function NewsPostPage({ post }: { post: any }) {
