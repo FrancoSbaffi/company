@@ -4,6 +4,13 @@ import { getPostBySlug, getAllPosts } from "@/lib/news";
 import ReactMarkdown from "react-markdown";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
+type PostPreview = {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+};
+
 type Post = {
   slug: string;
   title: string;
@@ -12,8 +19,8 @@ type Post = {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getAllPosts();
-  const paths = posts.map((post: Post) => ({ params: { slug: post.slug } }));
+  const posts: PostPreview[] = getAllPosts();
+  const paths = posts.map((post) => ({ params: { slug: post.slug } }));
   return { paths, fallback: false };
 };
 
