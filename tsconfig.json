@@ -1,7 +1,8 @@
 {
+  // Force TypeScript refresh
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
+    "target": "es2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -15,7 +16,7 @@
     "isolatedModules": true,
     "downlevelIteration": true,
     "jsx": "preserve",
-    "incremental": true,
+    "incremental": false,
     "paths": {
       "@/*": ["./*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
@@ -25,7 +26,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".contentlayer/generated"
+    ".contentlayer/generated",
+    "types/**/*.d.ts"
   ],
   "exclude": ["node_modules"]
 }

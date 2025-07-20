@@ -20,14 +20,14 @@ import { RiMore2Fill } from "react-icons/ri";
 import { Route } from "@/types";
 import { siteConfig } from "@/config";
 
-interface MobileOptionsMenuProps {
+interface MobileMenuProps {
   routes: Route[];
 }
 
 // FIX: Assign PopoverTrigger directly, no FC!
 const PopoverTrigger = ChakraPopoverTrigger;
 
-const MobileOptionsMenu: FC<MobileOptionsMenuProps> = ({ routes }) => {
+const MobileMenu: FC<MobileMenuProps> = ({ routes }: MobileMenuProps) => {
   return (
     <>
       <MobileSearchButton aria-label="Search" />
@@ -56,7 +56,7 @@ const MobileOptionsMenu: FC<MobileOptionsMenuProps> = ({ routes }) => {
                 mb="4"
                 mx="0"
               >
-                {routes.map((route) => (
+                {routes.map((route: Route) => (
                   <ListItem as="li" key={route.path}>
                     <Link href={route.path}>{route.title}</Link>
                   </ListItem>
@@ -79,4 +79,4 @@ const MobileOptionsMenu: FC<MobileOptionsMenuProps> = ({ routes }) => {
   );
 };
 
-export default MobileOptionsMenu;
+export default MobileMenu;

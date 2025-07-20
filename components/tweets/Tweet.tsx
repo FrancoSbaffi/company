@@ -14,7 +14,7 @@ interface TweetProps extends LinkBoxProps {
   tweet: TweetData;
 }
 
-export const Tweet: FC<TweetProps> = ({ tweet, ...props }) => {
+export const Tweet: FC<TweetProps> = ({ tweet, ...props }: TweetProps) => {
   const fontColor = useColorModeValue("gray.500", "gray.300");
 
   return (

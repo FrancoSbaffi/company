@@ -30,7 +30,7 @@ interface NavbarProps extends BoxProps {
   routes?: Route[];
 }
 
-const Navbar: FC<NavbarProps> = ({ routes = defaultRoutes, ...props }) => {
+const Navbar: FC<NavbarProps> = ({ routes = defaultRoutes, ...props }: NavbarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -57,7 +57,7 @@ const Navbar: FC<NavbarProps> = ({ routes = defaultRoutes, ...props }) => {
             >
               <Flex as="nav">
                 <Stack as="ul" listStyleType="none" direction="row" spacing="6">
-                  {routes.map((route) => (
+                  {routes.map((route: Route) => (
                     <Box as="li" key={route.path}>
                       <Link
                         fontSize="sm"

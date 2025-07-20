@@ -85,7 +85,7 @@ const tweets: TweetData[] = [
   },
 ];
 
-const Tweets: FC<TweetsProps> = (props) => {
+const Tweets: FC<TweetsProps> = (props: TweetsProps) => {
   const [r, g, b] = useColorModeValue([255, 255, 255], [26, 32, 43]);
   const gradientWidth = useBreakpointValue({ base: 100, md: 200 });
 
@@ -102,7 +102,7 @@ const Tweets: FC<TweetsProps> = (props) => {
         speed={30}
         pauseOnHover
       >
-        {tweets.map((tweet, index) => (
+        {tweets.map((tweet: TweetData, index: number) => (
           <Tweet key={index} tweet={tweet} mr="3" />
         ))}
       </Box>
