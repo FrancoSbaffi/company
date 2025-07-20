@@ -1,5 +1,4 @@
 import {
-  ComputedFields,
   defineDocumentType,
   makeSource,
 } from "contentlayer/source-files";
@@ -11,14 +10,14 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { getTableOfContents } from "./utils";
 import siteConfig from "./config/site-config";
 
-const computedFields: ComputedFields = {
+const computedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => `/${doc._raw.flattenedPath}`,
+    resolve: (doc: any) => `/${doc._raw.flattenedPath}`,
   },
   editUrl: {
     type: "string",
-    resolve: (doc) =>
+    resolve: (doc: any) =>
       siteConfig.repo?.editUrl ? `${siteConfig.repo.editUrl}/${doc._id}` : null,
   },
 };
@@ -43,7 +42,7 @@ export const Doc = defineDocumentType(() => ({
     ...computedFields,
     headings: {
       type: "json",
-      resolve: (doc) => getTableOfContents(doc.body.raw),
+      resolve: (doc: any) => getTableOfContents(doc.body.raw),
     },
   },
 }));

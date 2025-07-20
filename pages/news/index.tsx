@@ -24,12 +24,17 @@ export default function NewsPage({ posts }: NewsPageProps) {
     "rgba(255, 255, 255, 0.85)",
     "rgba(28, 32, 43, 0.80)"
   );
+  const colorTitle = useColorModeValue("gray.900", "white");
+  const colorSub = useColorModeValue("gray.600", "gray.400");
+  const cardBg = useColorModeValue(
+    "linear-gradient(135deg, rgba(245,233,255,0.82) 0%, rgba(251,234,242,0.84) 100%)",
+    "linear-gradient(135deg, rgba(51, 45, 71, 0.74) 0%, rgba(38, 34, 51, 0.85) 100%)"
+  );
+  const cardBorderColor = useColorModeValue("#F2E8FA", "#2c273b");
   const borderColor = useColorModeValue(
     "rgba(160, 100, 255, 0.10)",
     "rgba(160, 100, 255, 0.10)"
   );
-  const colorTitle = useColorModeValue("gray.800", "white");
-  const colorSub = useColorModeValue("gray.700", "gray.300");
 
   return (
     <Box
@@ -76,18 +81,15 @@ export default function NewsPage({ posts }: NewsPageProps) {
 
         <SimpleGrid columns={1} spacing={8} mt={14}>
           {posts.map((post) => (
-            <Link href={`/news/${post.slug}`} key={post.slug} passHref legacyBehavior>
+            <Link href={`/news/${post.slug}`} key={post.slug} passHref>
               <Box
                 as="a"
                 borderRadius="2xl"
                 px={[5, 8]}
                 py={[7, 8]}
-                bg={useColorModeValue(
-                  "linear-gradient(135deg, rgba(245,233,255,0.82) 0%, rgba(251,234,242,0.84) 100%)",
-                  "linear-gradient(135deg, rgba(51, 45, 71, 0.74) 0%, rgba(38, 34, 51, 0.85) 100%)"
-                )}
+                bg={cardBg}
                 border="1.5px solid"
-                borderColor={useColorModeValue("#F2E8FA", "#2c273b")}
+                borderColor={cardBorderColor}
                 style={{
                   backdropFilter: "blur(16px)",
                   WebkitBackdropFilter: "blur(16px)",

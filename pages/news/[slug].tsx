@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
   return {
     props: {
@@ -21,7 +21,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function NewsPostPage({ post }) {
+export default function NewsPostPage({ post }: { post: any }) {
   const colorTitle = useColorModeValue("gray.900", "white");
   const colorMeta = useColorModeValue("gray.600", "gray.300");
   const colorBody = useColorModeValue("gray.800", "gray.200");

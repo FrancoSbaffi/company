@@ -27,6 +27,12 @@ declare module 'gray-matter' {
   export = matter;
 }
 
+declare module 'contentlayer/source-files' {
+  export const makeSource: any;
+  export const defineDocumentType: any;
+  export const ComputedFields: any;
+}
+
 declare module 'react-fast-marquee' {
   import React from 'react';
   
