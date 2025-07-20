@@ -14,189 +14,170 @@ import {
 import { RiSearchLine } from "react-icons/ri";
 import { docsSections, siteConfig, topLevelSectionsRoutes } from "@/config";
 import { WithChildren } from "@/types";
-import slugger from "github-slugger";
+import GithubSlugger from "github-slugger";
 
 interface SearchProviderProps extends WithChildren {}
 
-const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
+export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
   const router = useRouter();
+  const slugger = new GithubSlugger();
 
   const actions = useMemo(() => {
-    let actions: Action[] = [
-      {
-        id: "homepage",
-        name: "Homepage",
-        keywords: "Lil Docs Template Home Start Index",
-        section: "Home",
-        perform: () => router.push("/"),
-      },
-    ];
-
-    topLevelSectionsRoutes.map((section) =>
-      actions.push({
-        id: `docs-${slugger.slug(section.label)}`,
-        name: section.label,
-        section: "Sections",
-        icon: <Icon as={section.icon} />,
-        perform: () => router.push(section.path),
-      })
-    );
-
-    siteConfig.repo &&
-      actions.push({
-        id: "external-github",
-        name: "GitHub",
-        keywords: "Github Git Repository Repo",
-        section: "External",
-        perform: () => window.open(siteConfig.repo?.url, "_blank"),
+    const docs: Action[] = docsSections.reduce<Action[]>((acc, section) => {
+      section.routes.forEach((route) => {
+        acc.push({
+          id: route.path,
+          name: route.title,
+          keywords: route.title
+            .toLowerCase()
+            .split(" ")
+            .join(" "),
+          section: section.section,
+          subtitle: "Open Documentation",
+          perform: () => router.push(route.path),
+        });
       });
 
-    docsSections.map(({ section, routes }) =>
-      routes.map((route) =>
-        actions.push({
-          id: `docs-${slugger.slug(route.title)}`,
-          name: route.title,
-          section: "Documentation",
-          subtitle: `Docs / ${section} / ${route.title}`,
-          perform: () => router.push(route.path),
-        })
-      )
-    );
+      return acc;
+    }, []);
 
-    return actions;
+    const topLevelPages: Action[] = topLevelSectionsRoutes.map((route) => ({
+      id: route.path,
+      name: route.label,
+      keywords: route.label
+        .toLowerCase()
+        .split(" ")
+        .join(" "),
+      section: "Pages",
+      subtitle: "Open Page",
+      perform: () => router.push(route.path),
+    }));
+
+    return [
+      {
+        id: "homepage",
+        name: "Home",
+        keywords: "go back",
+        section: "Navigation",
+        subtitle: "Go to homepage",
+        perform: () => router.push("/"),
+      },
+      {
+        id: "twitter",
+        name: "Twitter",
+        keywords: "social contact dm",
+        section: "Social",
+        subtitle: "Follow on Twitter",
+        perform: () => window.open(`https://twitter.com/${siteConfig.author?.twitter?.replace('@', '')}`, "_blank"),
+      },
+      {
+        id: "github",
+        name: "GitHub",
+        keywords: "sourcecode",
+        section: "Social",
+        subtitle: "Open GitHub repository",
+        perform: () => window.open(siteConfig.repo?.url, "_blank"),
+      },
+      ...topLevelPages,
+      ...docs,
+    ];
   }, [router]);
 
   return (
     <KBarProvider actions={actions}>
       <KBarPortal>
-        <Box
-          as={KBarPositioner}
-          bgColor={useColorModeValue(
-            "rgba(203,214,224,0.5)",
-            "rgba(26,31,44,0.2)"
-          )}
-          backdropFilter="blur(12px)"
-          zIndex="overlay"
-        >
-          <Box as={KBarAnimator} w="full" maxW="xl">
-            <Box
-              bgColor={useColorModeValue("white", "gray.700")}
-              borderTop="1px"
-              borderColor="rgba(255,255,255,0.1)"
-              borderRadius="3xl"
-              overflow="hidden"
-            >
-              <Flex alignItems="center" p="4">
-                <Icon
-                  as={RiSearchLine}
-                  boxSize="5"
-                  color="gray.500"
-                  mr={{ base: "2", md: "4" }}
-                />
-                <Input
-                  as={KBarSearch}
-                  variant="unstyled"
-                  color={useColorModeValue("gray.700", "gray.200")}
-                  _placeholder={{
-                    color: useColorModeValue("gray.400", "gray.500"),
-                  }}
-                />
-                <Box
-                  as="kbd"
-                  fontSize="x-small"
-                  fontWeight="semibold"
-                  border="1px"
-                  borderColor={useColorModeValue("gray.200", "gray.600")}
-                  borderRadius="md"
-                  px="2"
-                  py="0.5"
-                  ml={{ base: "2", md: "4" }}
-                >
-                  ESC
-                </Box>
-              </Flex>
-              <RenderResults />
-            </Box>
-          </Box>
-        </Box>
+        <KBarPositioner>
+          <KBarAnimator className="kbar-blur">
+            <SearchInput />
+            <Results />
+          </KBarAnimator>
+        </KBarPositioner>
       </KBarPortal>
       {children}
     </KBarProvider>
   );
 };
 
-const RenderResults = () => {
+const SearchInput = () => {
+  const borderColor = useColorModeValue("gray.200", "gray.600");
+
+  return (
+    <Box pos="relative">
+      <KBarSearch
+        defaultPlaceholder="What do you need?"
+        style={{
+          padding: "12px 12px 12px 48px",
+          fontSize: "16px",
+          width: "100%",
+          border: `1px solid var(--chakra-colors-gray-200)`,
+          borderRadius: "12px",
+          outline: "none",
+          background: "var(--chakra-colors-white)",
+          color: "var(--chakra-colors-gray-900)"
+        }}
+      />
+      <Flex
+        alignItems="center"
+        pos="absolute"
+        left="4"
+        top="50%"
+        transform="translateY(-50%)"
+        pointerEvents="none"
+      >
+        <Icon as={RiSearchLine} />
+      </Flex>
+    </Box>
+  );
+};
+
+const Results = () => {
   const { results } = useMatches();
 
-  if (!!results.length) {
-    <p>No results for your search...</p>;
-  }
+  return (
+    <KBarResults
+      items={results}
+      onRender={({ item, active }) => {
+        if (typeof item === "string") {
+          return (
+            <Box p="3" fontSize="xs" textTransform="uppercase" opacity={0.5}>
+              {item}
+            </Box>
+          );
+        }
 
-  const dividerColor = useColorModeValue(
-    "rgba(0,0,0,0.05)",
-    "rgba(255,255,255,0.05)"
-  );
-  const activeColor = useColorModeValue("gray.50", "gray.600");
-  const itemColor = useColorModeValue("gray.600", "gray.200");
-  const labelColor = useColorModeValue("gray.400", "gray.500");
+        const borderLeftColor = active ? "blue.300" : "transparent";
 
-  if (results.length) {
-    return (
-      <KBarResults
-        items={results}
-        onRender={({ item, active }) => (
-          <Box>
-            {typeof item === "string" ? (
-              <Box pt="3">
-                <Box
-                  borderTop="1px"
-                  borderColor={dividerColor}
-                  fontSize="xs"
-                  fontWeight="semibold"
-                  color={labelColor}
-                  textTransform="uppercase"
-                  letterSpacing="wide"
-                  pt="4"
-                  pb="2"
-                  px="4"
-                >
-                  {item}
-                </Box>
-              </Box>
-            ) : (
-              <Box
-                cursor="pointer"
-                bgColor={active ? activeColor : "transparent"}
-                color={itemColor}
-                px="4"
-                py="2.5"
-              >
-                {item.subtitle && (
-                  <Box fontSize="xs" color={labelColor}>
-                    {item.subtitle}
-                  </Box>
-                )}
-                {item.name}
-              </Box>
-            )}
+        return (
+          <Box
+            p="3"
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            cursor="pointer"
+            borderLeft="2px solid"
+            borderLeftColor={borderLeftColor}
+            bg={active ? "gray.100" : "transparent"}
+            _dark={{
+              bg: active ? "gray.700" : "transparent",
+            }}
+          >
+            <Box
+              display="flex"
+              gap="3"
+              alignItems="center"
+              fontSize="sm"
+              fontWeight={active ? "medium" : "normal"}
+            >
+              {item.name}
+            </Box>
+            <Box fontSize="xs" opacity={0.5}>
+              {item.subtitle}
+            </Box>
           </Box>
-        )}
-      />
-    );
-  } else {
-    return (
-      <Box
-        textAlign="center"
-        color={labelColor}
-        borderTop="1px"
-        borderColor="rgba(255,255,255,0.05)"
-        px="4"
-        py="8"
-      >
-        No results for your search...
-      </Box>
-    );
-  }
+        );
+      }}
+    />
+  );
 };
 
 export default SearchProvider;

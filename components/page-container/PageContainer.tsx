@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Seo } from "@/components/seo";
 import { SEO, WithChildren } from "@/types";
-import SearchProvider from "@/components/SearchContext";
+import SearchProvider from "../SearchContext";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
 interface PageContainerProps extends WithChildren, SEO {}

@@ -27,6 +27,14 @@ declare module 'gray-matter' {
   export = matter;
 }
 
+declare module 'github-slugger' {
+  export default class GithubSlugger {
+    constructor();
+    slug(value: string, maintainCase?: boolean): string;
+    reset(): void;
+  }
+}
+
 declare module 'contentlayer/source-files' {
   export const makeSource: any;
   export const defineDocumentType: any;
