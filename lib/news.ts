@@ -23,7 +23,7 @@ export function getAllPosts() {
   return posts;
 }
 
-export function getPostBySlug(slug) {
+export function getPostBySlug(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
