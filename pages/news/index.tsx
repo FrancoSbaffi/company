@@ -24,7 +24,11 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
         {posts.map((post) => (
           <Box key={post.slug} mb={8}>
             <Link href={`/news/${post.slug}`} passHref>
-              <Heading as="h2" size="lg" mb={2}>{post.title}</Heading>
+              <a style={{ textDecoration: 'none' }}>
+                <Heading as="h2" size="lg" mb={2} cursor="pointer" _hover={{ color: "purple.500" }}>
+                  {post.title}
+                </Heading>
+              </a>
             </Link>
             <Text fontSize="sm" color="gray.500" mb={2}>{post.date}</Text>
             <Text>{post.excerpt}</Text>
