@@ -97,7 +97,7 @@ const Tweets: FC<TweetsProps> = (props) => {
       />
       <Box
         as={Marquee}
-        gradientColor={[r, g, b]}
+        gradientColor={`${r},${g},${b}`}
         gradientWidth={gradientWidth}
         speed={30}
         pauseOnHover
