@@ -2,12 +2,13 @@ import {
   defineDocumentType,
   makeSource,
 } from "contentlayer/source-files";
-import remarkGfm from "remark-gfm";
-import rehypePrism from "rehype-prism-plus";
-import rehypeCodeTitles from "rehype-code-titles";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import { getTableOfContents } from "./utils/mdx";
-import { rehypeSlugCustom } from "./utils/rehype-slug-custom";
+// Temporary: Remove complex plugins that might cause ReferenceError
+// import remarkGfm from "remark-gfm";
+// import rehypePrism from "rehype-prism-plus";
+// import rehypeCodeTitles from "rehype-code-titles";
+// import rehypeAutolinkHeadings from "rehype-autolink-headings";
+// import { getTableOfContents } from "./utils/mdx";
+// import { rehypeSlugCustom } from "./utils/rehype-slug-custom";
 import siteConfig from "./config/site-config";
 
 const computedFields = {
@@ -42,29 +43,61 @@ export const Doc = defineDocumentType(() => ({
     ...computedFields,
     headings: {
       type: "json",
-      resolve: (doc: any) => getTableOfContents(doc.body.raw),
+      resolve: () => [],
     },
+  },
+}));
+
+export const News = defineDocumentType(() => ({
+  name: "News",
+  filePathPattern: `news/*.md`,
+  contentType: "markdown",
+  fields: {
+    title: {
+      type: "string",
+      description: "The title of the news post",
+      required: true,
+    },
+    date: {
+      type: "date",
+      description: "The publication date",
+      required: true,
+    },
+    description: {
+      type: "string",
+      description: "The description of the news post",
+      required: false,
+    },
+    excerpt: {
+      type: "string",
+      description: "A short excerpt of the news post",
+      required: false,
+    },
+  },
+  computedFields: {
+    ...computedFields,
   },
 }));
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [Doc],
-  mdx: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlugCustom,
-      rehypeCodeTitles,
-      rehypePrism,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "append",
-          properties: {
-            className: ["anchor"],
-          },
-        },
-      ],
-    ],
-  },
+  documentTypes: [Doc, News],
+  // Temporary: Remove all plugins to avoid ReferenceError
+  // mdx: {
+  //   remarkPlugins: [remarkGfm],
+  //   rehypePlugins: [
+  //     rehypeSlugCustom,
+  //     rehypeCodeTitles,
+  //     rehypePrism,
+  //     [
+  //       rehypeAutolinkHeadings,
+  //       {
+  //         behavior: "append",
+  //         properties: {
+  //           className: ["anchor"],
+  //         },
+  //       },
+  //     ],
+  //   ],
+  // },
 });

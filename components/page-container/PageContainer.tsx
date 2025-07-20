@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Seo } from "@/components/seo";
 import { SEO, WithChildren } from "@/types";
-// import SearchProvider from "../SearchContext";
+import SearchProvider from "../SearchContext";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
 interface PageContainerProps extends WithChildren, SEO {}
@@ -11,8 +11,7 @@ const PageContainer: FC<PageContainerProps> = ({ children, ...meta }) => {
   return (
     <Box bgColor={bgColor}>
       <Seo {...meta} />
-      {/* <SearchProvider>{children}</SearchProvider> */}
-      {children}
+      <SearchProvider>{children}</SearchProvider>
     </Box>
   );
 };
