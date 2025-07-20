@@ -1,4 +1,4 @@
-import { slug } from "github-slugger";
+import { createSlug } from "./slug";
 import { Heading } from "@/types";
 
 export const getTableOfContents = (mdxContent: string) => {
@@ -10,7 +10,7 @@ export const getTableOfContents = (mdxContent: string) => {
     tableOfContents = headings.map((heading) => {
       const headingText = heading[2].trim();
       const headingType = heading[1].trim() === "##" ? "h2" : "h3";
-      const headingLink = slug(headingText);
+      const headingLink = createSlug(headingText);
 
       return {
         text: headingText,

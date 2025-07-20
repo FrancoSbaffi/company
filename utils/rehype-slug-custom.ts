@@ -1,4 +1,4 @@
-import { slug } from "github-slugger";
+import { createSlug } from "./slug";
 import { visit } from "unist-util-visit";
 
 export function rehypeSlugCustom() {
@@ -11,7 +11,7 @@ export function rehypeSlugCustom() {
         if (!node.properties.id) {
           // Extract text content from the heading
           const text = extractText(node);
-          node.properties.id = slug(text);
+          node.properties.id = createSlug(text);
         }
       }
     });
