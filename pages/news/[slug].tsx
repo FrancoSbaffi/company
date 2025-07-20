@@ -1,35 +1,21 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Navbar from "@/components/navbar/Navbar";
-import { getPostBySlug, getAllPosts } from "@/lib/news";
+import { getAllPosts, getPostBySlug, NewsPost } from "@/lib/news";
 import ReactMarkdown from "react-markdown";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
-type PostPreview = {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-};
-
-type Post = {
-  slug: string;
-  title: string;
-  date: string;
-  content: string;
-};
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts: PostPreview[] = getAllPosts();
+  const posts = getAllPosts();
   const paths = posts.map((post) => ({ params: { slug: post.slug } }));
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = getPostBySlug(params!.slug as string);
-  return { props: { post: post ?? null } };
+  return { props: { post } };
 };
 
-export default function NewsPostPage({ post }: { post: Post | null }) {
+export default function NewsPostPage({ post }: { post: NewsPost }) {
   const bg = useColorModeValue(
     "radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%)",
     "radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%)"
