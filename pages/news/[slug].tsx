@@ -2,7 +2,7 @@ import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/rea
 import Navbar from "@/components/navbar/Navbar";
 import { getAllPosts, getPostBySlug } from "@/lib/news";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+// import remarkGfm from "remark-gfm"; // Temporarily disabled for debugging
 
 export async function getStaticPaths() {
   const posts = getAllPosts();
@@ -36,44 +36,68 @@ export default function NewsPostPage({ post }: { post: any }) {
     >
       <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
       <Container maxW="3xl" pt={20} pb={24}>
-        <Heading
-          as="h1"
-          size="2xl"
-          textAlign="center"
-          fontWeight="extrabold"
-          mb={3}
-          color={colorTitle}
-          letterSpacing="-2px"
-        >
-          {post.title}
-        </Heading>
-        <Text
-          textAlign="center"
-          color={colorMeta}
-          mb={10}
-          fontSize="md"
-        >
-          {post.date}
-        </Text>
-        <Box
-          className="markdown-body"
-          fontSize={{ base: "lg", md: "xl" }}
-          color={colorBody}
-          px={{ base: 0, md: 10 }}
-          sx={{
-            "h1, h2, h3": { fontWeight: "bold", mt: 8, mb: 2 },
-            "ul": { pl: 5, mb: 4 },
-            "li": { mb: 2 },
-            "p": { mb: 4, lineHeight: 1.8 },
-            "a": { color: "#7f48ff", textDecoration: "underline" },
-            "pre": { bg: "#23223a", color: "#fff", borderRadius: "md", p: 4, fontSize: "sm", mb: 4, overflowX: "auto" },
-            "code": { bg: "#f2eaff", color: "#7f48ff", px: "1.5", borderRadius: "md" }
-          }}
-        >
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {post.content}
-          </ReactMarkdown>
-        </Box>
+        {!post ? (
+          <Text textAlign="center">Post not found</Text>
+        ) : !post.content ? (
+          <Text textAlign="center">Post content not available</Text>
+        ) : (
+          <>
+            <Heading
+              as="h1"
+              size="2xl"
+              textAlign="center"
+              fontWeight="extrabold"
+              mb={3}
+              color={colorTitle}
+              letterSpacing="-2px"
+            >
+              {post.title}
+            </Heading>
+            <Text
+              textAlign="center"
+              color={colorMeta}
+              mb={10}
+              fontSize="md"
+            >
+              {post.date}
+            </Text>
+            <Box
+              className="markdown-body"
+              fontSize={{ base: "lg", md: "xl" }}
+              color={colorBody}
+              px={{ base: 0, md: 10 }}
+              sx={{
+                "h1, h2, h3": { fontWeight: "bold", mt: 8, mb: 2 },
+                "ul": { pl: 5, mb: 4 },
+                "li": { mb: 2 },
+                "p": { mb: 4, lineHeight: 1.8 },
+                "a": { color: "#7f48ff", textDecoration: "underline" },
+                "pre": { bg: "#23223a", color: "#fff", borderRadius: "md", p: 4, fontSize: "sm", mb: 4, overflowX: "auto" },
+                "code": { bg: "#f2eaff", color: "#7f48ff", px: "1.5", borderRadius: "md" }
+              }}
+            >
+              {(() => {
+                try {
+                  return (
+                    <ReactMarkdown>
+                      {post.content}
+                    </ReactMarkdown>
+                  );
+                } catch (error) {
+                  console.error('ReactMarkdown error:', error);
+                  return (
+                    <Box>
+                      <Text color="red.500">Error rendering markdown content</Text>
+                      <pre>{String(error)}</pre>
+                      <Text mt={4}>Raw content:</Text>
+                      <pre>{post.content}</pre>
+                    </Box>
+                  );
+                }
+              })()}
+            </Box>
+          </>
+        )}
       </Container>
     </Box>
   );
