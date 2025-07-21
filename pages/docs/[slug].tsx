@@ -16,7 +16,6 @@ import { Pagination } from "@/components/pagination/";
 import MDXComponents from "@/components/MDXComponents";
 import { MobileTOC, TOC } from "@/components/toc";
 import { Link } from "@/components/link";
-import { RiGithubFill } from "react-icons/ri";
 import { findRouteByPath, findSectionByPath, getRouteContext } from "@/utils";
 import { allDocsRoutes, docsSections } from "@/config";
 import { Route } from "@/types";
@@ -77,17 +76,6 @@ const Document: FC<DocumentProps> = ({ document, currentRoute, section }) => {
         <Component components={{ ...MDXComponents }} />
       </Prose>
       <Pagination previous={previousRoute} next={nextRoute} />
-      {document.editUrl && (
-        <Link
-          href={document.editUrl}
-          isExternal
-          display="flex"
-          alignItems="center"
-        >
-          <Icon as={RiGithubFill} mr="2" boxSize="6" />
-          Edit this page on GitHub
-        </Link>
-      )}
       <TOC headings={document.headings} />
     </DocsLayout>
   );
