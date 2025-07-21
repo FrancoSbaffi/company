@@ -56,16 +56,27 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
         aria-label="TOC"
         display={{ base: "none", xl: "block" }}
         position="fixed"
-        top="4rem"
+        top="6rem"
         bottom="0"
-        right="max(0px, calc(50% - 43.5rem))"
+        right="max(0px, calc(50% - 45rem))"
         w="full"
-        maxW="18rem"
+        maxW="16rem"
         overflowY="auto"
         pb="10"
+        pr="4"
         {...props}
       >
-        <Box pt="10" pb="4" pr="10">
+        <Box 
+          pt="8" 
+          pb="4" 
+          px="4"
+          bg={useColorModeValue("rgba(255,255,255,0.8)", "rgba(26,26,26,0.8)")}
+          backdropFilter="blur(10px)"
+          borderRadius="lg"
+          border="1px solid"
+          borderColor={useColorModeValue("gray.200", "gray.700")}
+          shadow="lg"
+        >
           <ChakraHeading
             fontSize="sm"
             fontWeight="bold"
@@ -93,6 +104,10 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
                   color={id === activeHeading ? activeTextColor : inactiveTextColor}
                   _hover={{ textDecor: "none", color: hoverTextColor }}
                   position="relative"
+                  display="block"
+                  py="1"
+                  px="2"
+                  borderRadius="md"
                   _after={{
                     content: "''",
                     w: "1.5",
@@ -113,20 +128,21 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
               </ListItem>
             ))}
           </OrderedList>
+          <Divider orientation="horizontal" my="4" />
+          <Button
+            size="sm"
+            variant="link"
+            onClick={() => window.scrollTo(0, 0)}
+            _hover={{
+              textDecoration: "none",
+            }}
+            w="full"
+            justifyContent="flex-start"
+          >
+            <Icon as={RiArrowUpLine} mr="2" boxSize="4" />
+            返回顶部
+          </Button>
         </Box>
-        <Divider orientation="horizontal" mb="4" />
-        <Button
-          size="sm"
-          variant="link"
-          mx="1"
-          onClick={() => window.scrollTo(0, 0)}
-          _hover={{
-            textDecoration: "none",
-          }}
-        >
-          <Icon as={RiArrowUpLine} mr="2" boxSize="5" />
-          返回顶部
-        </Button>
       </Box>
     </>
   );

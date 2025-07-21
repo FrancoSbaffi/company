@@ -27,20 +27,26 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
   // Extract headings from markdown content
   const headings = extractHeadings(post.content);
   
-  // Configure marked for better table support
+  // Configure marked with custom renderer for headings
+  const renderer = new marked.Renderer();
+  renderer.heading = function(text, level) {
+    if (level === 2 || level === 3) {
+      // Find the corresponding heading from our extracted headings
+      const heading = headings.find(h => h.text === text);
+      const id = heading ? heading.id : text.toLowerCase().replace(/[^\w\u4e00-\u9fff\s-]/g, '').replace(/\s+/g, '-');
+      return `<h${level} id="${id}">${text}</h${level}>`;
+    }
+    return `<h${level}>${text}</h${level}>`;
+  };
+  
   marked.setOptions({
     gfm: true, // GitHub Flavored Markdown
-    breaks: true
+    breaks: true,
+    renderer: renderer
   });
   
-  // Process markdown content and add IDs to headings
+  // Process markdown content
   let processedContent = marked.parse(post.content) as string;
-  
-  // Add IDs to headings for TOC navigation
-  headings.forEach(heading => {
-    const headingRegex = new RegExp(`<h([23])>\\s*${heading.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</h[23]>`, 'g');
-    processedContent = processedContent.replace(headingRegex, `<h$1 id="${heading.id}">${heading.text}</h$1>`);
-  });
   
   // Wrap tables with scrollable container for mobile
   const contentWithScrollableTables = processedContent.replace(
@@ -55,7 +61,13 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
     <>
       <Box minH="100vh" bg={bgColor}>
       <Navbar routes={navbarRoutes} />
-      <Container maxW="4xl" pt={12} pb={8} px={{ base: 4, md: 6 }}>
+      <Container 
+        maxW="4xl" 
+        pt={12} 
+        pb={8} 
+        px={{ base: 4, md: 6 }}
+        pr={{ base: 4, md: 6, xl: "20rem" }} // Extra right padding for TOC on large screens
+      >
         <Heading 
           as="h1" 
           textAlign="center" 

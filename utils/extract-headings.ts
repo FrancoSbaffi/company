@@ -10,17 +10,22 @@ export function extractHeadings(content: string): Heading[] {
     if (match) {
       const level = match[1].length === 2 ? 'h2' : 'h3';
       const text = match[2].trim();
+      
+      // Create a more reliable ID generation
       const id = text
         .toLowerCase()
-        .replace(/[^\w\s-]/g, '') // Remove special characters
+        .replace(/[^\w\u4e00-\u9fff\s-]/g, '') // Keep Chinese characters and basic characters
         .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
         .trim();
       
-      headings.push({
-        id,
-        text,
-        level
-      });
+      if (id && text) {
+        headings.push({
+          id,
+          text,
+          level
+        });
+      }
     }
   }
   
