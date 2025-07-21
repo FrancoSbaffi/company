@@ -7,7 +7,7 @@ export const docsSections: Section[] = [
       { title: "MoneyPilot", path: "/docs/mdx" },
       { title: "解决的问题", path: "/docs/lorem-ipsum-1" },
       { title: "功能特性", path: "/docs/lorem-ipsum-2" },
-      { title: "Lorem Ipsum Nº3", path: "/docs/lorem-ipsum-3" },
+      { title: "预期结果", path: "/docs/lorem-ipsum-3" },
     ],
   },
 ];
