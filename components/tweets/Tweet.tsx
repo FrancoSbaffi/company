@@ -24,9 +24,11 @@ export const Tweet: FC<TweetProps> = ({ tweet, ...props }: TweetProps) => {
       w="full"
       maxW={{ base: "xs", lg: "md" }}
       h="full"
-      bgColor={useColorModeValue("gray.50", "#1d1d1d")}
+      bgColor={useColorModeValue("gray.50", "whiteAlpha.100")}
       border="1px"
-      borderColor={useColorModeValue("gray.100", "#2d2d2d")}
+      borderColor={useColorModeValue("gray.100", "whiteAlpha.200")}
+      backdropFilter="blur(10px)"
+      boxShadow={useColorModeValue("sm", "0 4px 6px rgba(0, 0, 0, 0.3)")}
       borderRadius="3xl"
       p="7"
       {...props}
