@@ -60,8 +60,18 @@ export const ThemeMenu: FC<WithChildren> = ({
           <MenuItem
             key={value}
             onClick={() => setColorMode(value)}
+            color={useColorModeValue("gray.700", "gray.300")}
+            bg="transparent"
+            _hover={{
+              bg: useColorModeValue("gray.100", "whiteAlpha.100"),
+              color: useColorModeValue("gray.900", "white"),
+            }}
+            _focus={{
+              bg: useColorModeValue("gray.100", "whiteAlpha.100"),
+              color: useColorModeValue("gray.900", "white"),
+            }}
             icon={
-              <Icon display="flex" w="5" h="5" color="gray.400" as={icon} />
+              <Icon display="flex" w="5" h="5" color={useColorModeValue("gray.500", "gray.400")} as={icon} />
             }
           >
             {label}
