@@ -14,10 +14,10 @@ import { useKBar } from "kbar";
 import { RiSearchLine } from "react-icons/ri";
 
 export const SearchButton: FC<ButtonProps> = (props) => {
-  const textColor = useColorModeValue("gray.500", "gray.400");
-  const bgColor = useColorModeValue("whiteAlpha.800", "whiteAlpha.100");
-  const borderColor = useColorModeValue("whiteAlpha.500", "whiteAlpha.200");
-  const hoverBg = useColorModeValue("whiteAlpha.900", "whiteAlpha.200");
+  const textColor = useColorModeValue("gray.600", "gray.300");
+  const bgColor = useColorModeValue("gray.50", "gray.700");
+  const borderColor = useColorModeValue("gray.200", "gray.600");
+  const hoverBg = useColorModeValue("gray.100", "gray.600");
   const { query } = useKBar();
 
   const handleClick = () => {
@@ -34,13 +34,13 @@ export const SearchButton: FC<ButtonProps> = (props) => {
       border="1px"
       borderColor={borderColor}
       backdropFilter="blur(10px)"
-      boxShadow={useColorModeValue("lg", "0 4px 6px rgba(0, 0, 0, 0.3)")}
+      boxShadow={useColorModeValue("sm", "none")}
       borderRadius="lg"
       _hover={{
         bg: hoverBg,
-        borderColor: useColorModeValue("whiteAlpha.600", "whiteAlpha.300"),
+        borderColor: useColorModeValue("gray.300", "gray.500"),
         transform: "translateY(-1px)",
-        boxShadow: useColorModeValue("xl", "0 8px 12px rgba(0, 0, 0, 0.4)"),
+        boxShadow: useColorModeValue("md", "none"),
       }}
       _active={{
         transform: "translateY(0px)",
@@ -57,24 +57,26 @@ export const SearchButton: FC<ButtonProps> = (props) => {
         <Flex
           as="kbd"
           fontSize="sm"
-          bg={useColorModeValue("gray.100", "gray.700")}
+          bg={useColorModeValue("gray.200", "gray.600")}
+          color={useColorModeValue("gray.700", "gray.200")}
           borderRadius="md"
           px="2"
           py="1"
-          boxShadow="sm"
+          boxShadow="none"
           border="1px"
-          borderColor={useColorModeValue("gray.200", "gray.600")}
+          borderColor={useColorModeValue("gray.300", "gray.500")}
         >
           <Text
             as="abbr"
             title="Command"
             fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
             mr="1"
+            color={useColorModeValue("gray.700", "gray.200")}
             sx={{ "&[title]": { textDecoration: "none" } }}
           >
             ⌘
           </Text>
-          <Text>K</Text>
+          <Text color={useColorModeValue("gray.700", "gray.200")}>K</Text>
         </Flex>
       </Box>
     </Button>
@@ -91,13 +93,17 @@ export const MobileSearchButton: FC<IconButtonProps> = (props) => {
   return (
     <IconButton
       size="sm"
-      colorScheme="whiteAlpha"
-      boxShadow="sm"
+      bg={useColorModeValue("gray.100", "gray.700")}
+      color={useColorModeValue("gray.600", "gray.300")}
+      _hover={{
+        bg: useColorModeValue("gray.200", "gray.600"),
+      }}
+      boxShadow="none"
       borderRadius="full"
       border="1px"
-      borderColor={useColorModeValue("gray.200", "gray.700")}
+      borderColor={useColorModeValue("gray.200", "gray.600")}
       mr="3"
-      icon={<Icon w="5" h="5" color="gray.400" as={RiSearchLine} />}
+      icon={<Icon w="5" h="5" color={useColorModeValue("gray.600", "gray.300")} as={RiSearchLine} />}
       onClick={handleClick}
       {...props}
     />

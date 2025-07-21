@@ -32,16 +32,16 @@ export const theme = extendTheme(
     },
     colors: {
       brand: {
-        50: "#FAF5FF",
-        100: "#E9D8FD",
-        200: "#D6BCFA",
-        300: "#B794F4",
-        400: "#9F7AEA",
-        500: "#805AD5",
-        600: "#6B46C1",
-        700: "#553C9A",
-        800: "#44337A",
-        900: "#322659",
+        50: "#f9f9f9",
+        100: "#ededed",
+        200: "#d3d3d3",
+        300: "#b3b3b3",
+        400: "#a0a0a0",
+        500: "#898989",
+        600: "#6c6c6c",
+        700: "#595959",
+        800: "#454545",
+        900: "#323232",
       },
     },
     fonts: {
@@ -105,7 +105,10 @@ export const theme = extendTheme(
         pl: "0.5rem",
         _after: {
           content: "'#'",
-          color: "brand.500",
+          color: "gray.500",
+          _dark: {
+            color: "gray.400",
+          },
           visibility: "hidden",
         },
         _hover: {
@@ -135,7 +138,10 @@ export const theme = extendTheme(
         fontSize: "sm",
         fontWeight: "semibold",
         bgColor: "#2a2a2a",
-        color: "brand.400",
+        color: "gray.600",
+        _dark: {
+          color: "gray.300",
+        },
         px: "1.5",
         py: "1",
         borderRadius: "lg",
@@ -147,7 +153,10 @@ export const theme = extendTheme(
         fontSize: "sm",
         fontWeight: "bold",
         bgColor: "#2a2a2a",
-        color: "brand.300",
+        color: "gray.600",
+        _dark: {
+          color: "gray.300",
+        },
         px: "3",
         py: "2",
         borderBottom: "1px",
