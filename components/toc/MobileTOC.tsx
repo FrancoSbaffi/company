@@ -25,18 +25,14 @@ export const MobileTOC: FC<TOCProps & AccordionProps> = ({
     <Accordion
       display={{ base: "block", xl: "none" }}
       borderRadius="xl"
-      border="1px"
-      borderColor={useColorModeValue("gray.200", "gray.600")}
-      bg={useColorModeValue("rgba(255,255,255,0.7)", "rgba(42,42,42,0.8)")}
+      border="1px solid"
+      borderColor={useColorModeValue("rgba(255,255,255,0.3)", "rgba(255,255,255,0.1)")}
       shadow="xl"
       position="relative"
       sx={{
         backdropFilter: "blur(20px) saturate(180%)",
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
-        background: useColorModeValue(
-          "rgba(255, 255, 255, 0.7)",
-          "rgba(42, 42, 42, 0.8)"
-        ),
+        background: "transparent",
       }}
       _before={{
         content: '""',
