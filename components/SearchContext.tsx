@@ -97,44 +97,70 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children, newsData = [
 };
 
 const SearchInput = () => {
-  const borderColor = useColorModeValue("rgba(0,0,0,0.2)", "rgba(255,255,255,0.2)");
-  const bgColor = useColorModeValue("white", "#2a2a2a");
+  const borderColor = useColorModeValue("rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)");
+  const bgColor = useColorModeValue("rgba(255,255,255,0.9)", "rgba(26,26,26,0.9)");
   const textColor = useColorModeValue("gray.900", "white");
-  const focusBorderColor = useColorModeValue("blue.500", "blue.400");
-  const iconColor = useColorModeValue("gray.500", "gray.400");
+  const focusBorderColor = useColorModeValue("rgba(59,130,246,0.6)", "rgba(96,165,250,0.6)");
+  const iconColor = useColorModeValue("gray.600", "gray.300");
+  const placeholderColor = useColorModeValue("gray.500", "gray.400");
 
   return (
-    <Box pos="relative" p="4" bg={useColorModeValue("transparent", "transparent")}>
+    <Box 
+      pos="relative" 
+      p="6" 
+      bg="transparent"
+      borderBottom="1px solid"
+      borderColor={useColorModeValue("rgba(0,0,0,0.1)", "rgba(255,255,255,0.1)")}
+    >
       <KBarSearch
         defaultPlaceholder="你需要什么？"
         style={{
-          padding: "16px 16px 16px 52px",
+          padding: "18px 20px 18px 56px",
           fontSize: "16px",
           width: "100%",
           border: `2px solid ${borderColor}`,
-          borderRadius: "12px",
+          borderRadius: "16px",
           outline: "none",
           background: bgColor,
           color: textColor,
           fontWeight: "500",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          transition: "all 0.3s ease",
         }}
         onFocus={(e) => {
           e.target.style.borderColor = focusBorderColor;
+          e.target.style.boxShadow = "0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6)";
+          e.target.style.transform = "translateY(-1px)";
         }}
         onBlur={(e) => {
           e.target.style.borderColor = borderColor;
+          e.target.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5)";
+          e.target.style.transform = "translateY(0)";
         }}
       />
       <Flex
         alignItems="center"
+        justifyContent="center"
         pos="absolute"
-        left="6"
+        left="8"
         top="50%"
         transform="translateY(-50%)"
         pointerEvents="none"
+        w="10"
+        h="10"
+        borderRadius="full"
+        bg={useColorModeValue("rgba(59,130,246,0.1)", "rgba(96,165,250,0.1)")}
+        border="1px solid"
+        borderColor={useColorModeValue("rgba(59,130,246,0.2)", "rgba(96,165,250,0.2)")}
       >
-        <Icon as={RiSearchLine} color={iconColor} boxSize="5" />
+        <Icon 
+          as={RiSearchLine} 
+          color={iconColor} 
+          boxSize="5" 
+          filter="drop-shadow(0 1px 2px rgba(0,0,0,0.1))"
+        />
       </Flex>
     </Box>
   );

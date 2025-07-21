@@ -258,9 +258,9 @@ code.language-css .token.selector>.token.pseudo-element {
   content: attr(line);
 }
 
-/* KBAR SEARCH MODAL - COMPLETELY SOLID BACKGROUND */
+/* KBAR SEARCH MODAL - GLASS MORPHISM EFFECT */
 
-/* Force overlay with solid dark background - multiple selectors for maximum compatibility */
+/* Overlay with glass effect background */
 [data-kbar-positioner],
 div[style*="position: fixed"][style*="inset: 0px"],
 div[style*="position: fixed"][style*="top: 0"][style*="left: 0"][style*="right: 0"][style*="bottom: 0"] {
@@ -272,109 +272,171 @@ div[style*="position: fixed"][style*="top: 0"][style*="left: 0"][style*="right: 
   width: 100vw !important;
   height: 100vh !important;
   z-index: 999999 !important;
-  background-color: rgba(0, 0, 0, 0.9) !important;
-  background: rgba(0, 0, 0, 0.9) !important;
-  backdrop-filter: blur(15px) !important;
-  -webkit-backdrop-filter: blur(15px) !important;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
   display: flex !important;
   align-items: flex-start !important;
   justify-content: center !important;
   padding-top: 8vh !important;
   pointer-events: auto !important;
+  animation: modalFadeIn 0.3s ease-out !important;
 }
 
-/* Force modal container to be solid - multiple selectors */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+}
+
+/* Modal container with enhanced glass effect */
 [data-kbar-animator],
 div[style*="max-width"][style*="width: 100%"],
 .kbar-blur {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
-  border-radius: 20px !important;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.85) 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 24px !important;
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 10px 20px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    0 32px 64px rgba(0, 0, 0, 0.2),
+    0 16px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3) !important;
   overflow: hidden !important;
-  max-width: 600px !important;
+  max-width: 640px !important;
   width: 90% !important;
   margin: 0 auto !important;
   position: relative !important;
   pointer-events: auto !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
   opacity: 1 !important;
+  animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
-/* Dark mode - force solid backgrounds */
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+  }
+}
+
+/* Dark mode with enhanced glass effect */
 html[data-theme="dark"] [data-kbar-animator],
 html[data-theme="dark"] div[style*="max-width"][style*="width: 100%"],
 html[data-theme="dark"] .kbar-blur {
-  background-color: #1a1a1a !important;
-  background: #1a1a1a !important;
-  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+  background: 
+    linear-gradient(135deg, 
+      rgba(26, 26, 26, 0.95) 0%, 
+      rgba(20, 20, 20, 0.90) 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.15) !important;
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.8),
-    0 10px 20px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    0 32px 64px rgba(0, 0, 0, 0.5),
+    0 16px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+html[data-theme="dark"] [data-kbar-positioner] {
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+    rgba(0, 0, 0, 0.8) !important;
 }
 
 /* Override ANY inline styles that KBar might apply */
 [data-kbar-animator][style],
 [data-kbar-positioner][style] {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.85) 100%) !important;
 }
 
 html[data-theme="dark"] [data-kbar-animator][style] {
-  background-color: #1a1a1a !important;
-  background: #1a1a1a !important;
+  background: 
+    linear-gradient(135deg, 
+      rgba(26, 26, 26, 0.95) 0%, 
+      rgba(20, 20, 20, 0.90) 100%) !important;
 }
 
 [data-kbar-positioner][style] {
-  background-color: rgba(0, 0, 0, 0.9) !important;
-  background: rgba(0, 0, 0, 0.9) !important;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    rgba(0, 0, 0, 0.7) !important;
 }
 
-/* Force all KBar content to be solid and visible */
+/* Enhanced content styling */
 [data-kbar-animator] *,
 [data-kbar-animator] input,
 [data-kbar-animator] div,
 .kbar-blur *,
 .kbar-blur input,
 .kbar-blur div {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
   position: relative !important;
   z-index: 1 !important;
   opacity: 1 !important;
 }
 
-/* Input styling */
+/* Input with glass effect styling */
 [data-kbar-animator] input {
-  background-color: transparent !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   color: #000000 !important;
   border: none !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
 }
 
 html[data-theme="dark"] [data-kbar-animator] input {
+  background: rgba(255, 255, 255, 0.05) !important;
   color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Results container */
+/* Results container with subtle glass effect */
 [data-kbar-animator] [role="listbox"],
 [data-kbar-animator] .results {
-  background-color: transparent !important;
-  background: transparent !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
-/* Individual result items */
+html[data-theme="dark"] [data-kbar-animator] [role="listbox"],
+html[data-theme="dark"] [data-kbar-animator] .results {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Individual result items with hover glass effect */
 [data-kbar-animator] [role="option"],
 [data-kbar-animator] .result-item {
-  background-color: transparent !important;
   background: transparent !important;
   color: #000000 !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(0px) !important;
+  -webkit-backdrop-filter: blur(0px) !important;
 }
 
 html[data-theme="dark"] [data-kbar-animator] [role="option"],
@@ -382,37 +444,59 @@ html[data-theme="dark"] [data-kbar-animator] .result-item {
   color: #ffffff !important;
 }
 
-/* Hover states */
+/* Enhanced hover states with glass morphism */
 [data-kbar-animator] [role="option"]:hover,
 [data-kbar-animator] [role="option"][aria-selected="true"],
 [data-kbar-animator] .result-item:hover {
-  background-color: rgba(0, 0, 0, 0.1) !important;
-  background: rgba(0, 0, 0, 0.1) !important;
+  background: 
+    linear-gradient(135deg, 
+      rgba(59, 130, 246, 0.15) 0%, 
+      rgba(59, 130, 246, 0.08) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  transform: translateX(4px) !important;
+  box-shadow: 
+    0 8px 32px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
 }
 
 html[data-theme="dark"] [data-kbar-animator] [role="option"]:hover,
 html[data-theme="dark"] [data-kbar-animator] [role="option"][aria-selected="true"],
 html[data-theme="dark"] [data-kbar-animator] .result-item:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: 
+    linear-gradient(135deg, 
+      rgba(96, 165, 250, 0.15) 0%, 
+      rgba(96, 165, 250, 0.08) 100%) !important;
+  box-shadow: 
+    0 8px 32px rgba(96, 165, 250, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Super aggressive overrides for KBar */
 div[data-kbar-animator] {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.85) 100%) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
 }
 
 html[data-theme="dark"] div[data-kbar-animator] {
-  background-color: #1a1a1a !important;
-  background: #1a1a1a !important;
+  background: 
+    linear-gradient(135deg, 
+      rgba(26, 26, 26, 0.95) 0%, 
+      rgba(20, 20, 20, 0.90) 100%) !important;
 }
 
 div[data-kbar-positioner] {
-  background-color: rgba(0, 0, 0, 0.9) !important;
-  background: rgba(0, 0, 0, 0.9) !important;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
 }
 
 /* Disable all interactions behind modal */
