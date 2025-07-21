@@ -10,12 +10,9 @@ interface ResourcesProps {
 const Resources = ({ newsData }: ResourcesProps) => {
   return (
     <DocsLayout title="Resources" newsData={newsData}>
-      <Heading as="h1">Resources</Heading>
+      <Heading as="h1">我们提供什么？</Heading>
       <Text mt="6">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus iste
-        eum id minus, earum laboriosam nesciunt ratione temporibus recusandae,
-        debitis qui, officia dolorum delectus. Enim vero libero quam dignissimos
-        nulla?
+        在 Moneypilot，我们为您提供一个集成化的个人财务管理平台，让您能够集中管理和自动化查看所有资产，包括银行账户、信用卡、投资、积分等。我们通过智能工具分析您的财务习惯和交易，为您生成个性化的建议、提醒和实用的优化方案，帮助您更好地配置资源，实现财务目标。此外，我们的平台让您节省时间，避免错误，并能随时获取清晰、实时、可操作的财务信息，一切尽在一个平台之中。
       </Text>
     </DocsLayout>
   );
