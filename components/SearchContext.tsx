@@ -97,27 +97,27 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children, newsData = [
 };
 
 const SearchInput = () => {
-  const borderColor = useColorModeValue("rgba(0,0,0,0.15)", "rgba(255,255,255,0.15)");
-  const bgColor = useColorModeValue("rgba(255,255,255,0.8)", "rgba(0,0,0,0.3)");
+  const borderColor = useColorModeValue("rgba(0,0,0,0.2)", "rgba(255,255,255,0.2)");
+  const bgColor = useColorModeValue("white", "#2a2a2a");
   const textColor = useColorModeValue("gray.900", "white");
-  const focusBorderColor = useColorModeValue("rgba(0,0,0,0.3)", "rgba(255,255,255,0.3)");
-  const placeholderColor = useColorModeValue("gray.500", "gray.400");
+  const focusBorderColor = useColorModeValue("blue.500", "blue.400");
+  const iconColor = useColorModeValue("gray.500", "gray.400");
 
   return (
-    <Box pos="relative" p="4">
+    <Box pos="relative" p="4" bg={useColorModeValue("transparent", "transparent")}>
       <KBarSearch
         defaultPlaceholder="你需要什么？"
         style={{
-          padding: "14px 14px 14px 50px",
+          padding: "16px 16px 16px 52px",
           fontSize: "16px",
           width: "100%",
-          border: `1px solid ${borderColor}`,
-          borderRadius: "10px",
+          border: `2px solid ${borderColor}`,
+          borderRadius: "12px",
           outline: "none",
           background: bgColor,
           color: textColor,
-          backdropFilter: "blur(10px)",
           fontWeight: "500",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
         onFocus={(e) => {
           e.target.style.borderColor = focusBorderColor;
@@ -129,12 +129,12 @@ const SearchInput = () => {
       <Flex
         alignItems="center"
         pos="absolute"
-        left="4"
+        left="6"
         top="50%"
         transform="translateY(-50%)"
         pointerEvents="none"
       >
-        <Icon as={RiSearchLine} />
+        <Icon as={RiSearchLine} color={iconColor} boxSize="5" />
       </Flex>
     </Box>
   );
