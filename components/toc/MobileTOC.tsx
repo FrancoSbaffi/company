@@ -29,7 +29,6 @@ export const MobileTOC: FC<TOCProps & AccordionProps> = ({
       borderColor={useColorModeValue("gray.200", "gray.600")}
       bg={useColorModeValue("rgba(255,255,255,0.85)", "rgba(42,42,42,0.85)")}
       backdropFilter="blur(12px)"
-      WebkitBackdropFilter="blur(12px)" // Safari compatibility
       shadow="xl"
       position="relative"
       sx={{
