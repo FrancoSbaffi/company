@@ -70,13 +70,18 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
           pt="6" 
           pb="4" 
           px="4"
-          bg={useColorModeValue("rgba(255,255,255,0.95)", "rgba(42,42,42,0.95)")}
+          bg={useColorModeValue("rgba(255,255,255,0.85)", "rgba(42,42,42,0.85)")}
           backdropFilter="blur(12px)"
+          WebkitBackdropFilter="blur(12px)" // Safari compatibility
           borderRadius="xl"
           border="1px solid"
           borderColor={useColorModeValue("gray.200", "gray.600")}
           shadow="xl"
           position="relative"
+          sx={{
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          }}
           _before={{
             content: '""',
             position: "absolute",
