@@ -39,38 +39,38 @@ const Home = ({ posts }: HomeProps) => {
       return a & a;
     }, 0);
     
-    // Very diverse and noisy gradient combinations - completely different styles
+    // Diverse smooth gradients - all different styles and colors
     const gradients = [
-      // Radial explosion
-      'radial(circle at 30% 40%, #ff006e 0%, #8338ec 25%, #3a86ff 50%, #06ffa5 75%, #ffbe0b 100%)',
-      // Diagonal stripes effect
-      'linear(45deg, #f72585 0%, #f72585 20%, #b5179e 20%, #b5179e 40%, #7209b7 40%, #7209b7 60%, #480ca8 60%, #480ca8 80%, #3a0ca3 80%)',
-      // Conic gradient
-      'conic(from 180deg at 50% 50%, #ff8500 0deg, #ffb700 72deg, #ff006e 144deg, #8338ec 216deg, #3a86ff 288deg, #ff8500 360deg)',
-      // Multi-stop chaotic
-      'linear(120deg, #a8ff78 0%, #78ffd6 15%, #ff9a8b 30%, #a8edea 45%, #fecda3 60%, #fda085 75%, #ff6b9d 90%, #c44569 100%)',
-      // Inverted radial
-      'radial(ellipse at top left, #000428 0%, #004e92 25%, #009ffd 50%, #00d2ff 75%, #ffffff 100%)',
-      // Sharp angular
-      'linear(225deg, #ff057c 0%, #ff057c 33%, #8d0bff 33%, #8d0bff 66%, #321575 66%)',
-      // Sunset explosion
-      'radial(circle at bottom right, #ff4081 0%, #ff6ec7 20%, #ffb74d 40%, #ffcc02 60%, #ff5722 80%, #e91e63 100%)',
-      // Neon tech
-      'linear(90deg, #00f5ff 0%, #00f5ff 25%, #ff00ff 25%, #ff00ff 50%, #ffff00 50%, #ffff00 75%, #00ff00 75%)',
-      // Organic flow
-      'radial(ellipse at center top, #667eea 0%, #764ba2 20%, #f093fb 40%, #f5576c 60%, #4facfe 80%, #00f2fe 100%)',
-      // Dark matter
-      'linear(45deg, #000000 0%, #434343 20%, #ff6b35 40%, #f7931e 60%, #000000 80%, #1a1a1a 100%)',
-      // Electric storm
-      'conic(from 45deg at 50% 50%, #ff00de 0deg, #00ff94 90deg, #0066ff 180deg, #ff006e 270deg, #ff00de 360deg)',
-      // Volcanic
-      'radial(circle at top center, #ff4757 0%, #ff6348 25%, #ff7675 50%, #fd79a8 75%, #fdcb6e 100%)',
-      // Galaxy spiral
-      'conic(from 90deg at 30% 70%, #667eea 0deg, #764ba2 60deg, #f093fb 120deg, #f5576c 180deg, #4facfe 240deg, #00f2fe 300deg, #667eea 360deg)',
-      // Acid wash
-      'linear(135deg, #667eea 0%, #667eea 10%, #764ba2 10%, #764ba2 20%, #f093fb 20%, #f093fb 30%, #f5576c 30%, #f5576c 40%, #4facfe 40%)',
-      // Plasma field
-      'radial(ellipse at bottom left, #ff006e 0%, #8338ec 33%, #3a86ff 66%, #06ffa5 100%)'
+      // Purple ocean
+      'linear(135deg, #667eea 0%, #764ba2 50%, #8e44ad 100%)',
+      // Sunset fire
+      'linear(45deg, #ff6b35 0%, #f7931e 25%, #ff4757 50%, #c44569 75%, #8e44ad 100%)',
+      // Ocean depths
+      'linear(180deg, #0066ff 0%, #00aaff 25%, #00d4ff 50%, #40e0d0 75%, #7fffd4 100%)',
+      // Forest mist
+      'linear(90deg, #134e5e 0%, #71b280 30%, #a8e6cf 60%, #dcedc8 90%, #f1f8e9 100%)',
+      // Pink galaxy
+      'linear(225deg, #ff006e 0%, #8338ec 20%, #3a86ff 40%, #06ffa5 60%, #ffbe0b 80%, #fb5607 100%)',
+      // Electric lime
+      'linear(315deg, #39ff14 0%, #00ff94 25%, #00f5ff 50%, #0066ff 75%, #8000ff 100%)',
+      // Golden hour
+      'linear(60deg, #ff9a56 0%, #ffad56 20%, #ffc056 40%, #ffd356 60%, #ffe66d 80%, #fff3a0 100%)',
+      // Deep space
+      'linear(270deg, #000428 0%, #004e92 25%, #009ffd 50%, #00d2ff 75%, #ffffff 100%)',
+      // Cherry blossom
+      'linear(120deg, #ff9a9e 0%, #fecfef 20%, #fecfef 40%, #ff8a80 60%, #ff5722 80%, #e91e63 100%)',
+      // Emerald waves
+      'linear(200deg, #11998e 0%, #38ef7d 30%, #43e97b 60%, #a8ff78 90%, #ccff90 100%)',
+      // Volcanic ash
+      'linear(45deg, #2c3e50 0%, #34495e 20%, #5d6d7e 40%, #85929e 60%, #d5dbdb 80%, #ecf0f1 100%)',
+      // Neon dreams
+      'linear(135deg, #ff00de 0%, #ff006e 20%, #8338ec 40%, #3a86ff 60%, #06ffa5 80%, #ffbe0b 100%)',
+      // Arctic aurora
+      'linear(180deg, #667eea 0%, #764ba2 15%, #a8edea 30%, #fed6e3 45%, #d299c2 60%, #fef9d7 75%, #89f7fe 90%, #66a6ff 100%)',
+      // Desert sunset
+      'linear(300deg, #ff4757 0%, #ff6348 15%, #ff7675 30%, #fd79a8 45%, #fdcb6e 60%, #e17055 75%, #d63031 90%, #74b9ff 100%)',
+      // Mystic forest
+      'linear(90deg, #2d3436 0%, #636e72 15%, #00b894 30%, #00cec9 45%, #55a3ff 60%, #a29bfe 75%, #fd79a8 90%, #fdcb6e 100%)'
     ];
     
     // Use both hash and index to ensure maximum variety
