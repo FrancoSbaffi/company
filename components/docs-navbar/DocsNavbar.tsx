@@ -27,10 +27,7 @@ interface DocsNavbarProps extends BoxProps {
 }
 
 const DocsNavbar: FC<DocsNavbarProps> = ({ routes, ...props }) => {
-  const bgColor = useColorModeValue(
-    "rgba(255, 255, 255, .9)",
-    "rgba(26, 32, 43, .8)"
-  );
+  const bgColor = useColorModeValue("white", "#1d1d1d");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -40,7 +37,6 @@ const DocsNavbar: FC<DocsNavbarProps> = ({ routes, ...props }) => {
         top="0"
         zIndex="docked"
         bgColor={bgColor}
-        backdropFilter="blur(16px) saturate(140%)"
         borderBottom="1px"
         borderColor={useColorModeValue("gray.50", "gray.700")}
         {...props}
