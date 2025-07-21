@@ -2,7 +2,6 @@ import {
   RiFolder4Fill,
   RiArchiveFill,
   RiLayout2Fill,
-  RiGroupFill,
 } from "react-icons/ri";
 
 export const topLevelSectionsRoutes = [
@@ -20,10 +19,5 @@ export const topLevelSectionsRoutes = [
     label: "我们提供什么？",
     path: "/resources",
     icon: RiArchiveFill,
-  },
-  {
-    label: "我们的团队",
-    path: "/team",
-    icon: RiGroupFill,
   },
 ];
