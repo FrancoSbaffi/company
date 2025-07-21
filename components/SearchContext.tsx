@@ -145,19 +145,20 @@ const Results = () => {
   
   // Move hooks outside of callbacks
   const sectionTextColor = useColorModeValue("gray.600", "gray.400");
-  const borderLeftColorActive = useColorModeValue("blue.400", "blue.300");
-  const activeBg = useColorModeValue("rgba(0,0,0,0.05)", "rgba(255,255,255,0.1)");
+  const borderLeftColorActive = useColorModeValue("blue.500", "blue.400");
+  const activeBg = useColorModeValue("blue.50", "rgba(59, 130, 246, 0.1)");
   const itemTextColor = useColorModeValue("gray.900", "white");
   const subtitleColor = useColorModeValue("gray.600", "gray.400");
+  const resultsBg = useColorModeValue("white", "#1a1a1a");
 
   return (
-    <Box maxH="400px" overflowY="auto">
+    <Box maxH="400px" overflowY="auto" bg={resultsBg}>
       <KBarResults
         items={results}
         onRender={({ item, active }) => {
           if (typeof item === "string") {
             return (
-              <Box p="3" fontSize="xs" textTransform="uppercase" opacity={0.7} color={sectionTextColor}>
+              <Box p="4" fontSize="xs" textTransform="uppercase" fontWeight="bold" color={sectionTextColor} bg={resultsBg}>
                 {item}
               </Box>
             );
@@ -167,14 +168,14 @@ const Results = () => {
 
           return (
             <Box
-              p="3"
+              p="4"
               display="flex"
               alignItems="center"
               justifyContent="space-between"
               cursor="pointer"
-              borderLeft="2px solid"
+              borderLeft="3px solid"
               borderLeftColor={borderLeftColor}
-              bg={active ? activeBg : "transparent"}
+              bg={active ? activeBg : resultsBg}
               _hover={{
                 bg: activeBg,
               }}
@@ -185,12 +186,12 @@ const Results = () => {
                 gap="3"
                 alignItems="center"
                 fontSize="sm"
-                fontWeight={active ? "medium" : "normal"}
+                fontWeight={active ? "semibold" : "normal"}
                 color={itemTextColor}
               >
                 {item.name}
               </Box>
-              <Box fontSize="xs" opacity={0.6} color={subtitleColor}>
+              <Box fontSize="xs" opacity={0.8} color={subtitleColor} fontWeight="medium">
                 {item.subtitle}
               </Box>
             </Box>
