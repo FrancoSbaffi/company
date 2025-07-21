@@ -24,6 +24,12 @@ interface HomeProps {
 const Home = ({ posts }: HomeProps) => {
   // Get the latest 4 posts
   const latestPosts = posts.slice(0, 4);
+  
+  // Define color mode values
+  const textColor = useColorModeValue("gray.600", "gray.400");
+  const buttonBg = useColorModeValue("#1d1d1d", "#f7fafc");
+  const buttonColor = useColorModeValue("#ffffff", "#1d1d1d");
+  const buttonHoverBg = useColorModeValue("#2a2a2a", "#e2e8f0");
   return (
     <DefaultLayout>
       <Hero />
@@ -79,7 +85,7 @@ const Home = ({ posts }: HomeProps) => {
               <Heading fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}>
                 {post.title}
               </Heading>
-              <Stack color={useColorModeValue("gray.600", "gray.400")}>
+              <Stack color={textColor}>
                 <Text fontSize={{ base: "md", md: "xl" }}>
                   <b>发布日期:</b> {post.date}
                 </Text>
@@ -92,10 +98,10 @@ const Home = ({ posts }: HomeProps) => {
                   <Button
                     as="a"
                     size="lg"
-                    bg={useColorModeValue("#1d1d1d", "#f7fafc")}
-                    color={useColorModeValue("#ffffff", "#1d1d1d")}
+                    bg={buttonBg}
+                    color={buttonColor}
                     _hover={{
-                      bg: useColorModeValue("#2a2a2a", "#e2e8f0"),
+                      bg: buttonHoverBg,
                     }}
                   >
                     阅读全文
