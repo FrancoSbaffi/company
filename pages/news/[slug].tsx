@@ -55,12 +55,14 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           {post.date}
         </Text>
         <Box className="news-content">
-          <div 
-            className="prose"
-            dangerouslySetInnerHTML={{
-              __html: processedContent
-            }}
-          />
+          <Box className="table-wrapper">
+            <div 
+              className="prose"
+              dangerouslySetInnerHTML={{
+                __html: processedContent
+              }}
+            />
+          </Box>
         </Box>
       </Container>
     </Box>
@@ -172,6 +174,20 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
         :global([data-theme="dark"] .prose strong) {
           color: #ffffff;
         }
+        :global(.table-wrapper) {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          margin: 0 -10px;
+          padding: 0 10px;
+        }
+        
+        @media (max-width: 768px) {
+          :global(.table-wrapper) {
+            margin: 0 -20px;
+            padding: 0 20px;
+          }
+        }
+        
         :global(.prose table) {
           width: 100%;
           border-collapse: collapse;
@@ -179,9 +195,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           border: 1px solid #e2e8f0;
           border-radius: 6px;
           overflow: hidden;
-          display: block;
-          overflow-x: auto;
-          white-space: nowrap;
+          min-width: 500px;
         }
         :global([data-theme="dark"] .prose table) {
           border-color: #4a5568;
@@ -194,7 +208,6 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #2d3748;
           border-bottom: 1px solid #e2e8f0;
           font-size: 14px;
-          min-width: 120px;
         }
         :global([data-theme="dark"] .prose th) {
           background-color: #2d3748;
@@ -206,7 +219,8 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           border-bottom: 1px solid #e2e8f0;
           color: #2d3748;
           font-size: 14px;
-          min-width: 120px;
+          word-wrap: break-word;
+          word-break: break-word;
         }
         :global([data-theme="dark"] .prose td) {
           border-color: #4a5568;
@@ -217,30 +231,33 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
         @media (max-width: 768px) {
           :global(.prose table) {
             font-size: 12px;
-            display: block;
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
           }
           :global(.prose th),
           :global(.prose td) {
-            padding: 6px 8px;
-            font-size: 12px;
-            min-width: 100px;
+            padding: 6px 4px;
+            font-size: 11px;
+            line-height: 1.3;
+          }
+          :global(.prose th) {
+            font-size: 10px;
+            font-weight: 700;
           }
         }
         
         @media (max-width: 480px) {
           :global(.prose table) {
-            margin: 15px -15px;
-            width: calc(100% + 30px);
-            border-radius: 0;
+            margin: 15px 0;
+            font-size: 10px;
           }
           :global(.prose th),
           :global(.prose td) {
-            padding: 5px 6px;
-            font-size: 11px;
-            min-width: 80px;
+            padding: 4px 2px;
+            font-size: 9px;
+            line-height: 1.2;
+          }
+          :global(.prose th) {
+            font-size: 8px;
+            padding: 3px 2px;
           }
         }
         :global(.prose tr:nth-child(even)) {
