@@ -258,18 +258,24 @@ code.language-css .token.selector>.token.pseudo-element {
   content: attr(line);
 }
 
-/* KBAR SEARCH MODAL GLASS EFFECT */
+/* KBAR SEARCH MODAL - COMPLETELY SOLID BACKGROUND */
 
-/* Overlay background - KBar uses specific data attributes */
-[data-kbar-positioner] {
+/* Force overlay with solid dark background - multiple selectors for maximum compatibility */
+[data-kbar-positioner],
+div[style*="position: fixed"][style*="inset: 0px"],
+div[style*="position: fixed"][style*="top: 0"][style*="left: 0"][style*="right: 0"][style*="bottom: 0"] {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
   z-index: 999999 !important;
-  background: rgba(0, 0, 0, 0.85) !important;
-  backdrop-filter: blur(12px) !important;
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
   display: flex !important;
   align-items: flex-start !important;
   justify-content: center !important;
@@ -277,59 +283,136 @@ code.language-css .token.selector>.token.pseudo-element {
   pointer-events: auto !important;
 }
 
-/* KBar Animator */
-[data-kbar-animator] {
-  background: #ffffff !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
-  border-radius: 20px !important;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.4),
-    0 10px 20px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-  overflow: hidden !important;
-  max-width: 600px !important;
-  width: 90% !important;
-  margin: 0 !important;
-  position: relative !important;
-  pointer-events: auto !important;
-  backdrop-filter: blur(20px) !important;
-}
-
-/* Dark mode */
-html[data-theme="dark"] [data-kbar-animator] {
-  background: #1a1a1a !important;
-  border: 2px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.8),
-    0 10px 20px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Legacy class support */
+/* Force modal container to be solid - multiple selectors */
+[data-kbar-animator],
+div[style*="max-width"][style*="width: 100%"],
 .kbar-blur {
+  background-color: #ffffff !important;
   background: #ffffff !important;
   border: 2px solid rgba(255, 255, 255, 0.3) !important;
   border-radius: 20px !important;
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.4),
-    0 10px 20px rgba(0, 0, 0, 0.2),
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 10px 20px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
   overflow: hidden !important;
   max-width: 600px !important;
   width: 90% !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   position: relative !important;
   pointer-events: auto !important;
-  backdrop-filter: blur(20px) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
 }
 
+/* Dark mode - force solid backgrounds */
+html[data-theme="dark"] [data-kbar-animator],
+html[data-theme="dark"] div[style*="max-width"][style*="width: 100%"],
 html[data-theme="dark"] .kbar-blur {
+  background-color: #1a1a1a !important;
   background: #1a1a1a !important;
   border: 2px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.8),
     0 10px 20px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Override ANY inline styles that KBar might apply */
+[data-kbar-animator][style],
+[data-kbar-positioner][style] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+html[data-theme="dark"] [data-kbar-animator][style] {
+  background-color: #1a1a1a !important;
+  background: #1a1a1a !important;
+}
+
+[data-kbar-positioner][style] {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Force all KBar content to be solid and visible */
+[data-kbar-animator] *,
+[data-kbar-animator] input,
+[data-kbar-animator] div,
+.kbar-blur *,
+.kbar-blur input,
+.kbar-blur div {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+  opacity: 1 !important;
+}
+
+/* Input styling */
+[data-kbar-animator] input {
+  background-color: transparent !important;
+  color: #000000 !important;
+  border: none !important;
+}
+
+html[data-theme="dark"] [data-kbar-animator] input {
+  color: #ffffff !important;
+}
+
+/* Results container */
+[data-kbar-animator] [role="listbox"],
+[data-kbar-animator] .results {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Individual result items */
+[data-kbar-animator] [role="option"],
+[data-kbar-animator] .result-item {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: #000000 !important;
+}
+
+html[data-theme="dark"] [data-kbar-animator] [role="option"],
+html[data-theme="dark"] [data-kbar-animator] .result-item {
+  color: #ffffff !important;
+}
+
+/* Hover states */
+[data-kbar-animator] [role="option"]:hover,
+[data-kbar-animator] [role="option"][aria-selected="true"],
+[data-kbar-animator] .result-item:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="dark"] [data-kbar-animator] [role="option"]:hover,
+html[data-theme="dark"] [data-kbar-animator] [role="option"][aria-selected="true"],
+html[data-theme="dark"] [data-kbar-animator] .result-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Super aggressive overrides for KBar */
+div[data-kbar-animator] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-theme="dark"] div[data-kbar-animator] {
+  background-color: #1a1a1a !important;
+  background: #1a1a1a !important;
+}
+
+div[data-kbar-positioner] {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
 }
 
 /* Disable all interactions behind modal */
@@ -337,20 +420,14 @@ body:has([data-kbar-positioner]) {
   overflow: hidden !important;
 }
 
-body:has([data-kbar-positioner]) * {
+body:has([data-kbar-positioner]) > *:not([data-kbar-positioner]) {
   pointer-events: none !important;
 }
 
+/* Ensure modal interactions work */
 [data-kbar-positioner],
 [data-kbar-positioner] *,
 [data-kbar-animator],
 [data-kbar-animator] * {
   pointer-events: auto !important;
-}
-
-/* Ensure all text is visible */
-[data-kbar-animator] *,
-.kbar-blur * {
-  position: relative !important;
-  z-index: 1 !important;
 }
