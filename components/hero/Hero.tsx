@@ -33,10 +33,20 @@ const Hero: FC<HeroProps> = () => {
         zIndex="1"
         blendMode="luminosity"
       >
-        构建更智能的{" "}
-        <Box as="span" color={useColorModeValue("purple.600", "purple.300")}>
-          金融科技解决方案
-        </Box>
+        构建更智能的
+      </Heading>
+      <Heading
+        fontSize={{ base: "4xl", md: "6xl", lg: "8xl" }}
+        fontWeight="black"
+        textAlign="center"
+        textTransform="uppercase"
+        lineHeight="0.9"
+        zIndex="1"
+        blendMode="luminosity"
+        color={useColorModeValue("purple.600", "purple.300")}
+        mt="-2"
+      >
+        金融科技解决方案
       </Heading>
       <Text
         fontSize={{ base: "lg", md: "2xl" }}
