@@ -31,29 +31,31 @@ const Home = ({ posts }: HomeProps) => {
   const buttonColor = useColorModeValue("#ffffff", "#1d1d1d");
   const buttonHoverBg = useColorModeValue("#2a2a2a", "#e2e8f0");
 
-  // Function to generate consistent visual for each article
-  const getArticleVisual = (title: string, index: number) => {
-    // Generate consistent colors based on title
+  // Function to generate unique gradient for each article
+  const getArticleGradient = (title: string, index: number) => {
+    // Generate hash from title for consistency
     const titleHash = title.split('').reduce((a, b) => {
       a = ((a << 5) - a) + b.charCodeAt(0);
       return a & a;
     }, 0);
     
-    const colors = [
-      ['#667eea', '#764ba2'],
-      ['#f093fb', '#f5576c'], 
-      ['#4facfe', '#00f2fe'],
-      ['#43e97b', '#38f9d7'],
-      ['#fa709a', '#fee140'],
-      ['#a8edea', '#fed6e3']
+    // Minimalist gradient combinations
+    const gradients = [
+      'linear(135deg, #667eea 0%, #764ba2 100%)',
+      'linear(135deg, #f093fb 0%, #f5576c 100%)',
+      'linear(135deg, #4facfe 0%, #00f2fe 100%)',
+      'linear(135deg, #43e97b 0%, #38f9d7 100%)',
+      'linear(135deg, #fa709a 0%, #fee140 100%)',
+      'linear(135deg, #a8edea 0%, #fed6e3 100%)',
+      'linear(135deg, #d299c2 0%, #fef9d7 100%)',
+      'linear(135deg, #89f7fe 0%, #66a6ff 100%)',
+      'linear(135deg, #fdbb2d 0%, #22c1c3 100%)',
+      'linear(135deg, #ff9a9e 0%, #fecfef 100%)'
     ];
     
-    const colorPair = colors[Math.abs(titleHash) % colors.length];
-    return {
-      gradient: `linear(45deg, ${colorPair[0]}, ${colorPair[1]})`,
-      letter: title.charAt(0).toUpperCase(),
-      number: index + 1
-    };
+    // Use both hash and index to ensure variety
+    const gradientIndex = Math.abs(titleHash + index) % gradients.length;
+    return gradients[gradientIndex];
   };
   return (
     <DefaultLayout>
@@ -82,33 +84,8 @@ const Home = ({ posts }: HomeProps) => {
               overflow="hidden"
             >
               <Box
-                bgGradient={getArticleVisual(post.title, index).gradient}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                position="relative"
-              >
-                <Text
-                  fontSize="8xl"
-                  fontWeight="bold"
-                  color="white"
-                  opacity={0.3}
-                  position="absolute"
-                  top="50%"
-                  left="50%"
-                  transform="translate(-50%, -50%)"
-                >
-                  {getArticleVisual(post.title, index).letter}
-                </Text>
-                <Text
-                  fontSize="3xl"
-                  fontWeight="bold"
-                  color="white"
-                  zIndex={1}
-                >
-                  {getArticleVisual(post.title, index).number}
-                </Text>
-              </Box>
+                bgGradient={getArticleGradient(post.title, index)}
+              />
             </AspectRatio>
             <Stack
               w="full"
