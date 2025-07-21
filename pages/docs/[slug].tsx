@@ -45,7 +45,7 @@ const Document: FC<DocumentProps> = ({ document, currentRoute, section }) => {
         pb="5"
       >
         <Box
-          bgColor={useColorModeValue("brand.50", "brand.800")}
+          bgColor={useColorModeValue("gray.100", "#2a2a2a")}
           w="fit-content"
           borderRadius="full"
           px="2"
@@ -54,7 +54,7 @@ const Document: FC<DocumentProps> = ({ document, currentRoute, section }) => {
           <Text
             fontSize="smaller"
             fontWeight="bold"
-            color={useColorModeValue("brand.500", "brand.50")}
+            color={useColorModeValue("gray.700", "white")}
             textTransform="uppercase"
             lineHeight="1.2"
           >

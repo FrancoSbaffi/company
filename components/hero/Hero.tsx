@@ -91,7 +91,7 @@ const Hero: FC<HeroProps> = () => {
         position="absolute"
         top="0"
         left="0"
-        bg="brand.500"
+        bg={useColorModeValue("gray.200", "#333333")}
         borderRadius="full"
         filter="blur(140px)"
       />
@@ -100,7 +100,7 @@ const Hero: FC<HeroProps> = () => {
         position="absolute"
         bottom="0"
         right="0"
-        bg="pink.500"
+        bg={useColorModeValue("gray.300", "#444444")}
         borderRadius="full"
         filter="blur(140px)"
       />

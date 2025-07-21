@@ -14,11 +14,19 @@ export const theme = extendTheme(
         html: {
           scrollBehavior: "smooth",
           scrollPaddingTop: "5rem",
+          bg: "#f8f8f8",
+          _dark: {
+            bg: "#1d1d1d",
+          },
         },
         "body, #__next": {
           minH: "100vh",
           display: "flex",
           flexDirection: "column",
+          bg: "#f8f8f8",
+          _dark: {
+            bg: "#1d1d1d",
+          },
         },
       },
     },
