@@ -31,7 +31,7 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
             .split(" ")
             .join(" "),
           section: section.section,
-          subtitle: "Open Documentation",
+          subtitle: "打开文档",
           perform: () => router.push(route.path),
         });
       });
@@ -46,35 +46,19 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
         .toLowerCase()
         .split(" ")
         .join(" "),
-      section: "Pages",
-      subtitle: "Open Page",
+      section: "页面",
+      subtitle: "打开页面",
       perform: () => router.push(route.path),
     }));
 
     return [
       {
         id: "homepage",
-        name: "Home",
-        keywords: "go back",
-        section: "Navigation",
-        subtitle: "Go to homepage",
+        name: "首页",
+        keywords: "home 主页 首页",
+        section: "导航",
+        subtitle: "返回首页",
         perform: () => router.push("/"),
-      },
-      {
-        id: "twitter",
-        name: "Twitter",
-        keywords: "social contact dm",
-        section: "Social",
-        subtitle: "Follow on Twitter",
-        perform: () => window.open(`https://twitter.com/${siteConfig.author?.twitter?.replace('@', '')}`, "_blank"),
-      },
-      {
-        id: "github",
-        name: "GitHub",
-        keywords: "sourcecode",
-        section: "Social",
-        subtitle: "Open GitHub repository",
-        perform: () => window.open(siteConfig.repo?.url, "_blank"),
       },
       ...topLevelPages,
       ...docs,
@@ -105,7 +89,7 @@ const SearchInput = () => {
   return (
     <Box pos="relative">
       <KBarSearch
-        defaultPlaceholder="What do you need?"
+        defaultPlaceholder="你需要什么？"
         style={{
           padding: "12px 12px 12px 48px",
           fontSize: "16px",

@@ -31,7 +31,7 @@ export const SearchButton: FC<ButtonProps> = (props) => {
     >
       <Icon boxSize="5" as={RiSearchLine} />
       <Text ml="2" fontSize="sm">
-        Search...
+        搜索...
       </Text>
       <Box as="span" ml="auto">
         <Flex
