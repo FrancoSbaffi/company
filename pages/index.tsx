@@ -18,8 +18,6 @@ import { Tweets } from "@/components/tweets";
 import { getAllPosts, NewsPost } from "@/lib/news";
 import { getNewsDataForSearch } from "@/lib/search-data";
 
-// Temporary test comment - Vercel deployment test
-
 interface HomeProps {
   posts: NewsPost[];
 }

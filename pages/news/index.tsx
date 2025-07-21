@@ -11,10 +11,7 @@ import {
   SimpleGrid, 
   Badge,
   VStack,
-  HStack,
-  Button,
-  Wrap,
-  WrapItem
+  HStack
 } from "@chakra-ui/react";
 import { navbarRoutes } from "@/config";
 
@@ -23,30 +20,22 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { posts } };
 };
 
-// Categorías disponibles (similar a la segunda imagen)
-const categories = [
-  { id: "all", label: "全部", color: "gray" },
-  { id: "thought-leadership", label: "思想领导力", color: "purple" },
-  { id: "news", label: "新闻", color: "blue" },
-  { id: "comment", label: "评论", color: "green" },
-  { id: "guides", label: "指南", color: "orange" },
-  { id: "interviews", label: "访谈", color: "red" },
-  { id: "innovation", label: "创新挑战", color: "teal" },
-];
-
 export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
-  const bgColor = useColorModeValue("#f8f8f8", "#1d1d1d");
-  const textColor = useColorModeValue("gray.600", "gray.400");
-  const headingColor = useColorModeValue("gray.900", "white");
+  const bgColor = useColorModeValue("white", "#1d1d1d");
+  const textColor = useColorModeValue("gray.600", "gray.300");
+  const headingColor = useColorModeValue("gray.900", "gray.100");
   const dateColor = useColorModeValue("gray.500", "gray.400");
-  const cardBg = useColorModeValue("white", "#2a2a2a");
-  const cardHoverBg = useColorModeValue("gray.50", "#333333");
+  const cardBg = useColorModeValue("white", "#1a1a1a");
+  const cardHoverBg = useColorModeValue("gray.50", "#222222");
   const shadowColor = useColorModeValue("lg", "dark-lg");
-  const borderColor = useColorModeValue("gray.200", "gray.600");
-  const hoverBorderColor = useColorModeValue("gray.300", "gray.500");
-  const filterBg = useColorModeValue("white", "#2a2a2a");
+  const borderColor = useColorModeValue("gray.200", "#333333");
+  const hoverBorderColor = useColorModeValue("gray.300", "#444444");
+  const arrowBg = useColorModeValue("purple.500", "purple.400");
+  const arrowColor = useColorModeValue("white", "white");
+  const arrowHoverBg = useColorModeValue("purple.600", "purple.500");
+  const badgeBg = useColorModeValue("gray.700", "gray.300");
+  const badgeColor = useColorModeValue("white", "gray.800");
   
-  // Función para generar imagen placeholder basada en el título
   const getPlaceholderImage = (title: string, index: number) => {
     const gradients = [
       "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
@@ -62,42 +51,23 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
   return (
     <Box bg={bgColor} minH="100vh">
       <Navbar routes={navbarRoutes} />
-      <Container maxW="7xl" pt={20} pb={10}>
-        {/* Header Section */}
-        <VStack spacing={6} mb={12}>
-          <Heading as="h1" size="2xl" textAlign="center" color={headingColor}>
+      <Container maxW="8xl" pt={8} pb={10} px="4">
+        <VStack align="start" spacing={2} mb={12} pl={0}>
+          <Heading 
+            as="h1" 
+            size="2xl" 
+            fontWeight="bold"
+            color={headingColor}
+            textAlign="left"
+            lineHeight="1.2"
+          >
             文章
           </Heading>
-          <Text fontSize="lg" textAlign="center" color={textColor} maxW="2xl">
+          <Text fontSize="lg" color={textColor} textAlign="left" maxW="2xl" mt={1}>
             洞察、公告和产品更新。
           </Text>
         </VStack>
 
-        {/* Category Filter Pills - Comentado por ahora */}
-        {/*
-        <Box mb={8} p={6} bg={filterBg} borderRadius="xl" shadow="sm" border="1px solid" borderColor={borderColor}>
-          <Wrap spacing={3} justify="center">
-            {categories.map((category) => (
-              <WrapItem key={category.id}>
-                <Button
-                  size="sm"
-                  variant="solid"
-                  colorScheme={category.color}
-                  borderRadius="full"
-                  transition="all 0.2s ease"
-                  _hover={{
-                    transform: "translateY(-1px)",
-                  }}
-                >
-                  {category.label}
-                </Button>
-              </WrapItem>
-            ))}
-          </Wrap>
-        </Box>
-        */}
-        
-        {/* Articles Grid */}
         {posts.length === 0 ? (
           <VStack spacing={4} py={12}>
             <Text color={textColor} textAlign="center" fontSize="lg">
@@ -105,104 +75,125 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
             </Text>
           </VStack>
         ) : (
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
-            {posts.map((post, index) => {
-              return (
-                <Link key={post.slug} href={`/news/${post.slug}`} passHref>
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 2, xl: 3 }} spacing={8} maxW="full">
+            {posts.map((post, index) => (
+              <Link key={post.slug} href={`/news/${post.slug}`} passHref>
+                <Box
+                  as="a"
+                  display="block"
+                  bg={cardBg}
+                  borderRadius="2xl"
+                  overflow="hidden"
+                  shadow={shadowColor}
+                  border="1px solid"
+                  borderColor={borderColor}
+                  transition="all 0.3s ease"
+                  cursor="pointer"
+                  textDecoration="none"
+                  role="group"
+                  _hover={{
+                    transform: "translateY(-8px)",
+                    shadow: "2xl",
+                    bg: cardHoverBg,
+                    borderColor: hoverBorderColor,
+                  }}
+                  h="420px"
+                  position="relative"
+                >
                   <Box
-                    as="a"
-                    display="block"
-                    bg={cardBg}
-                    borderRadius="xl"
-                    overflow="hidden"
-                    shadow={shadowColor}
-                    border="1px solid"
-                    borderColor={borderColor}
-                    transition="all 0.3s ease"
-                    cursor="pointer"
-                    textDecoration="none"
-                    _hover={{
-                      transform: "translateY(-4px)",
-                      shadow: "xl",
-                      bg: cardHoverBg,
-                      borderColor: hoverBorderColor,
-                    }}
-                    h="full"
+                    h="260px"
+                    bg={getPlaceholderImage(post.title, index)}
+                    position="relative"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
                   >
-                    {/* Imagen placeholder con gradiente */}
                     <Box
-                      h="200px"
-                      bg={getPlaceholderImage(post.title, index)}
+                      position="absolute"
+                      top={0}
+                      left={0}
+                      right={0}
+                      bottom={0}
+                      bg="blackAlpha.300"
+                      borderRadius="2xl 2xl 0 0"
+                    />
+                    <Text
+                      color="white"
+                      fontSize="5xl"
+                      fontWeight="bold"
+                      textShadow="2px 2px 8px rgba(0,0,0,0.7)"
+                      textAlign="center"
+                      px={4}
                       position="relative"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
                     >
-                      {/* Overlay para mejorar legibilidad */}
-                      <Box
-                        position="absolute"
-                        top={0}
-                        left={0}
-                        right={0}
-                        bottom={0}
-                        bg="blackAlpha.200"
-                      />
-                      <Text
-                        color="white"
-                        fontSize="4xl"
-                        fontWeight="bold"
-                        textShadow="2px 2px 4px rgba(0,0,0,0.5)"
-                        textAlign="center"
-                        px={4}
-                        position="relative"
-                      >
-                        📰
-                      </Text>
-                    </Box>
-                    
-                    {/* Contenido de la card */}
-                    <VStack align="stretch" p={6} spacing={3} h="calc(100% - 200px)">
-                      <HStack justify="space-between" align="start">
+                      📰
+                    </Text>
+                  </Box>
+                  
+                  <VStack align="stretch" p={6} spacing={3} h="160px" position="relative">
+                    <VStack align="start" spacing={2} flex={1}>
+                      <HStack justify="space-between" w="full">
                         <Badge
-                          colorScheme="purple"
-                          variant="subtle"
-                          borderRadius="full"
+                          bg={badgeBg}
+                          color={badgeColor}
+                          borderRadius="md"
                           px={3}
                           py={1}
                           fontSize="xs"
+                          fontWeight="bold"
                           textTransform="uppercase"
                         >
                           文章
                         </Badge>
-                        <Text fontSize="sm" color={dateColor} flexShrink={0}>
+                        <Text fontSize="sm" color={dateColor}>
                           {post.date}
                         </Text>
                       </HStack>
                       
-                      <Heading as="h3" size="md" color={headingColor} noOfLines={2} lineHeight={1.3}>
+                      <Heading 
+                        as="h3" 
+                        size="md" 
+                        color={headingColor} 
+                        noOfLines={2} 
+                        lineHeight={1.2}
+                        fontWeight="bold"
+                      >
                         {post.title}
                       </Heading>
                       
-                      <Text color={textColor} fontSize="sm" noOfLines={3} flex={1}>
+                      <Text color={textColor} fontSize="sm" noOfLines={2}>
                         {post.excerpt}
                       </Text>
-                      
-                      {/* Indicador de "leer más" */}
-                      <HStack justify="flex-end" align="center" pt={2}>
-                        <Text
-                          fontSize="sm"
-                          color="purple.500"
-                          fontWeight="semibold"
-                          _hover={{ color: "purple.600" }}
-                        >
-                          →
-                        </Text>
-                      </HStack>
                     </VStack>
-                  </Box>
-                </Link>
-              );
-            })}
+                    
+                    {/* Flecha posicionada en la esquina inferior derecha */}
+                    <Box
+                      position="absolute"
+                      bottom="16px"
+                      right="16px"
+                      w="32px"
+                      h="32px"
+                      borderRadius="full"
+                      bg={arrowBg}
+                      color={arrowColor}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      fontSize="16px"
+                      fontWeight="bold"
+                      transition="all 0.3s ease"
+                      _groupHover={{
+                        bg: arrowHoverBg,
+                        transform: "translateX(4px)",
+                        shadow: "lg"
+                      }}
+                    >
+                      →
+                    </Box>
+                  </VStack>
+                </Box>
+              </Link>
+            ))}
           </SimpleGrid>
         )}
       </Container>
