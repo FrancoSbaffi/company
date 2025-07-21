@@ -19,9 +19,9 @@ const Home = () => {
       <Features mt="6" />
       <Section
         mt="12"
-        title="Build. Ship. Blazing fast."
-        subtitle="Make things happen"
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sed consequatur."
+        title="深度市场洞察，实时资讯更新"
+        subtitle="访问我们的最新文章"
+        text="获取最新的市场分析、投资策略和财经资讯，助您在瞬息万变的金融市场中保持领先优势。"
       />
       {/* TODO: Make this component. */}
       <Stack spacing="10">
