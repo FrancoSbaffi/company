@@ -63,10 +63,10 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
       <Box minH="100vh" bg={bgColor}>
       <Navbar routes={navbarRoutes} />
       <Container 
-        maxW="6xl" 
+        maxW="8xl" 
         pt={12} 
         pb={8} 
-        px={{ base: 4, md: 6 }}
+        px="4" // Match navbar padding exactly
         pr={{ base: 4, md: 6, xl: "20rem" }} // Extra right padding for TOC on large screens
       >
         <Heading 
