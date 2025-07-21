@@ -9,7 +9,6 @@ import Image from "next/image";
 import { DefaultLayout } from "@/layouts";
 import { Section } from "@/components/section";
 import { Hero } from "@/components/hero";
-import { Teams } from "@/components/teams";
 import { Features } from "@/components/features";
 import { Tweets } from "@/components/tweets";
 
@@ -17,7 +16,6 @@ const Home = () => {
   return (
     <DefaultLayout>
       <Hero />
-      <Teams mt="6" />
       <Features mt="6" />
       <Section
         mt="12"
