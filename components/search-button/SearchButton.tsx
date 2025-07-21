@@ -15,9 +15,9 @@ import { RiSearchLine } from "react-icons/ri";
 
 export const SearchButton: FC<ButtonProps> = (props) => {
   const textColor = useColorModeValue("gray.600", "gray.300");
-  const bgColor = useColorModeValue("gray.50", "gray.700");
-  const borderColor = useColorModeValue("gray.200", "gray.600");
-  const hoverBg = useColorModeValue("gray.100", "gray.600");
+  const bgColor = useColorModeValue("white", "#2a2a2a");
+  const borderColor = useColorModeValue("gray.200", "#3a3a3a");
+  const hoverBg = useColorModeValue("gray.50", "#333333");
   const { query } = useKBar();
 
   const handleClick = () => {
@@ -38,7 +38,7 @@ export const SearchButton: FC<ButtonProps> = (props) => {
       borderRadius="lg"
       _hover={{
         bg: hoverBg,
-        borderColor: useColorModeValue("gray.300", "gray.500"),
+        borderColor: useColorModeValue("gray.300", "#444444"),
         transform: "translateY(-1px)",
         boxShadow: useColorModeValue("md", "none"),
       }}
@@ -57,14 +57,14 @@ export const SearchButton: FC<ButtonProps> = (props) => {
         <Flex
           as="kbd"
           fontSize="sm"
-          bg={useColorModeValue("gray.200", "gray.600")}
+          bg={useColorModeValue("gray.100", "#333333")}
           color={useColorModeValue("gray.700", "gray.200")}
           borderRadius="md"
           px="2"
           py="1"
           boxShadow="none"
           border="1px"
-          borderColor={useColorModeValue("gray.300", "gray.500")}
+          borderColor={useColorModeValue("gray.200", "#444444")}
         >
           <Text
             as="abbr"
@@ -93,15 +93,15 @@ export const MobileSearchButton: FC<IconButtonProps> = (props) => {
   return (
     <IconButton
       size="sm"
-      bg={useColorModeValue("gray.100", "gray.700")}
+      bg={useColorModeValue("white", "#2a2a2a")}
       color={useColorModeValue("gray.600", "gray.300")}
       _hover={{
-        bg: useColorModeValue("gray.200", "gray.600"),
+        bg: useColorModeValue("gray.50", "#333333"),
       }}
       boxShadow="none"
       borderRadius="full"
       border="1px"
-      borderColor={useColorModeValue("gray.200", "gray.600")}
+      borderColor={useColorModeValue("gray.200", "#3a3a3a")}
       mr="3"
       icon={<Icon w="5" h="5" color={useColorModeValue("gray.600", "gray.300")} as={RiSearchLine} />}
       onClick={handleClick}
