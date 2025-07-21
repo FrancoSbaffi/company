@@ -146,6 +146,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #2D3748;
           max-width: none;
           overflow-x: hidden;
+          text-align: left;
         }
         :global([data-theme="dark"] .prose) {
           color: #f7fafc;
@@ -169,6 +170,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           font-weight: bold;
           margin: 20px 0 12px 0;
           color: #1A202C;
+          text-align: left;
         }
         :global([data-theme="dark"] .prose h1) {
           color: #ffffff;
@@ -178,6 +180,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           font-weight: bold;
           margin: 16px 0 10px 0;
           color: #1A202C;
+          text-align: left;
         }
         :global([data-theme="dark"] .prose h2) {
           color: #ffffff;
@@ -187,6 +190,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           font-weight: bold;
           margin: 14px 0 8px 0;
           color: #2D3748;
+          text-align: left;
         }
         :global([data-theme="dark"] .prose h3) {
           color: #f7fafc;
@@ -194,6 +198,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
         :global(.prose p) {
           margin: 12px 0;
           color: #2D3748;
+          text-align: left;
         }
         :global([data-theme="dark"] .prose p) {
           color: #f7fafc;
