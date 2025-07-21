@@ -15,7 +15,7 @@ interface TweetProps extends LinkBoxProps {
 }
 
 export const Tweet: FC<TweetProps> = ({ tweet, ...props }: TweetProps) => {
-  const fontColor = useColorModeValue("gray.500", "gray.300");
+  const fontColor = useColorModeValue("gray.500", "gray.400");
 
   return (
     <LinkBox
@@ -24,9 +24,9 @@ export const Tweet: FC<TweetProps> = ({ tweet, ...props }: TweetProps) => {
       w="full"
       maxW={{ base: "xs", lg: "md" }}
       h="full"
-      bgColor={useColorModeValue("gray.50", "gray.700")}
+      bgColor={useColorModeValue("gray.50", "#1a202c")}
       border="1px"
-      borderColor={useColorModeValue("gray.100", "gray.600")}
+      borderColor={useColorModeValue("gray.100", "#2d3748")}
       borderRadius="3xl"
       p="7"
       {...props}
