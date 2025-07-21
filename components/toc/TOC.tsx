@@ -73,7 +73,7 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
             color={headingColor}
             mb="4"
           >
-            On this page
+            本页内容
           </ChakraHeading>
           <OrderedList listStyleType="none" spacing="2">
             {headings.map(({ id, text, level }) => (
@@ -125,7 +125,7 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
           }}
         >
           <Icon as={RiArrowUpLine} mr="2" boxSize="5" />
-          Back to top
+          返回顶部
         </Button>
       </Box>
     </>

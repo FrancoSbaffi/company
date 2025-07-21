@@ -36,7 +36,7 @@ export const MobileTOC: FC<TOCProps & AccordionProps> = ({
             color={useColorModeValue("gray.600", "gray.500")}
             textAlign="left"
           >
-            On this page
+            本页内容
           </Text>
           <AccordionIcon />
         </AccordionButton>

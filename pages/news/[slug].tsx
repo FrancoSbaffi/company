@@ -4,6 +4,8 @@ import { getAllPosts, getPostBySlug, NewsPost } from "@/lib/news";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { marked } from "marked";
 import { navbarRoutes } from "@/config";
+import { TOC, MobileTOC } from "@/components/toc";
+import { extractHeadings } from "@/utils";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts();
@@ -22,14 +24,23 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export default function NewsPostPage({ post }: { post: NewsPost }) {
   const bgColor = useColorModeValue("#f8f8f8", "#1d1d1d");
   
+  // Extract headings from markdown content
+  const headings = extractHeadings(post.content);
+  
   // Configure marked for better table support
   marked.setOptions({
     gfm: true, // GitHub Flavored Markdown
     breaks: true
   });
   
-  // Process markdown content
-  const processedContent = marked.parse(post.content) as string;
+  // Process markdown content and add IDs to headings
+  let processedContent = marked.parse(post.content) as string;
+  
+  // Add IDs to headings for TOC navigation
+  headings.forEach(heading => {
+    const headingRegex = new RegExp(`<h([23])>\\s*${heading.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</h[23]>`, 'g');
+    processedContent = processedContent.replace(headingRegex, `<h$1 id="${heading.id}">${heading.text}</h$1>`);
+  });
   
   // Wrap tables with scrollable container for mobile
   const contentWithScrollableTables = processedContent.replace(
@@ -64,6 +75,12 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
         >
           {post.date}
         </Text>
+        
+        {/* Mobile TOC */}
+        {headings.length > 0 && (
+          <MobileTOC headings={headings} mb={6} />
+        )}
+        
         <Box className="news-content">
           <div 
             className="prose"
@@ -73,6 +90,11 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           />
         </Box>
       </Container>
+      
+      {/* Desktop TOC */}
+      {headings.length > 0 && (
+        <TOC headings={headings} />
+      )}
     </Box>
     <style jsx>{`
         :global(.news-title) {
