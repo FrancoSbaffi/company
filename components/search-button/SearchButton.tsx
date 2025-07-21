@@ -10,17 +10,23 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useKBar } from "kbar";
 import { RiSearchLine } from "react-icons/ri";
 
 export const SearchButton: FC<ButtonProps> = (props) => {
   const textColor = useColorModeValue("gray.500", "gray.400");
+  const { query } = useKBar();
+
+  const handleClick = () => {
+    query.toggle();
+  };
 
   return (
     <Button
       w="full"
       px="3"
       color={textColor}
-      onClick={() => console.log("Search clicked")}
+      onClick={handleClick}
       {...props}
     >
       <Icon boxSize="5" as={RiSearchLine} />
@@ -54,6 +60,12 @@ export const SearchButton: FC<ButtonProps> = (props) => {
 };
 
 export const MobileSearchButton: FC<IconButtonProps> = (props) => {
+  const { query } = useKBar();
+
+  const handleClick = () => {
+    query.toggle();
+  };
+
   return (
     <IconButton
       size="sm"
@@ -64,7 +76,7 @@ export const MobileSearchButton: FC<IconButtonProps> = (props) => {
       borderColor={useColorModeValue("gray.200", "gray.700")}
       mr="3"
       icon={<Icon w="5" h="5" color="gray.400" as={RiSearchLine} />}
-      onClick={() => console.log("Mobile search clicked")}
+      onClick={handleClick}
       {...props}
     />
   );
