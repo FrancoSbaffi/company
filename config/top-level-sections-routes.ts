@@ -7,17 +7,17 @@ import {
 
 export const topLevelSectionsRoutes = [
   {
-    label: "Documentation",
+    label: "我们是谁？",
     path: "/docs/mdx",
     icon: RiFolder4Fill,
   },
   {
-    label: "Showcases",
+    label: "我们做什么？",
     path: "/showcases",
     icon: RiLayout2Fill,
   },
   {
-    label: "Resources",
+    label: "我们提供什么？",
     path: "/resources",
     icon: RiArchiveFill,
   },
