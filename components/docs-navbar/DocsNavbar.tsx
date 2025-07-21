@@ -6,10 +6,9 @@ import {
   Container,
   Divider,
   Flex,
-  Icon,
   Stack,
   useColorModeValue,
-  useDisclosure,
+  // useDisclosure,
 } from "@chakra-ui/react";
 import { Logo } from "@/components/logo";
 import { SearchButton } from "@/components/search-button";
@@ -17,8 +16,7 @@ import { Link } from "@/components/link";
 import { LinkBox } from "@/components/link-box";
 import { ThemeMenu } from "@/components/theme-toggle";
 import { MobileMenu } from "@/components/mobile-menu";
-import { MobileDrawer, MobileDrawerButton } from "@/components/mobile-drawer";
-import { RiGithubFill } from "react-icons/ri";
+// import { MobileDrawer, MobileDrawerButton } from "@/components/mobile-drawer";
 import { Route } from "@/types";
 import { siteConfig } from "@/config";
 
@@ -28,7 +26,7 @@ interface DocsNavbarProps extends BoxProps {
 
 const DocsNavbar: FC<DocsNavbarProps> = ({ routes, ...props }) => {
   const bgColor = useColorModeValue("white", "#1d1d1d");
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -49,7 +47,7 @@ const DocsNavbar: FC<DocsNavbarProps> = ({ routes, ...props }) => {
             py="3"
           >
             <Flex flex={{ base: "1", lg: "1" }} alignItems="center">
-              <MobileDrawerButton aria-label="Open drawer" onClick={onOpen} />
+              {/* <MobileDrawerButton aria-label="Open drawer" onClick={onOpen} /> */}
               <LinkBox href="/">
                 <Logo />
               </LinkBox>
@@ -87,18 +85,6 @@ const DocsNavbar: FC<DocsNavbarProps> = ({ routes, ...props }) => {
               </Center>
               <Flex pl="4" alignItems="center">
                 <ThemeMenu />
-                {siteConfig.repo && (
-                  <LinkBox
-                    display="flex"
-                    ml="4"
-                    color="gray.400"
-                    href={siteConfig.repo.url}
-                    isExternal
-                    _hover={{ color: "gray.500" }}
-                  >
-                    <Icon boxSize="6" as={RiGithubFill} />
-                  </LinkBox>
-                )}
               </Flex>
             </Box>
             <Box
@@ -111,7 +97,7 @@ const DocsNavbar: FC<DocsNavbarProps> = ({ routes, ...props }) => {
           </Flex>
         </Container>
       </Box>
-      <MobileDrawer isOpen={isOpen} onClose={onClose} />
+      {/* <MobileDrawer isOpen={isOpen} onClose={onClose} /> */}
     </>
   );
 };
