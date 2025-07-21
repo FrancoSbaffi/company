@@ -30,6 +30,21 @@ const Home = ({ posts }: HomeProps) => {
   const buttonBg = useColorModeValue("#1d1d1d", "#f7fafc");
   const buttonColor = useColorModeValue("#ffffff", "#1d1d1d");
   const buttonHoverBg = useColorModeValue("#2a2a2a", "#e2e8f0");
+
+  // Function to generate AI image URL based on article title
+  const generateImageUrl = (title: string, index: number) => {
+    // Option 1: Using DiceBear API for abstract shapes (always works)
+    const seed = encodeURIComponent(title.toLowerCase().replace(/\s+/g, '-'));
+    const diceBearUrl = `https://api.dicebear.com/7.x/shapes/svg?seed=${seed}&backgroundColor=random&size=400`;
+    
+    // Option 2: Using Unsplash for real photos related to finance/business
+    const searchTerms = ['finance', 'business', 'technology', 'data', 'charts', 'analytics'];
+    const randomTerm = searchTerms[index % searchTerms.length];
+    const unsplashUrl = `https://source.unsplash.com/400x300/?${randomTerm}&sig=${title.length}`;
+    
+    // Return Unsplash for more realistic financial images
+    return unsplashUrl;
+  };
   return (
     <DefaultLayout>
       <Hero />
@@ -56,26 +71,15 @@ const Home = ({ posts }: HomeProps) => {
               borderRadius="3xl"
               overflow="hidden"
             >
-              <Box
-                bgGradient={`linear(45deg, ${
-                  index === 0 ? '#667eea, #764ba2' :
-                  index === 1 ? '#f093fb, #f5576c' :
-                  index === 2 ? '#4facfe, #00f2fe' :
-                  '#43e97b, #38f9d7'
-                })`}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <Text
-                  fontSize="6xl"
-                  fontWeight="bold"
-                  color="white"
-                  opacity={0.8}
-                >
-                  {index + 1}
-                </Text>
-              </Box>
+              <Image
+                src={generateImageUrl(post.title, index)}
+                alt={`Imagen del artículo: ${post.title}`}
+                layout="fill"
+                objectFit="cover"
+                style={{
+                  filter: 'brightness(0.8) contrast(1.1) saturate(1.2)',
+                }}
+              />
             </AspectRatio>
             <Stack
               w="full"
