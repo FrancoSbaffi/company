@@ -16,7 +16,7 @@ const tweets: TweetData[] = [
   {
     text: "这个平台彻底改变了我的投资方式，界面直观，数据准确，是我见过最专业的金融工具。",
     author: {
-      name: "张伟明",
+      name: "Ethan",
       bio: "资深投资顾问",
       avatar:
         "https://pbs.twimg.com/profile_images/1450115233205272576/CFTTK-0I_400x400.jpg",
@@ -26,7 +26,7 @@ const tweets: TweetData[] = [
   {
     text: "作为财务专家，我强烈推荐这个平台。风险管理功能出色，让投资决策更加科学。",
     author: {
-      name: "李小红",
+      name: "Lucas",
       bio: "注册金融分析师 CFA",
       avatar:
         "https://pbs.twimg.com/profile_images/1194080814688079872/6qhYKGKC_400x400.jpg",
@@ -36,7 +36,7 @@ const tweets: TweetData[] = [
   {
     text: "平台的实时数据分析帮我抓住了多次投资机会，收益率提升了40%以上。",
     author: {
-      name: "王建国",
+      name: "Fran",
       bio: "私人财富管理师",
       avatar:
         "https://pbs.twimg.com/profile_images/1466178823171588103/yM7OJ5XP_400x400.jpg",
@@ -46,7 +46,7 @@ const tweets: TweetData[] = [
   {
     text: "税务计算功能太实用了，一键生成报告，为我节省了大量时间和精力。",
     author: {
-      name: "陈美丽",
+      name: "Adrian",
       bio: "税务咨询顾问",
       avatar:
         "https://pbs.twimg.com/profile_images/1217652661962661888/WfiUNjzP_400x400.jpg",
@@ -56,7 +56,7 @@ const tweets: TweetData[] = [
   {
     text: "作为金融科技从业者，我认为这是目前市场上最创新的投资管理解决方案。",
     author: {
-      name: "刘强东",
+      name: "Nathan",
       bio: "金融科技产品经理",
       avatar:
         "https://pbs.twimg.com/profile_images/1430792349974548485/yPCbNKr8_400x400.jpg",
@@ -66,7 +66,7 @@ const tweets: TweetData[] = [
   {
     text: "平台的安全性让我非常放心，多重验证和加密技术给我的资产提供了最好的保护。",
     author: {
-      name: "赵敏",
+      name: "Caleb",
       bio: "风险控制专家",
       avatar:
         "https://pbs.twimg.com/profile_images/1518360692365082624/SlnFrH3b_400x400.jpg",
@@ -76,7 +76,7 @@ const tweets: TweetData[] = [
   {
     text: "用了这个平台后，我的投资组合管理变得井井有条，收益跟踪和分析功能特别好用。",
     author: {
-      name: "孙志华",
+      name: "Harry",
       bio: "个人投资者",
       avatar:
         "https://pbs.twimg.com/profile_images/1526973250667810816/4FDvmwD0_400x400.jpg",
