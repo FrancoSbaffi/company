@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar/Navbar";
 import { getAllPosts, getPostBySlug, NewsPost } from "@/lib/news";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { marked } from "marked";
+import { navbarRoutes } from "@/config";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts();
@@ -42,7 +43,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
   return (
     <>
       <Box minH="100vh" bg={bgColor}>
-      <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
+      <Navbar routes={navbarRoutes} />
       <Container maxW="4xl" pt={12} pb={8} px={{ base: 4, md: 6 }}>
         <Heading 
           as="h1" 

@@ -2,7 +2,7 @@ import { Route } from "@/types";
 
 export const navbarRoutes: Route[] = [
   {
-    title: "Home",
+    title: "首页",
     path: "/",
   },
   {
@@ -10,7 +10,7 @@ export const navbarRoutes: Route[] = [
     path: "/docs/mdx",
   },
   {
-    title: "News",
+    title: "新闻",
     path: "/news",
   },
 ];

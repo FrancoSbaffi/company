@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/navbar/Navbar";
 import { getAllPosts, NewsPost } from "@/lib/news";
 import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import { navbarRoutes } from "@/config";
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = getAllPosts();
@@ -19,7 +20,7 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
   
   return (
     <Box bg={bgColor} minH="100vh">
-      <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
+      <Navbar routes={navbarRoutes} />
       <Container maxW="5xl" pt={20} pb={10}>
         <Heading as="h1" mb={6} size="2xl" textAlign="center" color={headingColor}>
           NEWS
