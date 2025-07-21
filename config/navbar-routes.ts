@@ -10,7 +10,7 @@ export const navbarRoutes: Route[] = [
     path: "/docs/mdx",
   },
   {
-    title: "新闻",
+    title: "文章",
     path: "/news",
   },
 ];

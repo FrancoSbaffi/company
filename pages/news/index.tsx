@@ -23,12 +23,12 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
       <Navbar routes={navbarRoutes} />
       <Container maxW="5xl" pt={20} pb={10}>
         <Heading as="h1" mb={6} size="2xl" textAlign="center" color={headingColor}>
-          NEWS
+          文章
         </Heading>
         <Text mb={8} textAlign="center" color={textColor}>
-          Insights, announcements, and product updates.
+          洞察、公告和产品更新。
         </Text>
-        {posts.length === 0 && <Text color={textColor}>No news yet.</Text>}
+        {posts.length === 0 && <Text color={textColor}>暂无文章。</Text>}
         {posts.map((post) => (
           <Box key={post.slug} mb={8} p={6} bg={cardBg} borderRadius="lg" shadow="sm">
             <Link href={`/news/${post.slug}`} passHref>
