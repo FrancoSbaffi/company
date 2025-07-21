@@ -100,7 +100,7 @@ const SearchInput = () => {
   const borderColor = useColorModeValue("rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)");
   const bgColor = useColorModeValue("rgba(255,255,255,0.9)", "rgba(26,26,26,0.9)");
   const textColor = useColorModeValue("gray.900", "white");
-  const focusBorderColor = useColorModeValue("rgba(59,130,246,0.6)", "rgba(96,165,250,0.6)");
+  const focusBorderColor = useColorModeValue("rgba(0,0,0,0.3)", "rgba(255,255,255,0.4)");
   const iconColor = useColorModeValue("gray.600", "gray.300");
   const iconBgColor = useColorModeValue("rgba(0,0,0,0.05)", "rgba(255,255,255,0.1)");
   const iconBorderColor = useColorModeValue("rgba(0,0,0,0.1)", "rgba(255,255,255,0.2)");
@@ -172,8 +172,8 @@ const Results = () => {
   
   // Move hooks outside of callbacks
   const sectionTextColor = useColorModeValue("gray.600", "gray.400");
-  const borderLeftColorActive = useColorModeValue("blue.500", "blue.400");
-  const activeBg = useColorModeValue("blue.50", "rgba(59, 130, 246, 0.1)");
+  const borderLeftColorActive = useColorModeValue("gray.700", "gray.300");
+  const activeBg = useColorModeValue("gray.100", "rgba(255, 255, 255, 0.1)");
   const itemTextColor = useColorModeValue("gray.900", "white");
   const subtitleColor = useColorModeValue("gray.600", "gray.400");
   const resultsBg = useColorModeValue("white", "#1a1a1a");
