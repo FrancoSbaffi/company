@@ -6,7 +6,7 @@ export const docsSections: Section[] = [
     routes: [
       { title: "MoneyPilot", path: "/docs/mdx" },
       { title: "解决的问题", path: "/docs/lorem-ipsum-1" },
-      { title: "Lorem Ipsum Nº2", path: "/docs/lorem-ipsum-2" },
+      { title: "功能特性", path: "/docs/lorem-ipsum-2" },
       { title: "Lorem Ipsum Nº3", path: "/docs/lorem-ipsum-3" },
     ],
   },
