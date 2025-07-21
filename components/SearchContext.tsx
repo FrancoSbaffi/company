@@ -97,25 +97,27 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children, newsData = [
 };
 
 const SearchInput = () => {
-  const borderColor = useColorModeValue("rgba(0,0,0,0.1)", "rgba(255,255,255,0.1)");
-  const bgColor = useColorModeValue("rgba(255,255,255,0.5)", "rgba(255,255,255,0.1)");
+  const borderColor = useColorModeValue("rgba(0,0,0,0.15)", "rgba(255,255,255,0.15)");
+  const bgColor = useColorModeValue("rgba(255,255,255,0.8)", "rgba(0,0,0,0.3)");
   const textColor = useColorModeValue("gray.900", "white");
-  const focusBorderColor = useColorModeValue("rgba(0,0,0,0.2)", "rgba(255,255,255,0.2)");
+  const focusBorderColor = useColorModeValue("rgba(0,0,0,0.3)", "rgba(255,255,255,0.3)");
+  const placeholderColor = useColorModeValue("gray.500", "gray.400");
 
   return (
     <Box pos="relative" p="4">
       <KBarSearch
         defaultPlaceholder="你需要什么？"
         style={{
-          padding: "12px 12px 12px 48px",
+          padding: "14px 14px 14px 50px",
           fontSize: "16px",
           width: "100%",
           border: `1px solid ${borderColor}`,
-          borderRadius: "8px",
+          borderRadius: "10px",
           outline: "none",
           background: bgColor,
           color: textColor,
           backdropFilter: "blur(10px)",
+          fontWeight: "500",
         }}
         onFocus={(e) => {
           e.target.style.borderColor = focusBorderColor;
