@@ -35,6 +35,12 @@ export const ThemeMenu: FC<WithChildren> = ({
   children = <ToggleThemeButton />,
 }) => {
   const { setColorMode } = useColorMode();
+  
+  // Move hooks outside of callbacks
+  const menuItemColor = useColorModeValue("gray.700", "gray.300");
+  const menuItemHoverBg = useColorModeValue("gray.100", "whiteAlpha.100");
+  const menuItemHoverColor = useColorModeValue("gray.900", "white");
+  const iconColor = useColorModeValue("gray.500", "gray.400");
 
   return (
     <Menu>
@@ -60,18 +66,18 @@ export const ThemeMenu: FC<WithChildren> = ({
           <MenuItem
             key={value}
             onClick={() => setColorMode(value)}
-            color={useColorModeValue("gray.700", "gray.300")}
+            color={menuItemColor}
             bg="transparent"
             _hover={{
-              bg: useColorModeValue("gray.100", "whiteAlpha.100"),
-              color: useColorModeValue("gray.900", "white"),
+              bg: menuItemHoverBg,
+              color: menuItemHoverColor,
             }}
             _focus={{
-              bg: useColorModeValue("gray.100", "whiteAlpha.100"),
-              color: useColorModeValue("gray.900", "white"),
+              bg: menuItemHoverBg,
+              color: menuItemHoverColor,
             }}
             icon={
-              <Icon display="flex" w="5" h="5" color={useColorModeValue("gray.500", "gray.400")} as={icon} />
+              <Icon display="flex" w="5" h="5" color={iconColor} as={icon} />
             }
           >
             {label}
