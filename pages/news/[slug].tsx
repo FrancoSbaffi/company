@@ -175,16 +175,35 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #ffffff;
         }
         :global(.table-wrapper) {
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          margin: 0 -10px;
-          padding: 0 10px;
+          overflow-x: visible;
+          margin: 0;
+          padding: 0;
         }
         
         @media (max-width: 768px) {
           :global(.table-wrapper) {
-            margin: 0 -20px;
-            padding: 0 20px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -16px;
+            padding: 0 16px;
+            scrollbar-width: thin;
+          }
+          :global(.table-wrapper::-webkit-scrollbar) {
+            height: 6px;
+          }
+          :global(.table-wrapper::-webkit-scrollbar-track) {
+            background: #f1f1f1;
+            border-radius: 3px;
+          }
+          :global(.table-wrapper::-webkit-scrollbar-thumb) {
+            background: #888;
+            border-radius: 3px;
+          }
+          :global([data-theme="dark"] .table-wrapper::-webkit-scrollbar-track) {
+            background: #2d3748;
+          }
+          :global([data-theme="dark"] .table-wrapper::-webkit-scrollbar-thumb) {
+            background: #4a5568;
           }
         }
         
@@ -195,7 +214,20 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           border: 1px solid #e2e8f0;
           border-radius: 6px;
           overflow: hidden;
-          min-width: 500px;
+        }
+        
+        @media (max-width: 768px) {
+          :global(.prose table) {
+            min-width: 600px;
+            width: 600px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          :global(.prose table) {
+            min-width: 500px;
+            width: 500px;
+          }
         }
         :global([data-theme="dark"] .prose table) {
           border-color: #4a5568;
@@ -208,6 +240,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #2d3748;
           border-bottom: 1px solid #e2e8f0;
           font-size: 14px;
+          white-space: nowrap;
         }
         :global([data-theme="dark"] .prose th) {
           background-color: #2d3748;
@@ -219,8 +252,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           border-bottom: 1px solid #e2e8f0;
           color: #2d3748;
           font-size: 14px;
-          word-wrap: break-word;
-          word-break: break-word;
+          white-space: nowrap;
         }
         :global([data-theme="dark"] .prose td) {
           border-color: #4a5568;
@@ -234,30 +266,26 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           }
           :global(.prose th),
           :global(.prose td) {
-            padding: 6px 4px;
-            font-size: 11px;
+            padding: 6px 8px;
+            font-size: 12px;
             line-height: 1.3;
+            white-space: nowrap;
           }
           :global(.prose th) {
-            font-size: 10px;
             font-weight: 700;
           }
         }
         
         @media (max-width: 480px) {
           :global(.prose table) {
-            margin: 15px 0;
-            font-size: 10px;
+            font-size: 11px;
           }
           :global(.prose th),
           :global(.prose td) {
-            padding: 4px 2px;
-            font-size: 9px;
+            padding: 5px 6px;
+            font-size: 11px;
             line-height: 1.2;
-          }
-          :global(.prose th) {
-            font-size: 8px;
-            padding: 3px 2px;
+            white-space: nowrap;
           }
         }
         :global(.prose tr:nth-child(even)) {
