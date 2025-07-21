@@ -58,13 +58,6 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
     ];
     return gradients[index % gradients.length];
   };
-
-  // Función para obtener categoría del post (simplificada para demo)
-  const getPostCategory = (post: NewsPost) => {
-    if (post.title.includes("MoneyPilot")) return "news";
-    if (post.title.includes("维立志博")) return "comment";
-    return "thought-leadership";
-  };
   
   return (
     <Box bg={bgColor} minH="100vh">
@@ -114,8 +107,6 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
         ) : (
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
             {posts.map((post, index) => {
-              const category = categories.find(cat => cat.id === getPostCategory(post)) || categories[1];
-              
               return (
                 <Link key={post.slug} href={`/news/${post.slug}`} passHref>
                   <Box
@@ -173,7 +164,7 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
                     <VStack align="stretch" p={6} spacing={3} h="calc(100% - 200px)">
                       <HStack justify="space-between" align="start">
                         <Badge
-                          colorScheme={category.color}
+                          colorScheme="purple"
                           variant="subtle"
                           borderRadius="full"
                           px={3}
@@ -181,7 +172,7 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
                           fontSize="xs"
                           textTransform="uppercase"
                         >
-                          {category.label}
+                          文章
                         </Badge>
                         <Text fontSize="sm" color={dateColor} flexShrink={0}>
                           {post.date}
@@ -200,9 +191,9 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
                       <HStack justify="flex-end" align="center" pt={2}>
                         <Text
                           fontSize="sm"
-                          color={`${category.color}.500`}
+                          color="purple.500"
                           fontWeight="semibold"
-                          _hover={{ color: `${category.color}.600` }}
+                          _hover={{ color: "purple.600" }}
                         >
                           →
                         </Text>
