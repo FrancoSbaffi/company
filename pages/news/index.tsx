@@ -1,8 +1,22 @@
 import { GetStaticProps } from "next";
+import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/navbar/Navbar";
 import { getAllPosts, NewsPost } from "@/lib/news";
-import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import { 
+  Box, 
+  Container, 
+  Heading, 
+  Text, 
+  useColorModeValue, 
+  SimpleGrid, 
+  Badge,
+  VStack,
+  HStack,
+  Button,
+  Wrap,
+  WrapItem
+} from "@chakra-ui/react";
 import { navbarRoutes } from "@/config";
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -10,38 +24,210 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { posts } };
 };
 
+// Categorías disponibles (similar a la segunda imagen)
+const categories = [
+  { id: "all", label: "全部", color: "gray" },
+  { id: "thought-leadership", label: "思想领导力", color: "purple" },
+  { id: "news", label: "新闻", color: "blue" },
+  { id: "comment", label: "评论", color: "green" },
+  { id: "guides", label: "指南", color: "orange" },
+  { id: "interviews", label: "访谈", color: "red" },
+  { id: "innovation", label: "创新挑战", color: "teal" },
+];
+
 export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
-  const hoverColor = useColorModeValue("gray.700", "gray.300");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  
   const bgColor = useColorModeValue("#f8f8f8", "#1d1d1d");
   const textColor = useColorModeValue("gray.600", "gray.400");
   const headingColor = useColorModeValue("gray.900", "white");
   const dateColor = useColorModeValue("gray.500", "gray.400");
   const cardBg = useColorModeValue("white", "#2a2a2a");
+  const cardHoverBg = useColorModeValue("gray.50", "#333333");
+  const shadowColor = useColorModeValue("lg", "dark-lg");
+  const borderColor = useColorModeValue("gray.200", "gray.600");
+  const hoverBorderColor = useColorModeValue("gray.300", "gray.500");
+  const filterBg = useColorModeValue("white", "#2a2a2a");
+  
+  // Función para generar imagen placeholder basada en el título
+  const getPlaceholderImage = (title: string, index: number) => {
+    const gradients = [
+      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+      "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+    ];
+    return gradients[index % gradients.length];
+  };
+
+  // Función para obtener categoría del post (simplificada para demo)
+  const getPostCategory = (post: NewsPost) => {
+    if (post.title.includes("MoneyPilot")) return "news";
+    if (post.title.includes("维立志博")) return "comment";
+    return "thought-leadership";
+  };
+
+  // Filtrar posts por categoría
+  const filteredPosts = selectedCategory === "all" 
+    ? posts 
+    : posts.filter(post => getPostCategory(post) === selectedCategory);
   
   return (
     <Box bg={bgColor} minH="100vh">
       <Navbar routes={navbarRoutes} />
-      <Container maxW="5xl" pt={20} pb={10}>
-        <Heading as="h1" mb={6} size="2xl" textAlign="center" color={headingColor}>
-          文章
-        </Heading>
-        <Text mb={8} textAlign="center" color={textColor}>
-          洞察、公告和产品更新。
-        </Text>
-        {posts.length === 0 && <Text color={textColor}>暂无文章。</Text>}
-        {posts.map((post) => (
-          <Box key={post.slug} mb={8} p={6} bg={cardBg} borderRadius="lg" shadow="sm">
-            <Link href={`/news/${post.slug}`} passHref>
-              <a style={{ textDecoration: 'none' }}>
-                <Heading as="h2" size="lg" mb={2} cursor="pointer" _hover={{ color: hoverColor }} color={headingColor}>
-                  {post.title}
-                </Heading>
-              </a>
-            </Link>
-            <Text fontSize="sm" color={dateColor} mb={2}>{post.date}</Text>
-            <Text color={textColor}>{post.excerpt}</Text>
-          </Box>
-        ))}
+      <Container maxW="7xl" pt={20} pb={10}>
+        {/* Header Section */}
+        <VStack spacing={6} mb={12}>
+          <Heading as="h1" size="2xl" textAlign="center" color={headingColor}>
+            文章
+          </Heading>
+          <Text fontSize="lg" textAlign="center" color={textColor} maxW="2xl">
+            洞察、公告和产品更新。
+          </Text>
+        </VStack>
+
+        {/* Category Filter Pills */}
+        <Box mb={8} p={6} bg={filterBg} borderRadius="xl" shadow="sm" border="1px solid" borderColor={borderColor}>
+          <Wrap spacing={3} justify="center">
+            {categories.map((category) => (
+              <WrapItem key={category.id}>
+                <Button
+                  size="sm"
+                  variant={selectedCategory === category.id ? "solid" : "outline"}
+                  colorScheme={selectedCategory === category.id ? category.color : "gray"}
+                  borderRadius="full"
+                  onClick={() => setSelectedCategory(category.id)}
+                  transition="all 0.2s ease"
+                  _hover={{
+                    transform: "translateY(-1px)",
+                  }}
+                >
+                  {category.label}
+                </Button>
+              </WrapItem>
+            ))}
+          </Wrap>
+        </Box>
+        
+        {/* Articles Grid */}
+        {filteredPosts.length === 0 ? (
+          <VStack spacing={4} py={12}>
+            <Text color={textColor} textAlign="center" fontSize="lg">
+              该分类下暂无文章。
+            </Text>
+            <Button 
+              colorScheme="purple" 
+              variant="outline"
+              onClick={() => setSelectedCategory("all")}
+            >
+              查看全部文章
+            </Button>
+          </VStack>
+        ) : (
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
+            {filteredPosts.map((post, index) => {
+              const category = categories.find(cat => cat.id === getPostCategory(post)) || categories[1];
+              
+              return (
+                <Link key={post.slug} href={`/news/${post.slug}`} passHref>
+                  <Box
+                    as="a"
+                    display="block"
+                    bg={cardBg}
+                    borderRadius="xl"
+                    overflow="hidden"
+                    shadow={shadowColor}
+                    border="1px solid"
+                    borderColor={borderColor}
+                    transition="all 0.3s ease"
+                    cursor="pointer"
+                    textDecoration="none"
+                    _hover={{
+                      transform: "translateY(-4px)",
+                      shadow: "xl",
+                      bg: cardHoverBg,
+                      borderColor: hoverBorderColor,
+                    }}
+                    h="full"
+                  >
+                    {/* Imagen placeholder con gradiente */}
+                    <Box
+                      h="200px"
+                      bg={getPlaceholderImage(post.title, index)}
+                      position="relative"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      {/* Overlay para mejorar legibilidad */}
+                      <Box
+                        position="absolute"
+                        top={0}
+                        left={0}
+                        right={0}
+                        bottom={0}
+                        bg="blackAlpha.200"
+                      />
+                      <Text
+                        color="white"
+                        fontSize="4xl"
+                        fontWeight="bold"
+                        textShadow="2px 2px 4px rgba(0,0,0,0.5)"
+                        textAlign="center"
+                        px={4}
+                        position="relative"
+                      >
+                        📰
+                      </Text>
+                    </Box>
+                    
+                    {/* Contenido de la card */}
+                    <VStack align="stretch" p={6} spacing={3} h="calc(100% - 200px)">
+                      <HStack justify="space-between" align="start">
+                        <Badge
+                          colorScheme={category.color}
+                          variant="subtle"
+                          borderRadius="full"
+                          px={3}
+                          py={1}
+                          fontSize="xs"
+                          textTransform="uppercase"
+                        >
+                          {category.label}
+                        </Badge>
+                        <Text fontSize="sm" color={dateColor} flexShrink={0}>
+                          {post.date}
+                        </Text>
+                      </HStack>
+                      
+                      <Heading as="h3" size="md" color={headingColor} noOfLines={2} lineHeight={1.3}>
+                        {post.title}
+                      </Heading>
+                      
+                      <Text color={textColor} fontSize="sm" noOfLines={3} flex={1}>
+                        {post.excerpt}
+                      </Text>
+                      
+                      {/* Indicador de "leer más" */}
+                      <HStack justify="flex-end" align="center" pt={2}>
+                        <Text
+                          fontSize="sm"
+                          color={`${category.color}.500`}
+                          fontWeight="semibold"
+                          _hover={{ color: `${category.color}.600` }}
+                        >
+                          →
+                        </Text>
+                      </HStack>
+                    </VStack>
+                  </Box>
+                </Link>
+              );
+            })}
+          </SimpleGrid>
+        )}
       </Container>
     </Box>
   );
