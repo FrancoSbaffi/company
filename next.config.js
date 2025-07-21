@@ -5,7 +5,12 @@ module.exports = withContentlayer({
   swcMinify: true,
   redirects: require("./next-redirects"),
   images: {
-    domains: ["images.unsplash.com", "pbs.twimg.com"],
+    domains: [
+      "images.unsplash.com", 
+      "pbs.twimg.com",
+      "source.unsplash.com",
+      "api.dicebear.com"
+    ],
   },
   webpack: (config, { isServer }) => {
     // Fix for contentlayer and github-slugger compatibility

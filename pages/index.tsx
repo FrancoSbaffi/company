@@ -31,19 +31,29 @@ const Home = ({ posts }: HomeProps) => {
   const buttonColor = useColorModeValue("#ffffff", "#1d1d1d");
   const buttonHoverBg = useColorModeValue("#2a2a2a", "#e2e8f0");
 
-  // Function to generate AI image URL based on article title
-  const generateImageUrl = (title: string, index: number) => {
-    // Option 1: Using DiceBear API for abstract shapes (always works)
-    const seed = encodeURIComponent(title.toLowerCase().replace(/\s+/g, '-'));
-    const diceBearUrl = `https://api.dicebear.com/7.x/shapes/svg?seed=${seed}&backgroundColor=random&size=400`;
+  // Function to generate consistent visual for each article
+  const getArticleVisual = (title: string, index: number) => {
+    // Generate consistent colors based on title
+    const titleHash = title.split('').reduce((a, b) => {
+      a = ((a << 5) - a) + b.charCodeAt(0);
+      return a & a;
+    }, 0);
     
-    // Option 2: Using Unsplash for real photos related to finance/business
-    const searchTerms = ['finance', 'business', 'technology', 'data', 'charts', 'analytics'];
-    const randomTerm = searchTerms[index % searchTerms.length];
-    const unsplashUrl = `https://source.unsplash.com/400x300/?${randomTerm}&sig=${title.length}`;
+    const colors = [
+      ['#667eea', '#764ba2'],
+      ['#f093fb', '#f5576c'], 
+      ['#4facfe', '#00f2fe'],
+      ['#43e97b', '#38f9d7'],
+      ['#fa709a', '#fee140'],
+      ['#a8edea', '#fed6e3']
+    ];
     
-    // Return Unsplash for more realistic financial images
-    return unsplashUrl;
+    const colorPair = colors[Math.abs(titleHash) % colors.length];
+    return {
+      gradient: `linear(45deg, ${colorPair[0]}, ${colorPair[1]})`,
+      letter: title.charAt(0).toUpperCase(),
+      number: index + 1
+    };
   };
   return (
     <DefaultLayout>
@@ -71,15 +81,34 @@ const Home = ({ posts }: HomeProps) => {
               borderRadius="3xl"
               overflow="hidden"
             >
-              <Image
-                src={generateImageUrl(post.title, index)}
-                alt={`Imagen del artículo: ${post.title}`}
-                layout="fill"
-                objectFit="cover"
-                style={{
-                  filter: 'brightness(0.8) contrast(1.1) saturate(1.2)',
-                }}
-              />
+              <Box
+                bgGradient={getArticleVisual(post.title, index).gradient}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                position="relative"
+              >
+                <Text
+                  fontSize="8xl"
+                  fontWeight="bold"
+                  color="white"
+                  opacity={0.3}
+                  position="absolute"
+                  top="50%"
+                  left="50%"
+                  transform="translate(-50%, -50%)"
+                >
+                  {getArticleVisual(post.title, index).letter}
+                </Text>
+                <Text
+                  fontSize="3xl"
+                  fontWeight="bold"
+                  color="white"
+                  zIndex={1}
+                >
+                  {getArticleVisual(post.title, index).number}
+                </Text>
+              </Box>
             </AspectRatio>
             <Stack
               w="full"
