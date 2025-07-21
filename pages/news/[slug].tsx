@@ -67,19 +67,19 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           background: radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%);
         }
         :global([data-theme="dark"] .news-page-bg) {
-          background: radial-gradient(ellipse at 15% 10%, #392c5c 0%, #222632 65%, #191c25 100%);
+          background: linear-gradient(135deg, #1d1d1d 0%, #2a2a2a 50%, #1d1d1d 100%);
         }
         :global(.news-title) {
           color: #1A202C;
         }
         :global([data-theme="dark"] .news-title) {
-          color: #F7FAFC;
+          color: #ffffff;
         }
         :global(.news-date) {
           color: #718096;
         }
         :global([data-theme="dark"] .news-date) {
-          color: #A0AEC0;
+          color: #cccccc;
         }
         :global(.prose) {
           font-size: 18px;
@@ -87,7 +87,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #2D3748;
         }
         :global([data-theme="dark"] .prose) {
-          color: #E2E8F0;
+          color: #ffffff;
         }
         :global(.news-h1) {
           font-size: 28px;
@@ -96,7 +96,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #1A202C;
         }
         :global([data-theme="dark"] .news-h1) {
-          color: #F7FAFC;
+          color: #ffffff;
         }
         :global(.news-h2) {
           font-size: 24px;
@@ -105,7 +105,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #1A202C;
         }
         :global([data-theme="dark"] .news-h2) {
-          color: #F7FAFC;
+          color: #ffffff;
         }
         :global(.news-h3) {
           font-size: 20px;
@@ -114,7 +114,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #2D3748;
         }
         :global([data-theme="dark"] .news-h3) {
-          color: #E2E8F0;
+          color: #e6e6e6;
         }
         :global(.news-li) {
           margin: 4px 0;
