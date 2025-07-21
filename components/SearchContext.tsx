@@ -13,6 +13,7 @@ import {
 } from "kbar";
 import { RiSearchLine } from "react-icons/ri";
 import { docsSections, siteConfig, topLevelSectionsRoutes } from "@/config";
+import { getAllPosts } from "@/lib/news";
 import { WithChildren } from "@/types";
 
 interface SearchProviderProps extends WithChildren {}
@@ -51,6 +52,19 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
       perform: () => router.push(route.path),
     }));
 
+    // Add news articles
+    const newsActions: Action[] = getAllPosts().map((post) => ({
+      id: `/news/${post.slug}`,
+      name: post.title,
+      keywords: post.title
+        .toLowerCase()
+        .split(" ")
+        .join(" "),
+      section: "新闻",
+      subtitle: "阅读文章",
+      perform: () => router.push(`/news/${post.slug}`),
+    }));
+
     return [
       {
         id: "homepage",
@@ -62,6 +76,7 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
       },
       ...topLevelPages,
       ...docs,
+      ...newsActions,
     ];
   }, [router]);
 
@@ -81,13 +96,13 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
 };
 
 const SearchInput = () => {
-  const borderColor = useColorModeValue("gray.200", "gray.600");
-  const bgColor = useColorModeValue("white", "gray.800");
+  const borderColor = useColorModeValue("rgba(0,0,0,0.1)", "rgba(255,255,255,0.1)");
+  const bgColor = useColorModeValue("rgba(255,255,255,0.5)", "rgba(255,255,255,0.1)");
   const textColor = useColorModeValue("gray.900", "white");
-  const focusBorderColor = useColorModeValue("blue.300", "blue.300");
+  const focusBorderColor = useColorModeValue("rgba(0,0,0,0.2)", "rgba(255,255,255,0.2)");
 
   return (
-    <Box pos="relative">
+    <Box pos="relative" p="4">
       <KBarSearch
         defaultPlaceholder="你需要什么？"
         style={{
@@ -95,10 +110,11 @@ const SearchInput = () => {
           fontSize: "16px",
           width: "100%",
           border: `1px solid ${borderColor}`,
-          borderRadius: "12px",
+          borderRadius: "8px",
           outline: "none",
           background: bgColor,
           color: textColor,
+          backdropFilter: "blur(10px)",
         }}
         onFocus={(e) => {
           e.target.style.borderColor = focusBorderColor;
@@ -125,49 +141,54 @@ const Results = () => {
   const { results } = useMatches();
 
   return (
-    <KBarResults
-      items={results}
-      onRender={({ item, active }) => {
-        if (typeof item === "string") {
+    <Box maxH="400px" overflowY="auto">
+      <KBarResults
+        items={results}
+        onRender={({ item, active }) => {
+          if (typeof item === "string") {
+            return (
+              <Box p="3" fontSize="xs" textTransform="uppercase" opacity={0.7} color={useColorModeValue("gray.600", "gray.400")}>
+                {item}
+              </Box>
+            );
+          }
+
+          const borderLeftColor = active ? useColorModeValue("blue.400", "blue.300") : "transparent";
+          const activeBg = useColorModeValue("rgba(0,0,0,0.05)", "rgba(255,255,255,0.1)");
+
           return (
-            <Box p="3" fontSize="xs" textTransform="uppercase" opacity={0.5}>
-              {item}
+            <Box
+              p="3"
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+              cursor="pointer"
+              borderLeft="2px solid"
+              borderLeftColor={borderLeftColor}
+              bg={active ? activeBg : "transparent"}
+              _hover={{
+                bg: activeBg,
+              }}
+              transition="all 0.2s"
+            >
+              <Box
+                display="flex"
+                gap="3"
+                alignItems="center"
+                fontSize="sm"
+                fontWeight={active ? "medium" : "normal"}
+                color={useColorModeValue("gray.900", "white")}
+              >
+                {item.name}
+              </Box>
+              <Box fontSize="xs" opacity={0.6} color={useColorModeValue("gray.600", "gray.400")}>
+                {item.subtitle}
+              </Box>
             </Box>
           );
-        }
-
-        const borderLeftColor = active ? "blue.300" : "transparent";
-
-        return (
-          <Box
-            p="3"
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            cursor="pointer"
-            borderLeft="2px solid"
-            borderLeftColor={borderLeftColor}
-            bg={active ? "gray.100" : "transparent"}
-            _dark={{
-              bg: active ? "gray.700" : "transparent",
-            }}
-          >
-            <Box
-              display="flex"
-              gap="3"
-              alignItems="center"
-              fontSize="sm"
-              fontWeight={active ? "medium" : "normal"}
-            >
-              {item.name}
-            </Box>
-            <Box fontSize="xs" opacity={0.5}>
-              {item.subtitle}
-            </Box>
-          </Box>
-        );
-      }}
-    />
+        }}
+      />
+    </Box>
   );
 };
 
