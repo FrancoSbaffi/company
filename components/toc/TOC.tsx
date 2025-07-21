@@ -29,6 +29,18 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
   const hoverTextColor = useColorModeValue("gray.800", "white");
   const dotColor = useColorModeValue("gray.700", "gray.300");
 
+  const handleClick = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       let current = "";
@@ -118,6 +130,7 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
                 {
                 <Link
                   href={`#${id}`}
+                  onClick={(e) => handleClick(e, id)}
                   fontSize="sm"
                   fontWeight={id === activeHeading ? "bold" : "normal"}
                   color={id === activeHeading ? activeTextColor : inactiveTextColor}

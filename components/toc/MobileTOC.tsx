@@ -21,6 +21,18 @@ export const MobileTOC: FC<TOCProps & AccordionProps> = ({
   const linkColor = useColorModeValue("gray.600", "gray.400");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   
+  const handleClick = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+    }
+  };
+  
   return (
     <Accordion
       display={{ base: "block", xl: "none" }}
@@ -74,7 +86,8 @@ export const MobileTOC: FC<TOCProps & AccordionProps> = ({
                 ml={level === "h3" ? "4" : undefined}
               >
                 <Link 
-                  href={`#${id}`} 
+                  href={`#${id}`}
+                  onClick={(e) => handleClick(e, id)}
                   fontSize="sm"
                   color={linkColor}
                   _hover={{ 
