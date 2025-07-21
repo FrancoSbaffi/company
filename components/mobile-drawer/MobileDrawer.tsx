@@ -20,7 +20,7 @@ interface MobileDrawerProps {
 const MobileDrawer: FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
   const { asPath } = useRouter();
   const showOnBreakpoint = useBreakpointValue({ base: true, lg: false });
-  const bgColor = useColorModeValue("white", "gray.800");
+  const bgColor = useColorModeValue("white", "#1d1d1d");
 
   useEffect(() => {
     onClose();

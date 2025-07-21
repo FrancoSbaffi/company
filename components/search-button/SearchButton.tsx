@@ -31,7 +31,7 @@ export const SearchButton: FC<ButtonProps> = (props) => {
         <Flex
           as="kbd"
           fontSize="sm"
-          bg={useColorModeValue("white", "gray.800")}
+          bg={useColorModeValue("white", "#1d1d1d")}
           borderRadius="md"
           px="2"
           py="1"

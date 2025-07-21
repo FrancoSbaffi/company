@@ -13,7 +13,7 @@ interface SidebarProps extends WithChildren, ContainerProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({ sections, ...props }) => {
-  const bgColor = useColorModeValue("white", "gray.800");
+  const bgColor = useColorModeValue("white", "#1d1d1d");
   const gradientColors = useColorModeValue(
     "linear(to-b, rgb(255,255,255), rgba(255,255,255, 0))",
     "linear(to-b, rgb(26, 33, 44), rgba(26, 33, 44, 0))"

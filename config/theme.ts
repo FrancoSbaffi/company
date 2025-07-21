@@ -65,7 +65,7 @@ export const theme = extendTheme(
         borderCollapse: "collapse",
         borderColor: "gray.100",
         _dark: {
-          borderColor: "gray.700",
+          borderColor: "#333333",
         },
         borderRadius: "xl",
         p: "3",
@@ -75,7 +75,7 @@ export const theme = extendTheme(
           textTransform: "upperCase",
           color: "gray.600",
           _dark: {
-            color: "gray.400",
+            color: "#cccccc",
           },
         },
 
@@ -86,7 +86,7 @@ export const theme = extendTheme(
         "tr:nth-of-type(2n)": {
           bgColor: "gray.200",
           _dark: {
-            bgColor: "gray.700",
+            bgColor: "#2a2a2a",
           },
         },
       },
@@ -117,7 +117,7 @@ export const theme = extendTheme(
       },
       pre: {
         _dark: {
-          bg: "gray.700",
+          bg: "#2a2a2a",
         },
         borderRadius: "2xl",
         px: "2.5",
@@ -126,7 +126,7 @@ export const theme = extendTheme(
       code: {
         fontSize: "sm",
         fontWeight: "semibold",
-        bgColor: "gray.700",
+        bgColor: "#2a2a2a",
         color: "brand.400",
         px: "1.5",
         py: "1",
@@ -138,7 +138,7 @@ export const theme = extendTheme(
       ".rehype-code-title": {
         fontSize: "sm",
         fontWeight: "bold",
-        bgColor: "gray.700",
+        bgColor: "#2a2a2a",
         color: "brand.300",
         px: "3",
         py: "2",

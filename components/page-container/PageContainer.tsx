@@ -7,7 +7,7 @@ import { Box, useColorModeValue } from "@chakra-ui/react";
 interface PageContainerProps extends WithChildren, SEO {}
 
 const PageContainer: FC<PageContainerProps> = ({ children, ...meta }) => {
-  const bgColor = useColorModeValue("white", "gray.800");
+  const bgColor = useColorModeValue("white", "#1d1d1d");
   return (
     <Box bgColor={bgColor}>
       <Seo {...meta} />
