@@ -1,23 +1,18 @@
 import {
   Box,
-  Button,
   Flex,
   Heading,
-  Icon,
   Stack,
   StackProps,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { SearchButton } from "@/components/search-button";
-import { RiArrowRightLine } from "react-icons/ri";
-import { useRouter } from "next/router";
 import { FC } from "react";
 
 interface HeroProps extends StackProps {}
 
 const Hero: FC<HeroProps> = () => {
-  const router = useRouter();
 
   return (
     <Stack
@@ -57,33 +52,19 @@ const Hero: FC<HeroProps> = () => {
       </Text>
       <Flex
         direction="row"
+        justifyContent="center"
         alignItems="center"
         blendMode="luminosity"
         zIndex="1"
       >
-        <Button
-          maxW="60"
-          size="lg"
-          colorScheme="whiteAlpha"
-          color={useColorModeValue("gray.600", "white")}
-          shadow="lg"
-          border="1px"
-          borderColor={useColorModeValue("white", "whiteAlpha.300")}
-          borderRadius="full"
-          rightIcon={<Icon as={RiArrowRightLine} />}
-          onClick={() => router.push("/docs/mdx")}
-        >
-          Getting started
-        </Button>
         <SearchButton
-          w="52"
-          display={{ base: "none", lg: "flex" }}
+          w="80"
+          display="flex"
           size="lg"
           shadow="lg"
           border="1px"
           borderColor={useColorModeValue("white", "whiteAlpha.300")}
           borderRadius="lg"
-          ml="4"
         />
       </Flex>
       <Box
