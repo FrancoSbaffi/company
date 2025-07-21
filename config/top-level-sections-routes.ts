@@ -22,7 +22,7 @@ export const topLevelSectionsRoutes = [
     icon: RiArchiveFill,
   },
   {
-    label: "Team",
+    label: "我们的团队",
     path: "/team",
     icon: RiGroupFill,
   },
