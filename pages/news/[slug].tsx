@@ -34,7 +34,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
     <>
       <Box minH="100vh" bg={bgColor}>
       <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
-      <Container maxW="4xl" pt={12} pb={8}>
+      <Container maxW="4xl" pt={12} pb={8} px={{ base: 4, md: 6 }}>
         <Heading 
           as="h1" 
           textAlign="center" 
@@ -73,6 +73,20 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
         :global([data-theme="dark"] .news-title) {
           color: #ffffff;
         }
+        
+        /* Responsive title styles */
+        @media (max-width: 768px) {
+          :global(.news-title) {
+            font-size: 24px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          :global(.news-title) {
+            font-size: 20px;
+            line-height: 1.3;
+          }
+        }
         :global(.news-date) {
           color: #718096;
           opacity: 0.8;
@@ -86,9 +100,24 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           line-height: 1.6;
           color: #2D3748;
           max-width: none;
+          overflow-x: hidden;
         }
         :global([data-theme="dark"] .prose) {
           color: #f7fafc;
+        }
+        
+        /* Responsive content styles */
+        @media (max-width: 768px) {
+          :global(.prose) {
+            font-size: 14px;
+            line-height: 1.5;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          :global(.prose) {
+            font-size: 13px;
+          }
         }
         :global(.prose h1) {
           font-size: 24px;
@@ -150,17 +179,22 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           border: 1px solid #e2e8f0;
           border-radius: 6px;
           overflow: hidden;
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
         }
         :global([data-theme="dark"] .prose table) {
           border-color: #4a5568;
         }
         :global(.prose th) {
           background-color: #f7fafc;
-          padding: 10px 14px;
+          padding: 8px 10px;
           text-align: left;
           font-weight: 600;
           color: #2d3748;
           border-bottom: 1px solid #e2e8f0;
+          font-size: 14px;
+          min-width: 120px;
         }
         :global([data-theme="dark"] .prose th) {
           background-color: #2d3748;
@@ -168,13 +202,46 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           border-color: #4a5568;
         }
         :global(.prose td) {
-          padding: 10px 14px;
+          padding: 8px 10px;
           border-bottom: 1px solid #e2e8f0;
           color: #2d3748;
+          font-size: 14px;
+          min-width: 120px;
         }
         :global([data-theme="dark"] .prose td) {
           border-color: #4a5568;
           color: #f7fafc;
+        }
+        
+        /* Responsive table styles */
+        @media (max-width: 768px) {
+          :global(.prose table) {
+            font-size: 12px;
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+          }
+          :global(.prose th),
+          :global(.prose td) {
+            padding: 6px 8px;
+            font-size: 12px;
+            min-width: 100px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          :global(.prose table) {
+            margin: 15px -15px;
+            width: calc(100% + 30px);
+            border-radius: 0;
+          }
+          :global(.prose th),
+          :global(.prose td) {
+            padding: 5px 6px;
+            font-size: 11px;
+            min-width: 80px;
+          }
         }
         :global(.prose tr:nth-child(even)) {
           background-color: #f8fafc;
