@@ -63,7 +63,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
       <Box minH="100vh" bg={bgColor}>
       <Navbar routes={navbarRoutes} />
       <Container 
-        maxW="4xl" 
+        maxW="6xl" 
         pt={12} 
         pb={8} 
         px={{ base: 4, md: 6 }}
@@ -71,7 +71,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
       >
         <Heading 
           as="h1" 
-          textAlign="center" 
+          textAlign="left" 
           mb={3} 
           size="xl"
           fontWeight="bold"
@@ -82,7 +82,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
         <Text 
           fontSize="sm" 
           mb={6} 
-          textAlign="center"
+          textAlign="left"
           fontWeight="500" 
           className="news-date"
         >
