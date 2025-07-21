@@ -33,9 +33,9 @@ const Hero: FC<HeroProps> = () => {
         zIndex="1"
         blendMode="luminosity"
       >
-        Build smarter{" "}
+        构建更智能的{" "}
         <Box as="span" color={useColorModeValue("purple.600", "purple.300")}>
-          fintech solutions
+          金融科技解决方案
         </Box>
       </Heading>
       <Text
@@ -47,8 +47,8 @@ const Hero: FC<HeroProps> = () => {
         zIndex="1"
         blendMode="luminosity"
       >
-        Empower your fintech projects with real-time data, trading tools, and modern APIs. 
-        Build faster, smarter, and more secure financial products.
+        通过实时数据、交易工具和现代API为您的金融科技项目赋能。
+        构建更快、更智能、更安全的金融产品。
       </Text>
       <Flex
         direction="row"
