@@ -27,8 +27,8 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
     breaks: true
   });
   
-  // Process markdown content and wrap tables
-  const processedContent = marked(post.content);
+  // Process markdown content
+  const processedContent = marked.parse(post.content);
   
   // Wrap tables with scrollable container for mobile
   const contentWithScrollableTables = processedContent.replace(
