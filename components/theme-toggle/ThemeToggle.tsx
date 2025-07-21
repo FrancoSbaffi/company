@@ -39,7 +39,14 @@ export const ThemeMenu: FC<WithChildren> = ({
   return (
     <Menu>
       {children}
-      <MenuList fontSize="sm">
+      <MenuList
+        fontSize="sm"
+        bgColor={useColorModeValue("white", "whiteAlpha.100")}
+        border="1px"
+        borderColor={useColorModeValue("gray.200", "whiteAlpha.200")}
+        backdropFilter="blur(10px)"
+        boxShadow={useColorModeValue("lg", "0 4px 6px rgba(0, 0, 0, 0.3)")}
+      >
         {themes.map(({ value, label, icon }) => (
           <MenuItem
             key={value}
