@@ -1,5 +1,4 @@
 import { GetStaticProps } from "next";
-import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/navbar/Navbar";
 import { getAllPosts, NewsPost } from "@/lib/news";
@@ -36,8 +35,6 @@ const categories = [
 ];
 
 export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  
   const bgColor = useColorModeValue("#f8f8f8", "#1d1d1d");
   const textColor = useColorModeValue("gray.600", "gray.400");
   const headingColor = useColorModeValue("gray.900", "white");
@@ -68,11 +65,6 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
     if (post.title.includes("维立志博")) return "comment";
     return "thought-leadership";
   };
-
-  // Filtrar posts por categoría
-  const filteredPosts = selectedCategory === "all" 
-    ? posts 
-    : posts.filter(post => getPostCategory(post) === selectedCategory);
   
   return (
     <Box bg={bgColor} minH="100vh">
@@ -88,17 +80,17 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
           </Text>
         </VStack>
 
-        {/* Category Filter Pills */}
+        {/* Category Filter Pills - Comentado por ahora */}
+        {/*
         <Box mb={8} p={6} bg={filterBg} borderRadius="xl" shadow="sm" border="1px solid" borderColor={borderColor}>
           <Wrap spacing={3} justify="center">
             {categories.map((category) => (
               <WrapItem key={category.id}>
                 <Button
                   size="sm"
-                  variant={selectedCategory === category.id ? "solid" : "outline"}
-                  colorScheme={selectedCategory === category.id ? category.color : "gray"}
+                  variant="solid"
+                  colorScheme={category.color}
                   borderRadius="full"
-                  onClick={() => setSelectedCategory(category.id)}
                   transition="all 0.2s ease"
                   _hover={{
                     transform: "translateY(-1px)",
@@ -110,24 +102,18 @@ export default function NewsIndex({ posts }: { posts: NewsPost[] }) {
             ))}
           </Wrap>
         </Box>
+        */}
         
         {/* Articles Grid */}
-        {filteredPosts.length === 0 ? (
+        {posts.length === 0 ? (
           <VStack spacing={4} py={12}>
             <Text color={textColor} textAlign="center" fontSize="lg">
-              该分类下暂无文章。
+              暂无文章。
             </Text>
-            <Button 
-              colorScheme="purple" 
-              variant="outline"
-              onClick={() => setSelectedCategory("all")}
-            >
-              查看全部文章
-            </Button>
           </VStack>
         ) : (
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
-            {filteredPosts.map((post, index) => {
+            {posts.map((post, index) => {
               const category = categories.find(cat => cat.id === getPostCategory(post)) || categories[1];
               
               return (
