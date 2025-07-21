@@ -26,7 +26,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
         pt={20}
         className="news-page-bg"
       >
-        <Container maxW="2xl">
+        <Container maxW="5xl">
           <Heading 
             as="h1" 
             textAlign="center" 
@@ -44,7 +44,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           >
             {post.date}
           </Text>
-          <Box px={4} className="news-content">
+          <Box px={8} className="news-content">
             <div 
               className="prose"
               dangerouslySetInnerHTML={{
