@@ -14,9 +14,6 @@ import {
   RiStackFill,
   RiAppsFill,
   RiFingerprintFill,
-  RiNavigationFill,
-  RiRefreshFill,
-  RiFlashlightFill,
 } from "react-icons/ri";
 import { Feature } from "@/types";
 
@@ -24,40 +21,22 @@ interface FeaturesProps extends BoxProps {}
 
 const features: Feature[] = [
   {
-    title: "Awesome Feature # 1",
+    title: "打新资讯 & 套利活动",
     description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
+      "实时更新热门打新机会、市场套利活动与收益回顾，助你掌握先机，轻松布局资金策略。",
     icon: RiStackFill,
   },
   {
-    title: "Awesome Feature # 2",
+    title: "财务管理智能助手",
     description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
+      "集成多账户资金流分析、资产分布可视化、预警与理财建议，一站式提升财务效率。",
     icon: RiAppsFill,
   },
   {
-    title: "Awesome Feature # 3",
+    title: "税务智能计算器",
     description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
+      "自动计算投资相关税务板块，支持港股、美股等场景，规避税务风险，轻松申报。",
     icon: RiFingerprintFill,
-  },
-  {
-    title: "Awesome Feature # 4",
-    description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
-    icon: RiNavigationFill,
-  },
-  {
-    title: "Awesome Feature # 5",
-    description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
-    icon: RiRefreshFill,
-  },
-  {
-    title: "Awesome Feature # 6",
-    description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis",
-    icon: RiFlashlightFill,
   },
 ];
 
