@@ -6,11 +6,13 @@ import { Footer } from "@/components/footer";
 import { SEO, WithChildren } from "@/types";
 import { navbarRoutes } from "@/config";
 
-interface DefaultLayoutProps extends WithChildren, SEO {}
+interface DefaultLayoutProps extends WithChildren, SEO {
+  newsData?: Array<{ slug: string; title: string }>;
+}
 
-const DefaultLayout: FC<DefaultLayoutProps> = ({ children, ...seo }) => {
+const DefaultLayout: FC<DefaultLayoutProps> = ({ children, newsData, ...seo }) => {
   return (
-    <PageContainer {...seo}>
+    <PageContainer newsData={newsData} {...seo}>
       <Navbar routes={navbarRoutes} />
       <Container maxW="8xl" mx="auto" px={{ base: "4", lg: "6" }}>
         <Box as="main" pt="8">

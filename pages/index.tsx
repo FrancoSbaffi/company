@@ -16,6 +16,7 @@ import { Hero } from "@/components/hero";
 import { Features } from "@/components/features";
 import { Tweets } from "@/components/tweets";
 import { getAllPosts, NewsPost } from "@/lib/news";
+import { getNewsDataForSearch } from "@/lib/search-data";
 
 interface HomeProps {
   posts: NewsPost[];
@@ -77,8 +78,15 @@ const Home = ({ posts }: HomeProps) => {
     const gradientIndex = Math.abs(titleHash + index * 7) % gradients.length;
     return gradients[gradientIndex];
   };
+  
+  // Get news data from the posts passed as props
+  const newsData = posts.map(post => ({
+    slug: post.slug,
+    title: post.title
+  }));
+  
   return (
-    <DefaultLayout>
+    <DefaultLayout newsData={newsData}>
       <Hero />
       <Features mt="6" />
       <Section

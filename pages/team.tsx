@@ -1,9 +1,15 @@
 import { DefaultLayout } from "@/layouts";
 import { Heading, Text } from "@chakra-ui/react";
+import { GetStaticProps } from "next";
+import { getNewsDataForSearch } from "@/lib/search-data";
 
-const Team = () => {
+interface TeamProps {
+  newsData: Array<{ slug: string; title: string }>;
+}
+
+const Team = ({ newsData }: TeamProps) => {
   return (
-    <DefaultLayout title="Team">
+    <DefaultLayout title="Team" newsData={newsData}>
       <Heading as="h1">Team</Heading>
       <Text mt="6">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus iste
@@ -13,6 +19,15 @@ const Team = () => {
       </Text>
     </DefaultLayout>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const newsData = getNewsDataForSearch();
+  return {
+    props: {
+      newsData,
+    },
+  };
 };
 
 export default Team;

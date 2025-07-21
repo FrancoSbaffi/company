@@ -19,14 +19,16 @@ import { Link } from "@/components/link";
 import { findRouteByPath, findSectionByPath, getRouteContext } from "@/utils";
 import { allDocsRoutes, docsSections } from "@/config";
 import { Route } from "@/types";
+import { getNewsDataForSearch } from "@/lib/search-data";
 
 interface DocumentProps {
   document: Doc;
   currentRoute: Route;
   section: string;
+  newsData: Array<{ slug: string; title: string }>;
 }
 
-const Document: FC<DocumentProps> = ({ document, currentRoute, section }) => {
+const Document: FC<DocumentProps> = ({ document, currentRoute, section, newsData }) => {
   const { previousRoute, nextRoute } = getRouteContext(
     allDocsRoutes,
     currentRoute
@@ -35,7 +37,7 @@ const Document: FC<DocumentProps> = ({ document, currentRoute, section }) => {
   const Component = useMDXComponent(document.body.code);
 
   return (
-    <DocsLayout title={document.title} description={document.description}>
+    <DocsLayout title={document.title} description={document.description} newsData={newsData}>
       <Stack
         spacing="4"
         borderBottom="1px"
@@ -100,12 +102,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     ? findSectionByPath(document.slug, docsSections)
     : null;
   const route = document ? findRouteByPath(document.slug, allDocsRoutes) : null;
+  const newsData = getNewsDataForSearch();
 
   if (route) {
-    return { props: { document, currentRoute: route, section } };
+    return { props: { document, currentRoute: route, section, newsData } };
   }
 
-  return { props: { document, section } };
+  return { props: { document, section, newsData } };
 };
 
 export default Document;

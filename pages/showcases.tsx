@@ -1,9 +1,15 @@
 import { Heading, Text } from "@chakra-ui/react";
+import { GetStaticProps } from "next";
 import { DefaultLayout } from "@/layouts";
+import { getNewsDataForSearch } from "@/lib/search-data";
 
-const Showcases = () => {
+interface ShowcasesProps {
+  newsData: Array<{ slug: string; title: string }>;
+}
+
+const Showcases = ({ newsData }: ShowcasesProps) => {
   return (
-    <DefaultLayout title="Resources">
+    <DefaultLayout title="Resources" newsData={newsData}>
       <Heading as="h1">Showcases</Heading>
       <Text mt="6">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus iste
@@ -13,6 +19,15 @@ const Showcases = () => {
       </Text>
     </DefaultLayout>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const newsData = getNewsDataForSearch();
+  return {
+    props: {
+      newsData,
+    },
+  };
 };
 
 export default Showcases;

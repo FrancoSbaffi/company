@@ -13,12 +13,13 @@ import {
 } from "kbar";
 import { RiSearchLine } from "react-icons/ri";
 import { docsSections, siteConfig, topLevelSectionsRoutes } from "@/config";
-import { getAllPosts } from "@/lib/news";
 import { WithChildren } from "@/types";
 
-interface SearchProviderProps extends WithChildren {}
+interface SearchProviderProps extends WithChildren {
+  newsData?: Array<{ slug: string; title: string }>;
+}
 
-export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
+export const SearchProvider: FC<SearchProviderProps> = ({ children, newsData = [] }) => {
   const router = useRouter();
 
   const actions = useMemo(() => {
@@ -53,7 +54,7 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children }) => {
     }));
 
     // Add news articles
-    const newsActions: Action[] = getAllPosts().map((post) => ({
+    const newsActions: Action[] = newsData.map((post) => ({
       id: `/news/${post.slug}`,
       name: post.title,
       keywords: post.title

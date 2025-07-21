@@ -7,11 +7,13 @@ import { Footer } from "@/components/footer";
 import { docsSections, navbarRoutes } from "@/config";
 import { SEO, WithChildren } from "@/types";
 
-interface DocsLayoutProps extends WithChildren, SEO {}
+interface DocsLayoutProps extends WithChildren, SEO {
+  newsData?: Array<{ slug: string; title: string }>;
+}
 
-const DocsLayout: FC<DocsLayoutProps> = ({ children, ...seo }) => {
+const DocsLayout: FC<DocsLayoutProps> = ({ children, newsData, ...seo }) => {
   return (
-    <PageContainer {...seo}>
+    <PageContainer newsData={newsData} {...seo}>
       <DocsNavbar routes={navbarRoutes} />
       <Container maxW="8xl" mx="auto" px={{ base: "4", lg: "6" }}>
         <Sidebar sections={docsSections} />
