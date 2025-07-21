@@ -102,7 +102,8 @@ const SearchInput = () => {
   const textColor = useColorModeValue("gray.900", "white");
   const focusBorderColor = useColorModeValue("rgba(59,130,246,0.6)", "rgba(96,165,250,0.6)");
   const iconColor = useColorModeValue("gray.600", "gray.300");
-  const placeholderColor = useColorModeValue("gray.500", "gray.400");
+  const iconBgColor = useColorModeValue("rgba(59,130,246,0.1)", "rgba(255,255,255,0.1)");
+  const iconBorderColor = useColorModeValue("rgba(59,130,246,0.2)", "rgba(255,255,255,0.2)");
 
   return (
     <Box 
@@ -144,21 +145,21 @@ const SearchInput = () => {
         alignItems="center"
         justifyContent="center"
         pos="absolute"
-        left="8"
+        left="10"
         top="50%"
         transform="translateY(-50%)"
         pointerEvents="none"
-        w="10"
-        h="10"
+        w="8"
+        h="8"
         borderRadius="full"
-        bg={useColorModeValue("rgba(59,130,246,0.1)", "rgba(96,165,250,0.1)")}
+        bg={iconBgColor}
         border="1px solid"
-        borderColor={useColorModeValue("rgba(59,130,246,0.2)", "rgba(96,165,250,0.2)")}
+        borderColor={iconBorderColor}
       >
         <Icon 
           as={RiSearchLine} 
           color={iconColor} 
-          boxSize="5" 
+          boxSize="4" 
           filter="drop-shadow(0 1px 2px rgba(0,0,0,0.1))"
         />
       </Flex>

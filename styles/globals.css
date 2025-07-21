@@ -342,7 +342,7 @@ div[style*="max-width"][style*="width: 100%"],
   }
 }
 
-/* Dark mode with enhanced glass effect */
+/* Dark mode with enhanced glass effect - NO BLUE TONES */
 html[data-theme="dark"] [data-kbar-animator],
 html[data-theme="dark"] div[style*="max-width"][style*="width: 100%"],
 html[data-theme="dark"] .kbar-blur {
@@ -360,10 +360,10 @@ html[data-theme="dark"] .kbar-blur {
 
 html[data-theme="dark"] [data-kbar-positioner] {
   background: 
-    radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-    rgba(0, 0, 0, 0.8) !important;
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(128, 128, 128, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(64, 64, 64, 0.05) 0%, transparent 50%),
+    rgba(0, 0, 0, 0.85) !important;
 }
 
 /* Override ANY inline styles that KBar might apply */
@@ -388,6 +388,14 @@ html[data-theme="dark"] [data-kbar-animator][style] {
     radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
     rgba(0, 0, 0, 0.7) !important;
+}
+
+html[data-theme="dark"] [data-kbar-positioner][style] {
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(128, 128, 128, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(64, 64, 64, 0.05) 0%, transparent 50%),
+    rgba(0, 0, 0, 0.85) !important;
 }
 
 /* Enhanced content styling */
@@ -444,7 +452,7 @@ html[data-theme="dark"] [data-kbar-animator] .result-item {
   color: #ffffff !important;
 }
 
-/* Enhanced hover states with glass morphism */
+/* Enhanced hover states with glass morphism - NEUTRAL COLORS FOR DARK MODE */
 [data-kbar-animator] [role="option"]:hover,
 [data-kbar-animator] [role="option"][aria-selected="true"],
 [data-kbar-animator] .result-item:hover {
@@ -465,11 +473,11 @@ html[data-theme="dark"] [data-kbar-animator] [role="option"][aria-selected="true
 html[data-theme="dark"] [data-kbar-animator] .result-item:hover {
   background: 
     linear-gradient(135deg, 
-      rgba(96, 165, 250, 0.15) 0%, 
-      rgba(96, 165, 250, 0.08) 100%) !important;
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 100%) !important;
   box-shadow: 
-    0 8px 32px rgba(96, 165, 250, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    0 8px 32px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
 }
 
 /* Super aggressive overrides for KBar */
@@ -497,6 +505,16 @@ div[data-kbar-positioner] {
     rgba(0, 0, 0, 0.7) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+}
+
+html[data-theme="dark"] div[data-kbar-positioner] {
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(128, 128, 128, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(64, 64, 64, 0.05) 0%, transparent 50%),
+    rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
 }
 
 /* Disable all interactions behind modal */
