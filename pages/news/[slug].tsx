@@ -20,13 +20,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export default function NewsPostPage({ post }: { post: NewsPost }) {
   return (
     <>
-      <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
       <Box 
         minH="100vh" 
-        pt={20}
         className="news-page-bg"
       >
-        <Container maxW="5xl">
+        <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
+        <Container maxW="5xl" pt={20}>
           <Heading 
             as="h1" 
             textAlign="center" 
