@@ -16,7 +16,7 @@ const Sidebar: FC<SidebarProps> = ({ sections, ...props }) => {
   const bgColor = useColorModeValue("white", "#1d1d1d");
   const gradientColors = useColorModeValue(
     "linear(to-b, rgb(255,255,255), rgba(255,255,255, 0))",
-    "linear(to-b, rgb(26, 33, 44), rgba(26, 33, 44, 0))"
+    "linear(to-b, rgb(29, 29, 29), rgba(29, 29, 29, 0))"
   );
 
   return (

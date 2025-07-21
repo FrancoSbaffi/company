@@ -31,7 +31,10 @@ const Section: FC<SectionProps> = ({ title, subtitle, text, ...props }) => {
       <Heading
         fontSize={{ base: "4xl", md: "5xl" }}
         textAlign="center"
-        bgGradient="linear(to-r, purple.400, orange.400)"
+        bgGradient={useColorModeValue(
+          "linear(to-r, purple.400, orange.400)",
+          "linear(to-r, gray.300, white)"
+        )}
         bgClip="text"
         textTransform="uppercase"
         lineHeight="1"

@@ -26,7 +26,7 @@ const FeatureCard: FC<FeatureCardProps> = ({
       position="relative"
       bgGradient={useColorModeValue(
         "linear(104.28deg, purple.200 1.24%, purple.500 32.96%, purple.200 68.22%)",
-        "linear(104.28deg, rgb(38, 34, 71) 1.24%, purple.500 32.96%, rgb(38, 34, 71) 68.22%)"
+        "linear(104.28deg, rgb(45, 45, 45) 1.24%, rgb(80, 80, 80) 32.96%, rgb(45, 45, 45) 68.22%)"
       )}
       borderRadius="3xl"
       {...props}
@@ -34,7 +34,7 @@ const FeatureCard: FC<FeatureCardProps> = ({
       <Box
         position="absolute"
         inset="1px"
-        bgColor={useColorModeValue("white", "gray.800")}
+        bgColor={useColorModeValue("white", "#1d1d1d")}
         borderRadius="inherit"
       />
       <Stack position="relative" p="6" spacing="4">

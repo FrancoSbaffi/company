@@ -67,7 +67,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           background: radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%);
         }
         :global([data-theme="dark"] .news-page-bg) {
-          background: linear-gradient(135deg, #1d1d1d 0%, #2a2a2a 50%, #1d1d1d 100%);
+          background: #1d1d1d;
         }
         :global(.news-title) {
           color: #1A202C;
