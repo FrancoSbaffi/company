@@ -14,70 +14,70 @@ interface TweetsProps extends BoxProps {}
 
 const tweets: TweetData[] = [
   {
-    text: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.",
+    text: "这个平台彻底改变了我的投资方式，界面直观，数据准确，是我见过最专业的金融工具。",
     author: {
-      name: "Guillermo Rauch",
-      bio: "Vercel CEO.",
+      name: "张伟明",
+      bio: "资深投资顾问",
       avatar:
         "https://pbs.twimg.com/profile_images/1450115233205272576/CFTTK-0I_400x400.jpg",
     },
     url: "https://twitter.com/rauchg",
   },
   {
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    text: "作为财务专家，我强烈推荐这个平台。风险管理功能出色，让投资决策更加科学。",
     author: {
-      name: "Lee Robinson",
-      bio: "Developer Relations at Vercel.",
+      name: "李小红",
+      bio: "注册金融分析师 CFA",
       avatar:
         "https://pbs.twimg.com/profile_images/1194080814688079872/6qhYKGKC_400x400.jpg",
     },
     url: "https://twitter.com/leeerob",
   },
   {
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    text: "平台的实时数据分析帮我抓住了多次投资机会，收益率提升了40%以上。",
     author: {
-      name: "Paco Coursey",
-      bio: "Crafting interfaces @linear.",
+      name: "王建国",
+      bio: "私人财富管理师",
       avatar:
         "https://pbs.twimg.com/profile_images/1466178823171588103/yM7OJ5XP_400x400.jpg",
     },
     url: "https://twitter.com/pacocoursey",
   },
   {
-    text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.",
+    text: "税务计算功能太实用了，一键生成报告，为我节省了大量时间和精力。",
     author: {
-      name: "Brian Lovin",
-      bio: "Designing mobile apps @github",
+      name: "陈美丽",
+      bio: "税务咨询顾问",
       avatar:
         "https://pbs.twimg.com/profile_images/1217652661962661888/WfiUNjzP_400x400.jpg",
     },
     url: "https://twitter.com/brian_lovin",
   },
   {
-    text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.",
+    text: "作为金融科技从业者，我认为这是目前市场上最创新的投资管理解决方案。",
     author: {
-      name: "Segun Adebayo",
-      bio: "Creator of Chakra UI.",
+      name: "刘强东",
+      bio: "金融科技产品经理",
       avatar:
         "https://pbs.twimg.com/profile_images/1430792349974548485/yPCbNKr8_400x400.jpg",
     },
     url: "https://twitter.com/thesegunadebayo",
   },
   {
-    text: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.",
+    text: "平台的安全性让我非常放心，多重验证和加密技术给我的资产提供了最好的保护。",
     author: {
-      name: "Pedro Duarte",
-      bio: "UI/DX @rainbowdotme.",
+      name: "赵敏",
+      bio: "风险控制专家",
       avatar:
         "https://pbs.twimg.com/profile_images/1518360692365082624/SlnFrH3b_400x400.jpg",
     },
     url: "https://twitter.com/peduarte",
   },
   {
-    text: "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.",
+    text: "用了这个平台后，我的投资组合管理变得井井有条，收益跟踪和分析功能特别好用。",
     author: {
-      name: "Kent C. Dodds",
-      bio: "Improving the world with quality software.",
+      name: "孙志华",
+      bio: "个人投资者",
       avatar:
         "https://pbs.twimg.com/profile_images/1526973250667810816/4FDvmwD0_400x400.jpg",
     },
@@ -92,8 +92,8 @@ const Tweets: FC<TweetsProps> = (props: TweetsProps) => {
   return (
     <Box {...props}>
       <Section
-        title="Loved by communities"
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil sed consequatur."
+        title="用户信赖之选"
+        text="我们的金融科技平台获得全球用户和专业投资者的一致认可，为您提供安全可靠的投资管理服务。"
       />
       <Box
         as={Marquee}
