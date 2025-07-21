@@ -29,14 +29,15 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
   
   // Configure marked with custom renderer for headings
   const renderer = new marked.Renderer();
-  renderer.heading = function(text, level) {
-    if (level === 2 || level === 3) {
+  renderer.heading = function({ tokens, depth }: { tokens: any[], depth: number }) {
+    const text = tokens.map(token => token.raw || token.text || '').join('');
+    if (depth === 2 || depth === 3) {
       // Find the corresponding heading from our extracted headings
       const heading = headings.find(h => h.text === text);
       const id = heading ? heading.id : text.toLowerCase().replace(/[^\w\u4e00-\u9fff\s-]/g, '').replace(/\s+/g, '-');
-      return `<h${level} id="${id}">${text}</h${level}>`;
+      return `<h${depth} id="${id}">${text}</h${depth}>`;
     }
-    return `<h${level}>${text}</h${level}>`;
+    return `<h${depth}>${text}</h${depth}>`;
   };
   
   marked.setOptions({
