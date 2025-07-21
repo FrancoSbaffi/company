@@ -102,13 +102,13 @@ const SearchInput = () => {
   const textColor = useColorModeValue("gray.900", "white");
   const focusBorderColor = useColorModeValue("rgba(59,130,246,0.6)", "rgba(96,165,250,0.6)");
   const iconColor = useColorModeValue("gray.600", "gray.300");
-  const iconBgColor = useColorModeValue("rgba(59,130,246,0.1)", "rgba(255,255,255,0.1)");
-  const iconBorderColor = useColorModeValue("rgba(59,130,246,0.2)", "rgba(255,255,255,0.2)");
+  const iconBgColor = useColorModeValue("rgba(0,0,0,0.05)", "rgba(255,255,255,0.1)");
+  const iconBorderColor = useColorModeValue("rgba(0,0,0,0.1)", "rgba(255,255,255,0.2)");
 
   return (
     <Box 
       pos="relative" 
-      p="6" 
+      p="4" 
       bg="transparent"
       borderBottom="1px solid"
       borderColor={useColorModeValue("rgba(0,0,0,0.1)", "rgba(255,255,255,0.1)")}
@@ -116,7 +116,7 @@ const SearchInput = () => {
       <KBarSearch
         defaultPlaceholder="你需要什么？"
         style={{
-          padding: "18px 20px 18px 56px",
+          padding: "16px 20px 16px 48px",
           fontSize: "16px",
           width: "100%",
           border: `2px solid ${borderColor}`,
@@ -145,12 +145,12 @@ const SearchInput = () => {
         alignItems="center"
         justifyContent="center"
         pos="absolute"
-        left="10"
+        left="7"
         top="50%"
         transform="translateY(-50%)"
         pointerEvents="none"
-        w="8"
-        h="8"
+        w="6"
+        h="6"
         borderRadius="full"
         bg={iconBgColor}
         border="1px solid"
@@ -159,7 +159,7 @@ const SearchInput = () => {
         <Icon 
           as={RiSearchLine} 
           color={iconColor} 
-          boxSize="4" 
+          boxSize="3.5" 
           filter="drop-shadow(0 1px 2px rgba(0,0,0,0.1))"
         />
       </Flex>
@@ -185,7 +185,7 @@ const Results = () => {
         onRender={({ item, active }) => {
           if (typeof item === "string") {
             return (
-              <Box p="4" fontSize="xs" textTransform="uppercase" fontWeight="bold" color={sectionTextColor} bg={resultsBg}>
+              <Box p="2" px="4" fontSize="xs" textTransform="uppercase" fontWeight="bold" color={sectionTextColor} bg={resultsBg}>
                 {item}
               </Box>
             );
@@ -195,7 +195,8 @@ const Results = () => {
 
           return (
             <Box
-              p="4"
+              p="2"
+              px="4"
               display="flex"
               alignItems="center"
               justifyContent="space-between"
