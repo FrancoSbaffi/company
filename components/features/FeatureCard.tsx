@@ -43,19 +43,19 @@ const FeatureCard: FC<FeatureCardProps> = ({
           borderRadius="full"
           justifyContent="center"
           alignItems="center"
-          bgColor={useColorModeValue("gray.50", "gray.700")}
-          color="gray.500"
+          bgColor={useColorModeValue("gray.50", "#2a2a2a")}
+          color={useColorModeValue("gray.500", "gray.300")}
         >
           {icon}
         </Flex>
         <Heading
           as="h3"
           fontSize="lg"
-          color={useColorModeValue("gray.600", "gray.200")}
+          color={useColorModeValue("gray.600", "white")}
         >
           {title}
         </Heading>
-        <Text color="gray.500">{description}</Text>
+        <Text color={useColorModeValue("gray.500", "gray.400")}>{description}</Text>
       </Stack>
     </Box>
   );

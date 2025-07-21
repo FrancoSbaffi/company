@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Text } from "@chakra-ui/react";
+import { Text, useColorModeValue } from "@chakra-ui/react";
 import { Link, LinkProps } from "@/components/link";
 
 interface PaginationLinkProps extends LinkProps {
@@ -29,7 +29,7 @@ const PaginationLink: FC<PaginationLinkProps> = ({
         mt="1"
         fontSize="lg"
         fontWeight="bold"
-        color="brand.600"
+        color={useColorModeValue("gray.800", "white")}
       >
         {children}
       </Text>

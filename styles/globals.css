@@ -209,7 +209,7 @@ code.language-css .token.selector>.token.pseudo-element {
 
 .line-highlight.line-highlight {
   margin-top: 36px;
-  background: linear-gradient(to right, rgba(179, 98, 255, 0.17), transparent);
+  background: linear-gradient(to right, rgba(156, 163, 175, 0.2), transparent);
 }
 
 .line-highlight.line-highlight:before,
@@ -245,7 +245,7 @@ code.language-css .token.selector>.token.pseudo-element {
   margin-right: -16px;
   background-color: rgba(55, 65, 81, 0.5);
   border-left-width: 2px;
-  border-left-color: rgb(128, 90, 213);
+  border-left-color: rgb(156, 163, 175);
 }
 
 .line-number::before {

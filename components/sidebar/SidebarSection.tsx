@@ -16,14 +16,17 @@ const SidebarSection: FC<SidebarSectionProps> = ({
   ...props
 }) => {
   const fontColor = useColorModeValue("gray.600", "gray.400");
+  const activeColor = useColorModeValue("gray.800", "white");
+  const hoverColor = useColorModeValue("gray.800", "white");
+  const iconBg = useColorModeValue("gray.600", "#2a2a2a");
 
   return (
     <Flex
       fontSize="sm"
       fontWeight="semibold"
-      color={isActive ? "brand.500" : fontColor}
+      color={isActive ? activeColor : fontColor}
       sx={{
-        ".link-box:hover &": { color: isLink ? "brand.500" : fontColor },
+        ".link-box:hover &": { color: isLink ? hoverColor : fontColor },
       }}
       alignItems="center"
       {...props}
@@ -32,7 +35,7 @@ const SidebarSection: FC<SidebarSectionProps> = ({
         w="full"
         maxW="6"
         h="6"
-        bg={useColorModeValue("brand.500", "brand.700")}
+        bg={iconBg}
         borderRadius="md"
         justifyContent="center"
         alignItems="center"

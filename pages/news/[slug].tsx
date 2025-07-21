@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Navbar from "@/components/navbar/Navbar";
 import { getAllPosts, getPostBySlug, NewsPost } from "@/lib/news";
-import { Box, Container, Heading, Text } from "@chakra-ui/react";
+import { Box, Container, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts();
@@ -18,57 +18,50 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export default function NewsPostPage({ post }: { post: NewsPost }) {
+  const bgColor = useColorModeValue("#f8f8f8", "#1d1d1d");
+  
   return (
     <>
-      <Box 
-        minH="100vh" 
-        className="news-page-bg"
-      >
-        <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
-        <Container maxW="5xl" pt={20}>
-          <Heading 
-            as="h1" 
-            textAlign="center" 
-            mb={6} 
-            size="2xl"
-            className="news-title"
-          >
-            {post.title}
-          </Heading>
-          <Text 
-            fontSize="md" 
-            mb={8} 
-            textAlign="center" 
-            className="news-date"
-          >
-            {post.date}
-          </Text>
-          <Box px={8} className="news-content">
-            <div 
-              className="prose"
-              dangerouslySetInnerHTML={{
-                __html: post.content
-                  .replace(/^# (.+)/gm, '<h1 class="news-h1">$1</h1>')
-                  .replace(/^## (.+)/gm, '<h2 class="news-h2">$1</h2>')
-                  .replace(/^### (.+)/gm, '<h3 class="news-h3">$1</h3>')
-                  .replace(/^\- (.+)/gm, '<li class="news-li">$1</li>')
-                  .replace(/\*\*(.+?)\*\*/g, '<strong class="news-strong">$1</strong>')
-                  .replace(/\n\n/g, '</p><p class="news-p">')
-                  .replace(/^(.+)$/gm, '<p class="news-p">$1</p>')
-                  .replace(/<p[^>]*><li/g, '<ul class="news-ul"><li')
-                  .replace(/<\/li><\/p>/g, '</li></ul>')
-              }}
-            />
-          </Box>
-        </Container>
-      </Box>
-      <style jsx>{`
-        :global(.news-page-bg) {
-          background: radial-gradient(ellipse at 20% 20%, #e9e3fa 0%, #fff 70%);
-        }
-        :global([data-theme="dark"] .news-page-bg) {
-          background: #1d1d1d;
-        }
+      <Box minH="100vh" bg={bgColor}>
+      <Navbar routes={[{ path: "/", title: "Home" }, { path: "/news", title: "News" }]} />
+      <Container maxW="5xl" pt={20} pb={10}>
+        <Heading 
+          as="h1" 
+          textAlign="center" 
+          mb={6} 
+          size="2xl"
+          className="news-title"
+        >
+          {post.title}
+        </Heading>
+        <Text 
+          fontSize="md" 
+          mb={8} 
+          textAlign="center" 
+          className="news-date"
+        >
+          {post.date}
+        </Text>
+        <Box className="news-content">
+          <div 
+            className="prose"
+            dangerouslySetInnerHTML={{
+              __html: post.content
+                .replace(/^# (.+)/gm, '<h1 class="news-h1">$1</h1>')
+                .replace(/^## (.+)/gm, '<h2 class="news-h2">$1</h2>')
+                .replace(/^### (.+)/gm, '<h3 class="news-h3">$1</h3>')
+                .replace(/^\- (.+)/gm, '<li class="news-li">$1</li>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong class="news-strong">$1</strong>')
+                .replace(/\n\n/g, '</p><p class="news-p">')
+                .replace(/^(.+)$/gm, '<p class="news-p">$1</p>')
+                .replace(/<p[^>]*><li/g, '<ul class="news-ul"><li')
+                .replace(/<\/li><\/p>/g, '</li></ul>')
+            }}
+          />
+        </Box>
+      </Container>
+    </Box>
+    <style jsx>{`
         :global(.news-title) {
           color: #1A202C;
         }
@@ -79,7 +72,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #718096;
         }
         :global([data-theme="dark"] .news-date) {
-          color: #cccccc;
+          color: #a0a0a0;
         }
         :global(.prose) {
           font-size: 18px;
@@ -87,7 +80,7 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #2D3748;
         }
         :global([data-theme="dark"] .prose) {
-          color: #ffffff;
+          color: #e6e6e6;
         }
         :global(.news-h1) {
           font-size: 28px;
@@ -114,17 +107,29 @@ export default function NewsPostPage({ post }: { post: NewsPost }) {
           color: #2D3748;
         }
         :global([data-theme="dark"] .news-h3) {
-          color: #e6e6e6;
+          color: #d0d0d0;
         }
         :global(.news-li) {
           margin: 4px 0;
           padding-left: 8px;
+          color: #2D3748;
+        }
+        :global([data-theme="dark"] .news-li) {
+          color: #e6e6e6;
         }
         :global(.news-strong) {
           font-weight: 600;
+          color: #1A202C;
+        }
+        :global([data-theme="dark"] .news-strong) {
+          color: #ffffff;
         }
         :global(.news-p) {
           margin: 16px 0;
+          color: #2D3748;
+        }
+        :global([data-theme="dark"] .news-p) {
+          color: #e6e6e6;
         }
         :global(.news-ul) {
           margin: 16px 0;

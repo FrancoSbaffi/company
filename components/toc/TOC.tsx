@@ -8,7 +8,9 @@ import {
   BoxProps,
   chakra,
   Divider,
+  useColorModeValue,
   Icon,
+  Link,
 } from "@chakra-ui/react";
 import { RiArrowUpLine } from "react-icons/ri";
 import { Heading } from "@/types";
@@ -19,6 +21,13 @@ export interface TOCProps {
 
 export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
   const [activeHeading, setActiveHeading] = useState("");
+  
+  // Color values outside of callbacks
+  const headingColor = useColorModeValue("gray.600", "gray.300");
+  const activeTextColor = useColorModeValue("gray.800", "white");
+  const inactiveTextColor = useColorModeValue("gray.600", "gray.400");
+  const hoverTextColor = useColorModeValue("gray.800", "white");
+  const dotColor = useColorModeValue("gray.700", "gray.300");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +70,7 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
             fontSize="sm"
             fontWeight="bold"
             textTransform="uppercase"
-            color="brand.500"
+            color={headingColor}
             mb="4"
           >
             On this page
@@ -77,30 +86,29 @@ export const TOC: FC<TOCProps & BoxProps> = ({ headings, ...props }) => {
                 ml={level === "h3" ? "4" : "0"}
               >
                 {
-                  <chakra.a
-                    href={`#${id}`}
-                    fontSize="sm"
-                    fontWeight={id === activeHeading ? "bold" : "normal"}
-                    color={id === activeHeading ? "brand.500" : "gray.500"}
-                    _hover={{ textDecor: "none", color: "brand.500" }}
-                    _after={{
-                      content: "''",
-                      w: "1.5",
-                      h: "1.5",
-                      position: "absolute",
-                      top: "50%",
-                      left: "0",
-                      transform: "translateY(-50%)",
-                      borderRadius: "full",
-                      bgColor: "brand.500",
-                      my: "0.4",
-                      ml: "-4",
-                      transition: "opacity 0.25s ease",
-                      opacity: id === activeHeading ? "1" : "0",
-                    }}
-                  >
-                    {text}
-                  </chakra.a>
+                <Link
+                  href={`#${id}`}
+                  fontSize="sm"
+                  fontWeight={id === activeHeading ? "bold" : "normal"}
+                  color={id === activeHeading ? activeTextColor : inactiveTextColor}
+                  _hover={{ textDecor: "none", color: hoverTextColor }}
+                  position="relative"
+                  _after={{
+                    content: "''",
+                    w: "1.5",
+                    h: "1.5",
+                    position: "absolute",
+                    top: "50%",
+                    left: "-6",
+                    transform: "translateY(-50%)",
+                    borderRadius: "full",
+                    bgColor: dotColor,
+                    transition: "opacity 0.25s ease",
+                    opacity: id === activeHeading ? "1" : "0",
+                  }}
+                >
+                  {text}
+                </Link>
                 }
               </ListItem>
             ))}

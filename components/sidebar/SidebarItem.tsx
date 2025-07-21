@@ -15,7 +15,7 @@ const SidebarItem: FC<SidebarItemProps> = ({
   ...props
 }) => {
   const [mounted, setMounted] = useState(false);
-  const activeColor = useColorModeValue("brand.500", "brand.300");
+  const activeColor = useColorModeValue("gray.800", "white");
 
   useEffect(() => {
     setMounted(true);
