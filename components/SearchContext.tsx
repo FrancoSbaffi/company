@@ -79,7 +79,7 @@ export const SearchProvider: FC<SearchProviderProps> = ({ children, newsData = [
       ...docs,
       ...newsActions,
     ];
-  }, [router]);
+  }, [router, newsData]);
 
   return (
     <KBarProvider actions={actions}>

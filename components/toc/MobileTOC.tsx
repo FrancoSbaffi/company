@@ -18,6 +18,9 @@ export const MobileTOC: FC<TOCProps & AccordionProps> = ({
   headings,
   ...props
 }) => {
+  const linkColor = useColorModeValue("gray.600", "gray.400");
+  const linkHoverColor = useColorModeValue("gray.800", "white");
+  
   return (
     <Accordion
       display={{ base: "block", xl: "none" }}
@@ -53,9 +56,9 @@ export const MobileTOC: FC<TOCProps & AccordionProps> = ({
                 <Link 
                   href={`#${id}`} 
                   fontSize="sm"
-                  color={useColorModeValue("gray.600", "gray.400")}
+                  color={linkColor}
                   _hover={{ 
-                    color: useColorModeValue("gray.800", "white"),
+                    color: linkHoverColor,
                     textDecoration: "none"
                   }}
                   display="block"
