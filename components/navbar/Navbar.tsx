@@ -9,6 +9,7 @@ import {
   Icon,
   Stack,
   useDisclosure,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Logo } from "@/components/logo";
 import { Link } from "@/components/link";
@@ -32,10 +33,11 @@ interface NavbarProps extends BoxProps {
 
 const Navbar: FC<NavbarProps> = ({ routes = defaultRoutes, ...props }: NavbarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const bgColor = useColorModeValue("white", "#1d1d1d");
 
   return (
     <>
-      <Box bgColor="transparent" {...props}>
+      <Box bgColor={bgColor} {...props}>
         <Container maxW="8xl" mx="auto" px="4">
           <Flex
             flexDir="row"
