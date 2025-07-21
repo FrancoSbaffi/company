@@ -15,6 +15,9 @@ import { RiSearchLine } from "react-icons/ri";
 
 export const SearchButton: FC<ButtonProps> = (props) => {
   const textColor = useColorModeValue("gray.500", "gray.400");
+  const bgColor = useColorModeValue("whiteAlpha.800", "whiteAlpha.100");
+  const borderColor = useColorModeValue("whiteAlpha.500", "whiteAlpha.200");
+  const hoverBg = useColorModeValue("whiteAlpha.900", "whiteAlpha.200");
   const { query } = useKBar();
 
   const handleClick = () => {
@@ -25,7 +28,24 @@ export const SearchButton: FC<ButtonProps> = (props) => {
     <Button
       w="full"
       px="3"
+      py="3"
       color={textColor}
+      bg={bgColor}
+      border="1px"
+      borderColor={borderColor}
+      backdropFilter="blur(10px)"
+      boxShadow={useColorModeValue("lg", "0 4px 6px rgba(0, 0, 0, 0.3)")}
+      borderRadius="lg"
+      _hover={{
+        bg: hoverBg,
+        borderColor: useColorModeValue("whiteAlpha.600", "whiteAlpha.300"),
+        transform: "translateY(-1px)",
+        boxShadow: useColorModeValue("xl", "0 8px 12px rgba(0, 0, 0, 0.4)"),
+      }}
+      _active={{
+        transform: "translateY(0px)",
+      }}
+      transition="all 0.2s"
       onClick={handleClick}
       {...props}
     >
@@ -37,11 +57,13 @@ export const SearchButton: FC<ButtonProps> = (props) => {
         <Flex
           as="kbd"
           fontSize="sm"
-          bg={useColorModeValue("white", "#1d1d1d")}
+          bg={useColorModeValue("gray.100", "gray.700")}
           borderRadius="md"
           px="2"
           py="1"
-          boxShadow="md"
+          boxShadow="sm"
+          border="1px"
+          borderColor={useColorModeValue("gray.200", "gray.600")}
         >
           <Text
             as="abbr"
